@@ -1,0 +1,16 @@
+
+
+.contentLayout {
+    display: flex;
+    flex-direction: column;
+    height: 74.6vh;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .contentLayout {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+}
