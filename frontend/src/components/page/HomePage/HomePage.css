@@ -1,0 +1,53 @@
+
+
+.mainHomePage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 71.9vh;
+}
+
+.contentHomePage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    padding: 20px;
+    gap: 10px;
+    border-radius: 20px;
+    backdrop-filter: blur(30px);
+}
+
+.navLink {
+    text-decoration: none;
+}
+
+.homeTextHeaderH1 {
+    font-size: 35px;
+    color: white;
+}
+
+.homeTextHeaderH2 {
+    font-size: 25px;
+    color: white;
+}
+
+.homeTextContent {
+    font-size: 20px;
+    color: white;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .contentHomePage {
+        width: 85%;
+    }
+}
+
+
+@media only screen and (max-width: 425px) {
+    .contentHomePage {
+        width: 100%;
+    }
+}
