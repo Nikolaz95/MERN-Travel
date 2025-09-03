@@ -1,0 +1,20 @@
+.imageComponent {
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+/* Variant Styles */
+
+
+.footerImg {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
+    cursor: pointer;
+}
