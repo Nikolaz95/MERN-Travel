@@ -23,8 +23,8 @@ const Footer = () => {
         <footer className="footerContent" >
             <section className='footerMainContent'>
                 <section className="footerAddres">
-                    <h1>Address:</h1>
-                    <address> Stockholm, Sweden
+                    <h1 className='footerHeaderText'>Address:</h1>
+                    <address className='footerText'> Stockholm, Sweden
                         <a href="https://www.google.com/maps/place/Stockholm/@59.0968211,17.5065602,7.75z/data=!4m6!3m5!1s0x465f763119640bcb:0xa80d27d3679d7766!8m2!3d59.3293235!4d18.0685808!16zL20vMDZteHM?entry=ttu" target="_blank"><Image src={Location} alt="" className='footerImg' />
                         </a>
                     </address>
@@ -37,7 +37,7 @@ const Footer = () => {
                 </section>
 
                 <section className="contactFooter">
-                    <h1>Contact:</h1>
+                    <h1 className='footerHeaderText'>Contact:</h1>
                     <div className="contactFooterLink">
                         <a href="mailto:nikolajoe95@gmail.com" target="_blank">
                             <Image src={Gmail} alt="" variant='footerImg' title="Gmail" />

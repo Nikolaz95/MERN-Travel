@@ -1,12 +1,11 @@
 import React from 'react'
-
 //import css
-import styles from "./HomePageLayout.module.css";
+import styles from "./MainLayout.module.css";
+import VideoBackground from '../../VideoBackground/VideoBackground ';
 
 //import components
-import VideoBackground from '../../../layouts/VideoBackground/VideoBackground ';
 
-const HomePageLayout = ({ children }) => {
+const MainLayout = ({ children }) => {
     return (
         <>
             <VideoBackground />
@@ -17,4 +16,4 @@ const HomePageLayout = ({ children }) => {
     )
 }
 
-export default HomePageLayout
+export default MainLayout

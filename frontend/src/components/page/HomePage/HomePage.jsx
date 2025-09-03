@@ -7,8 +7,8 @@ import titleName from '../../../components/hooks/useTitle';
 import travelTracker from "../../../assets/icons/icon-location.png"
 //css
 import './HomePage.css';
-import HomePageLayout from './HomePageLayout/HomePageLayout';
 import Button from '../../layouts/Buttons/Button';
+import MainLayout from '../../layouts/ContentLayout/MainLayout/MainLayout';
 
 
 //import components
@@ -17,7 +17,7 @@ const HomePage = () => {
     titleName('Home Page');
     return (
         <>
-            <HomePageLayout>
+            <MainLayout>
                 <main className="mainHomePage">
                     <section className="contentHomePage">
                         <h1 className="homeTextHeaderH1">Your Adventures, Your Story.</h1>
@@ -31,7 +31,7 @@ const HomePage = () => {
                         </NavLink>
                     </section>
                 </main>
-            </HomePageLayout></>
+            </MainLayout></>
     )
 }
 

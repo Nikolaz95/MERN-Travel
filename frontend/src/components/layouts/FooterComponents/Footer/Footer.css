@@ -29,6 +29,10 @@ address {
   gap: 10px;
 }
 
+.footerHeaderText, .footerText {
+  color: white;
+}
+
 
 .footerMidleContent {
   display: flex;
