@@ -55,22 +55,40 @@
 
 
 
-/* mobitel section */
+/* Dropdown  styles */
+
+/* navbar mobile content start  */
+
 
 @media only screen and (max-width: 700px) {
-header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.navigationSection {
+    display: none;
 }
     
-.contentHeader  {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 20px;
+.navigationSection.active {
+    display: flex;
+    top: 118px;
+    right: 0px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(13.8px);
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    align-items: center;
+    overflow-y: auto;
+    z-index: 10000000;
+}
+    
+.navigationSection.active ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    list-style: none;  
 }
 
-
 }
+    
+    /* navbar mobile content end  */
