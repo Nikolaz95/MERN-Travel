@@ -18,3 +18,27 @@
     border-radius: 20px;
     cursor: pointer;
 }
+
+
+.icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.productImg {
+    width: 400px;
+    height: 400px;
+    border-radius: 20px;
+    cursor: pointer;
+    @media (max-width: 768px) {
+    width: 500px;
+    height: 500px;
+    }
+
+    @media (max-width: 425px) {
+    width: 300px;
+    height: 300px;
+    }
+}

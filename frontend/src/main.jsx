@@ -5,6 +5,7 @@ import './index.css'
 import Root from './Root.jsx';
 import HomePage from './components/page/HomePage/HomePage.jsx';
 import ErrorPage from './components/page/ErrorPage/ErrorPage.jsx';
+import Product from './components/page/Product/Product.jsx';
 
 
 const router = createBrowserRouter([
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />
+      },
+      {
+        path: "/product",
+        element: <Product />
       },
 
     ]

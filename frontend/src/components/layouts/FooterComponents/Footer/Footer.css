@@ -80,9 +80,11 @@ address {
 }
 
 .contactFooterLink {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 10px; */
 }
 
 }

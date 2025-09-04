@@ -1,15 +1,29 @@
 import React from 'react'
+import { NavLink } from 'react-router';
 
 //import css
 import "./HeaderNavigation.css";
-
+// import img 
+import Product from "../../../../assets/icons/icon-product.png"
+import SignIn from "../../../../assets/icons/icon-login.png"
+import Image from '../../Images/Image';
 
 const HeaderNavigation = () => {
     return (
-        <nav className={`navigationSection `}>
+        <nav className={`navigationSection active close"`}>
             <ul className="navigationList">
-                <li>Product</li>
-                <li>Sign In</li>
+                <li>
+                    <NavLink to="/product" className='navigationStyle'>
+                        <Image src={Product} alt="here should be a picture" variant="icon" />
+                        <p>Product</p>
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to="/signIn" className='navigationStyle'>
+                        <p> Sing in</p>
+                        <Image src={SignIn} alt="" variant="icon" />
+                    </NavLink>
+                </li>
             </ul>
         </nav>
     )
