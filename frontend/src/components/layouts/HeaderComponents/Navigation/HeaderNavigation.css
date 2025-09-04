@@ -1,8 +1,9 @@
 /* navigation section  */
 
 .navigationSection {
-    display: flex; 
-    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .navigationList {
@@ -11,7 +12,50 @@
     list-style: none; /* Remove default bullets */
 }
 
-/* mobiteö */
+.navigationSection li .active {
+    border-radius: 20px;
+    /* padding: 10px; */
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    background: radial-gradient(50% 50% at 50% 0, rgba(var(--action-background-color,255,255,255),.8) 0, transparent 100%), hsla(0, 0%, 100%, .2);
+}
+
+.navigationSection ul{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 5px;
+    list-style: none;
+    align-items: center;
+    /* border: 1px solid black; */
+}
+
+.navigationSection li{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    list-style: none;
+    align-items: center;
+    /* border: 1px solid black; */
+}
+
+.navigationStyle{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    padding: 5px;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+
+
+/* mobitel section */
 
 @media only screen and (max-width: 700px) {
 header {
