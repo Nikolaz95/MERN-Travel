@@ -6,6 +6,8 @@ import Root from './Root.jsx';
 import HomePage from './components/page/HomePage/HomePage.jsx';
 import ErrorPage from './components/page/ErrorPage/ErrorPage.jsx';
 import Product from './components/page/Product/Product.jsx';
+import SignIn from './components/page/authPage/SingIn/SignIn.jsx';
+import Register from './components/page/authPage/Register/Register.jsx';
 
 
 const router = createBrowserRouter([
@@ -24,6 +26,14 @@ const router = createBrowserRouter([
       {
         path: "/product",
         element: <Product />
+      },
+      {
+        path: "/signIn",
+        element: <SignIn />
+      },
+      {
+        path: "/registration",
+        element: <Register />
       },
 
     ]
