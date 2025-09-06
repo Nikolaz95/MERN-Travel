@@ -27,7 +27,7 @@ const Register = () => {
                 <FormLayout>
                     <h1 className='titleReg'>Create Accunt</h1>
                     <div className="formContent">
-                        <form className='formRegister'>
+                        <form className='formContentReg'>
                             <label htmlFor="name" className="labelTitle" >Your Username:</label>
                             <input type="text" name="name" id='name' className='inputContent'
                                 placeholder='username...' />

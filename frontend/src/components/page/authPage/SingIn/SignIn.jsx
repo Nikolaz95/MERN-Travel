@@ -28,7 +28,7 @@ const SignIn = () => {
             <MainLayout>
                 <FormLayout>
                     <h1 className="titleSingIn">Sign in</h1>
-                    <div className="formContent">
+                    <section className="formSection">
                         <div className="lefSingIn">
                             <form className="formSingIn">
                                 <label htmlFor="mail" className="titleEmain">
@@ -77,7 +77,7 @@ const SignIn = () => {
                             <h1 className="registeringTitle">Your Favorit list</h1>
                             <p className="registeringText">Track everything you want to watch and receive e-mail when movies open in theaters.</p>
                         </div>
-                    </div>
+                    </section>
                 </FormLayout>
             </MainLayout>
         </>
