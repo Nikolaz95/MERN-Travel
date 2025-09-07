@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import titleName from '../../../hooks/useTitle';
 
+
 //import css
-import "./Register.css";
+import styles from './Register.module.css';
 
 //import  icon
 import Show from "../../../../assets/icons/icon-show.png"
@@ -25,53 +26,41 @@ const Register = () => {
         <>
             <MainLayout>
                 <FormLayout>
-                    <h1 className='titleReg'>Create Accunt</h1>
-                    <div className="formContent">
-                        <form className='formContentReg'>
-                            <label htmlFor="name" className="labelTitle" >Your Username:</label>
-                            <input type="text" name="name" id='name' className='inputContent'
-                                placeholder='username...' />
-                            <label htmlFor="mail" className="labelTitle">
-                                Your Emai:
-                            </label>
-                            <input type="email" name="email" id='mail' className='inputContent' placeholder='fake@email.com' />
+                    <h1 className={styles.titleReg}>Create Accunt</h1>
+                    <form className={styles.regFormContent}>
+                        <label htmlFor="name" className={styles.labelTitle}>Your Username:</label>
+                        <input type="text" name="name" id='name' className={styles.inputContent} placeholder='username...' />
+                        <label htmlFor="mail" className={styles.labelTitle}> Your Emai:</label>
+                        <input type="email" name="email" id='mail' className={styles.inputContent} placeholder='fake@email.com' />
 
-                            <label htmlFor="pwd" className="labelTitle">
-                                Password :
-                            </label>
-                            <div className="pasword-contentRegister">
-                                <input type={showPassword ? "text" : "password"}
-                                    name="password" id='pwd' className='inputContent'
-                                    placeholder='password...' />
-                                <Image title={showPassword ? "Hide password" : "Show password"}
-                                    src={showPassword ? Hide : Show} className='imgHideShow'
-                                    onClick={() => setShowPassword(prevState => !prevState)} />
-                            </div>
-                            <section className="bottonForm-Register">
-                                <div className="btn-Register">
-                                    <Button variant="createAcc">
-                                        <p>Create a New Accoutn</p>
-                                        <Image src={CreateAccount} variant="icon" />
+                        <label htmlFor="pwd" className={styles.labelTitle}>Password :</label>
+                        <section className={styles.paswordContentRegister}>
+                            <input type={showPassword ? "text" : "password"}
+                                name="password" id='pwd' className={styles.inputContent}
+                                placeholder='password...' />
+                            <Image title={showPassword ? "Hide password" : "Show password"}
+                                src={showPassword ? Hide : Show} className='imgHideShow'
+                                onClick={() => setShowPassword(prevState => !prevState)} />
+                        </section>
+                        <section className={styles.bottonFormRegister}>
+                            <Button variant="createAcc">
+                                Create a New Accoutn
+                                <Image src={CreateAccount} variant="icon" />
+                            </Button>
+                            <span className={styles.dividerText} >Or:</span>
+                            <section className={styles.btnLoginSingIn}>
+                                <p className={styles.alrText}>You already have account ?</p>
+                                <NavLink to="/signIn">
+                                    <Button variant="loginBtn">
+                                        <Image src={LogIn} variant="icon" />
+                                        Sing In
                                     </Button>
-                                </div>
-                                <div className="divider-text">
-                                    <span className="dividerText">Or:</span>
-                                </div>
-                                <div className="btn-loginSingIn">
-                                    <p className="alrText">You already have account ?</p>
-                                    <NavLink to="/signIn" className="singIn">
-                                        <Button variant="loginBtn">
-                                            <Image src={LogIn} variant="icon" />
-                                            <p>Sing In</p>
-                                        </Button>
-                                    </NavLink>
-                                </div>
+                                </NavLink>
                             </section>
-                        </form>
-                    </div>
+                        </section>
+                    </form>
                 </FormLayout>
             </MainLayout>
-
         </>
     )
 }

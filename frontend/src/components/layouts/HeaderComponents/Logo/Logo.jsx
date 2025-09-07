@@ -10,7 +10,7 @@ import Image from '../../Images/Image'
 
 const Logo = () => {
     return (
-        <NavLink to="/" className="noUnderline">
+        <NavLink to="/">
             <Image src={Logoimg} variant="logo" alt="Logo" />
         </NavLink>
     )

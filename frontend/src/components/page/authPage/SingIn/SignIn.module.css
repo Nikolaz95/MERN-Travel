@@ -1,0 +1,27 @@
+
+
+
+/* sing in component */
+
+
+.formSection {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.titleSingIn {
+    color: white;
+}
+
+
+
+@media only screen and (max-width: 768px) {
+.formSection {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+
+}

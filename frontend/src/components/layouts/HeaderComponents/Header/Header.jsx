@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
+
 //import css
-import "./Header.css";
+import styles from './Header.module.css';
 
 //import components
 import Logo from '../Logo/Logo';
@@ -22,7 +23,7 @@ const Header = () => {
     }
     return (
         <header>
-            <section className="contentHeader">
+            <section className={styles.contentHeader}>
                 <Logo />
                 <HeaderNavigation isSideMenuOpen={isSideMenuOpen} />
                 {/* hamburger */}

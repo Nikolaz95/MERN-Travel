@@ -1,0 +1,23 @@
+
+
+.registeringTitle {
+    color: white;
+}
+
+.registeringText {
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+}
+
+
+@media only screen and (max-width: 768px) {
+
+.rightSingIn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+}

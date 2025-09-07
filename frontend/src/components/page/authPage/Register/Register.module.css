@@ -1,0 +1,48 @@
+
+
+.regFormContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+
+
+.inputContent {
+    padding: 10px;
+    border-radius: 20px;
+    width: 100%;
+    border: none;
+}
+
+
+.paswordContentRegister {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+}
+
+
+.bottonFormRegister {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.btnLoginSingIn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+
+.labelTitle , .dividerText, .titleReg, .alrText{
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}

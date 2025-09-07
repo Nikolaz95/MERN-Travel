@@ -3,7 +3,7 @@ import titleName from '../../hooks/useTitle';
 import useNavigateTo from '../../hooks/useNavigateTo';
 
 //import css
-import "./ErrorPage.css";
+import styles from './ErrorPage.module.css';
 
 /* import img */
 import Eror from "../../../assets/icons/icon-error.png"
@@ -20,19 +20,19 @@ const ErrorPage = () => {
     return (
         <>
             <MainLayout>
-                <section className="erorContent">
-                    <div className="erorTopContent">
+                <section className={styles.erorContent}>
+                    <div className={styles.erorTopContent}>
                         <Button onClick={goBack} variant='btnBack'>
                             Go Back
                         </Button>
                     </div>
-                    <div className="mainContent">
+                    <div className={styles.mainContent} >
                         <Image src={Eror} alt="" className='imgEror' />
-                        <p className='textEror vibrate-1'>This page not exist</p>
+                        <p className={`${styles.textEror} ${styles.vibrate1}`}>This page not exist</p>
                         <Image src={Eror} alt="" className='imgEror' />
                     </div>
                 </section>
-            </MainLayout>
+            </MainLayout >
         </>
     )
 }

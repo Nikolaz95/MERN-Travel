@@ -1,17 +1,20 @@
 
 
-.formContent {
-    display: flex;
-    flex-direction: column;
+
+.titleSingIn, .titleEmain, .titlePwd, .dividerText {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
 }
 
-.formContentReg {
+
+.formSingIn {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    padding: 10px;
 }
-
 
 
 .inputContent {
@@ -21,31 +24,30 @@
     border: none;
 }
 
-
-.pasword-contentRegister {
+.paswordContentSingIn {
     display: flex;
     flex-direction: row;
     justify-content: center;
     gap: 10px;
 }
 
+.imgHideShow {
+    cursor: pointer;
+    position: relative;
+    width: 35px;
+    height: 35px;
+}
 
-.bottonForm-Register {
+.dividerText {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+
+.bottonForm {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     gap: 20px;
 }
 
-.btn-loginSingIn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
-
-
-.labelTitle , .dividerText, .titleReg, .alrText{
-    color: white;
-}

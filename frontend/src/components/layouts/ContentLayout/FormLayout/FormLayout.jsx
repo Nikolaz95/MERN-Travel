@@ -1,12 +1,12 @@
 import React from 'react'
 
 //import css
-import "./FormLayout.css";
+import styles from './FormLayout.module.css';
 
 const FormLayout = ({ children }) => {
     return (
-        <section className="SignInSection">
-            <main className="SignInSectionContent">
+        <section className={styles.SignInRegSection}>
+            <main className={styles.SignInRegSectionContent}>
                 {children}
             </main>
         </section>

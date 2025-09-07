@@ -6,6 +6,8 @@ import "./HeaderNavigation.css";
 // import img 
 import Product from "../../../../assets/icons/icon-product.png"
 import SignIn from "../../../../assets/icons/icon-login.png"
+
+// import components
 import Image from '../../Images/Image';
 
 const HeaderNavigation = ({ isSideMenuOpen }) => {
@@ -46,12 +48,12 @@ const HeaderNavigation = ({ isSideMenuOpen }) => {
                 <li>
                     <NavLink to="/product" className='navigationStyle'>
                         <Image src={Product} alt="here should be a picture" variant="icon" />
-                        <p>Product</p>
+                        Product
                     </NavLink>
                 </li>
                 <li>
                     <NavLink to="/signIn" className='navigationStyle'>
-                        <p> Sing in</p>
+                        Sing in
                         <Image src={SignIn} alt="" variant="icon" />
                     </NavLink>
                 </li>
