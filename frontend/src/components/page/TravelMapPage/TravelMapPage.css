@@ -1,0 +1,9 @@
+.travelMapPageLayout {
+    display: flex;
+    overscroll-behavior-y: none;
+    position: relative;
+    background-color:cadetblue;
+    height: 72.9vh;
+}
+
+

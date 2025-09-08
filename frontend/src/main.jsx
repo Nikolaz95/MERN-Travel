@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
 import './index.css'
 import Root from './Root.jsx';
 import HomePage from './components/page/HomePage/HomePage.jsx';
@@ -8,6 +8,9 @@ import ErrorPage from './components/page/ErrorPage/ErrorPage.jsx';
 import Product from './components/page/Product/Product.jsx';
 import SignIn from './components/page/authPage/SingIn/SignIn.jsx';
 import Register from './components/page/authPage/Register/Register.jsx';
+import TravelMapPage from './components/page/TravelMapPage/TravelMapPage.jsx';
+import CityList from './components/page/TravelMapPage/CitiesSection/CityList.jsx';
+import CountryList from './components/page/TravelMapPage/CountriesSection/CountryList.jsx';
 
 
 const router = createBrowserRouter([
@@ -35,9 +38,28 @@ const router = createBrowserRouter([
         path: "/registration",
         element: <Register />
       },
+      {
+        path: "/travelMap",
+        element: <TravelMapPage />,
+        children: [
+          {
+            index: true,
+            element: <Navigate replace to="cities" />
+          },
+          {
+            path: "cities",
+            element: <CityList />
+          },
+          {
+            path: "countries",
+            element: <CountryList />
+          },
+        ]
+      }
 
     ]
   }
+
 ])
 
 createRoot(document.getElementById('root')).render(
