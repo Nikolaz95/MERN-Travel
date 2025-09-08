@@ -1,0 +1,21 @@
+
+.citiItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgb(219, 159, 82);
+    padding: 5px;
+    /* border: 1px solid black; */
+    border-radius: 20px;
+}
+
+.citiItemLeft {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+time {
+    font-weight: bold;
+}
