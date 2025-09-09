@@ -22,3 +22,8 @@
     background-color: transparent;
     color: white;
 }
+
+.delete {
+    background-color: rgb(255, 0, 0);
+    padding: 5px;
+}

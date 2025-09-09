@@ -1,0 +1,39 @@
+
+
+
+.countryListSection {
+display: flex;
+width: 90%;
+flex-direction: column;
+gap: 10px;
+border: 1px solid black;
+}
+
+
+.countryListaHeader {
+    text-align: center;
+
+}
+
+
+.countryListaContent {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid black;
+    gap: 10px;
+}
+
+
+.countryBoxContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-radius: 20px;
+border: 1px solid black;
+}
+
+.countryFlag {
+font-weight: bold;
+}
+
