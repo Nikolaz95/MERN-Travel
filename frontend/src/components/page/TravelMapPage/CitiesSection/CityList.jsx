@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import useFetch from '../../../hooks/useFetch';
 
 //import css
 import './CityList.css';
@@ -8,14 +8,13 @@ import './CityList.css';
 import data from '../../../../data/Cities';
 
 //import components
-import CityItem from './CityItem';
 import Button from '../../../layouts/Buttons/Button';
 
 const CityList = () => {
+    const { data: dataInfo, loading, error } = useFetch("/cities");
+    console.log("Cities data:", dataInfo);
 
-    const citiData = data;
-    console.log(citiData);
-    const [cities, setCities] = useState([]);
+
 
     const formatDate = (date) =>
         new Intl.DateTimeFormat("en", {
@@ -26,19 +25,187 @@ const CityList = () => {
 
     return (
         <section className='cityListSection'>
-            <h3 className='citiListaHeader'>CityList : ({data.length}) </h3>
+            <h3 className='citiListaHeader'>CityList : (4) </h3>
             <ul className='citiListaContent'>
-                {data.map((city) => (
-                    <li className='citiItem'>
-                        <div className="citiItemLeft">
-                            <span className='citiItemFlag'>{city.flag}</span>
-                            <h3>{city.cityName}</h3>
-                        </div>
-                        <div className="citiItemRight"></div>
-                        <time>({formatDate(city.date)})</time>
-                        <Button variant="delete">X</Button>
-                    </li>
-                ))}
+                <li className='citiLista'>
+                    <div className="citiListaLeft">
+                        <span>ES</span>
+                        <h3>Spain</h3>
+                    </div>
+
+                    <div className="citiListaRight">
+                        <time className="">(2025-09-12)</time>
+                        <Button>x</Button>
+                    </div>
+                </li>
+
+                <li className='citiLista'>
+                    <div className="citiListaLeft">
+                        <span>ES</span>
+                        <h3>Spain</h3>
+                    </div>
+
+                    <div className="citiListaRight">
+                        <time className="">(2025-09-12)</time>
+                        <Button>x</Button>
+                    </div>
+                </li>
+
+                <li className='citiLista'>
+                    <div className="citiListaLeft">
+                        <span>ES</span>
+                        <h3>Spain</h3>
+                    </div>
+
+                    <div className="citiListaRight">
+                        <time className="">(2025-09-12)</time>
+                        <Button>x</Button>
+                    </div>
+                </li>
+
+                <li className='citiLista'>
+                    <div className="citiListaLeft">
+                        <span>ES</span>
+                        <h3>Spain</h3>
+                    </div>
+
+                    <div className="citiListaRight">
+                        <time className="">(2025-09-12)</time>
+                        <Button>x</Button>
+                    </div>
+                </li>
+
+                <li className='citiLista'>
+                    <div className="citiListaLeft">
+                        <span>ES</span>
+                        <h3>Spain</h3>
+                    </div>
+
+                    <div className="citiListaRight">
+                        <time className="">(2025-09-12)</time>
+                        <Button>x</Button>
+                    </div>
+                </li>
+
+                <li className='citiLista'>
+                    <div className="citiListaLeft">
+                        <span>ES</span>
+                        <h3>Spain</h3>
+                    </div>
+
+                    <div className="citiListaRight">
+                        <time className="">(2025-09-12)</time>
+                        <Button>x</Button>
+                    </div>
+                </li>
+
+                <li className='citiLista'>
+                    <div className="citiListaLeft">
+                        <span>ES</span>
+                        <h3>Spain</h3>
+                    </div>
+
+                    <div className="citiListaRight">
+                        <time className="">(2025-09-12)</time>
+                        <Button>x</Button>
+                    </div>
+                </li>
+
+                <li className='citiLista'>
+                    <div className="citiListaLeft">
+                        <span>ES</span>
+                        <h3>Spain</h3>
+                    </div>
+
+                    <div className="citiListaRight">
+                        <time className="">(2025-09-12)</time>
+                        <Button>x</Button>
+                    </div>
+                </li>
+
+                <li className='citiLista'>
+                    <div className="citiListaLeft">
+                        <span>ES</span>
+                        <h3>Spain</h3>
+                    </div>
+
+                    <div className="citiListaRight">
+                        <time className="">(2025-09-12)</time>
+                        <Button>x</Button>
+                    </div>
+                </li>
+
+                <li className='citiLista'>
+                    <div className="citiListaLeft">
+                        <span>ES</span>
+                        <h3>Spain</h3>
+                    </div>
+
+                    <div className="citiListaRight">
+                        <time className="">(2025-09-12)</time>
+                        <Button>x</Button>
+                    </div>
+                </li>
+
+                <li className='citiLista'>
+                    <div className="citiListaLeft">
+                        <span>ES</span>
+                        <h3>Spain</h3>
+                    </div>
+
+                    <div className="citiListaRight">
+                        <time className="">(2025-09-12)</time>
+                        <Button>x</Button>
+                    </div>
+                </li>
+
+                <li className='citiLista'>
+                    <div className="citiListaLeft">
+                        <span>ES</span>
+                        <h3>Spain</h3>
+                    </div>
+
+                    <div className="citiListaRight">
+                        <time className="">(2025-09-12)</time>
+                        <Button>x</Button>
+                    </div>
+                </li>
+
+                <li className='citiLista'>
+                    <div className="citiListaLeft">
+                        <span>ES</span>
+                        <h3>Spain</h3>
+                    </div>
+
+                    <div className="citiListaRight">
+                        <time className="">(2025-09-12)</time>
+                        <Button>x</Button>
+                    </div>
+                </li>
+
+                <li className='citiLista'>
+                    <div className="citiListaLeft">
+                        <span>ES</span>
+                        <h3>Spain</h3>
+                    </div>
+
+                    <div className="citiListaRight">
+                        <time className="">(2025-09-12)</time>
+                        <Button>x</Button>
+                    </div>
+                </li>
+
+                <li className='citiLista'>
+                    <div className="citiListaLeft">
+                        <span>ES</span>
+                        <h3>Spain</h3>
+                    </div>
+
+                    <div className="citiListaRight">
+                        <time className="">(2025-09-12)</time>
+                        <Button>x</Button>
+                    </div>
+                </li>
             </ul>
         </section>
     )

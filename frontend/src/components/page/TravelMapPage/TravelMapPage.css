@@ -1,3 +1,5 @@
+
+
 .travelMapPageLayout {
     display: flex;
     overscroll-behavior-y: none;
@@ -7,3 +9,32 @@
 }
 
 
+@media  screen and (max-width: 700px) {
+    .travelSideBarSection {
+    display: none;
+    height: 100%;
+    background-color: rgb(249, 249, 131);
+}
+
+.travelSideBarBtn {
+display: flex;
+position: fixed;
+top: 150px;
+    left: 15px;
+    padding: 10px;
+
+border: 1px solid black;
+}
+
+}
+
+
+
+/* map section */
+
+.mapSection {
+    flex: 1;
+  height: 100%;
+  position: relative;
+    background-color: rgb(236, 192, 69);
+}

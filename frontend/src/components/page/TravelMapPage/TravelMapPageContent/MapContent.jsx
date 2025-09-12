@@ -5,7 +5,11 @@ import './MapContent.css';
 
 const MapContent = () => {
     return (
-        <div>MapContent</div>
+        <section className='mapSection'>
+            <main>
+                <h1>Map Section</h1>
+            </main>
+        </section>
     )
 }
 

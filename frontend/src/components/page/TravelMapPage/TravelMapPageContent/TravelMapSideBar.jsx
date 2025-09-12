@@ -3,22 +3,16 @@ import { NavLink, Outlet } from 'react-router';
 
 //import css
 import './TravelMapSideBar.css';
+import TravelMapSideBarNavigation from './Navigation/TravelMapSideBarNavigation';
 
 const TravelMapSideBar = () => {
     return (
-        <aside className="travelSideBar">
-            <nav className="travelNavigation">
-                <ul>
-                    <li>
-                        <NavLink to="cities">Cities</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="countries">Countries</NavLink>
-                    </li>
-                </ul>
-            </nav>
-            <Outlet />
-        </aside>
+        <section className="travelSideBarSection">
+            <aside className="travelSideBar">
+                <TravelMapSideBarNavigation />
+                <Outlet />
+            </aside>
+        </section>
     )
 }
 
