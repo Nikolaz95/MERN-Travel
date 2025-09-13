@@ -1,13 +1,9 @@
 
-
+@import "https://unpkg.com/leaflet@1.9.3/dist/leaflet.css";
+@import "https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap";
 
 * { 
   margin: 0px; 
   padding: 0px; 
   box-sizing: border-box; 
 }
-
-/* a {
-  text-decoration: none;
-}
- */
