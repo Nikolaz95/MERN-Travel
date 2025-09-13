@@ -11,6 +11,8 @@ import Register from './components/page/authPage/Register/Register.jsx';
 import TravelMapPage from './components/page/TravelMapPage/TravelMapPage.jsx';
 import CityList from './components/page/TravelMapPage/CitiesSection/CityList.jsx';
 import CountryList from './components/page/TravelMapPage/CountriesSection/CountryList.jsx';
+import CityDetails from './components/page/TravelMapPage/CitiesSection/CityDetails.jsx';
+import NewVisiting from './components/layouts/AddNewVisiting/NewVisiting.jsx';
 
 
 const router = createBrowserRouter([
@@ -49,6 +51,14 @@ const router = createBrowserRouter([
           {
             path: "cities",
             element: <CityList />
+          },
+          {
+            path: "cities/:id",
+            element: <CityDetails />
+          },
+          {
+            path: "newVisiting",
+            element: <NewVisiting />
           },
           {
             path: "countries",

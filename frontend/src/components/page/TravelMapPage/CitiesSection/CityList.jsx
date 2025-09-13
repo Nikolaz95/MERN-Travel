@@ -4,17 +4,15 @@ import useFetch from '../../../hooks/useFetch';
 //import css
 import './CityList.css';
 
-//import fetch data
-import data from '../../../../data/Cities';
-
 //import components
 import Button from '../../../layouts/Buttons/Button';
+import Loading from '../../../layouts/Loading/Loading';
+import { NavLink } from 'react-router';
+import Navigation from '../../../layouts/NavigatioLinkComponent/Navigation';
 
 const CityList = () => {
-    const { data: dataInfo, loading, error } = useFetch("/cities");
+    const { data: dataInfo, loading, error, position } = useFetch("/cities");
     console.log("Cities data:", dataInfo);
-
-
 
     const formatDate = (date) =>
         new Intl.DateTimeFormat("en", {
@@ -24,190 +22,36 @@ const CityList = () => {
         }).format(new Date(date))
 
     return (
-        <section className='cityListSection'>
-            <h3 className='citiListaHeader'>CityList : (4) </h3>
-            <ul className='citiListaContent'>
-                <li className='citiLista'>
-                    <div className="citiListaLeft">
-                        <span>ES</span>
-                        <h3>Spain</h3>
-                    </div>
+        <>
+            {loading ? (
+                <Loading />
+            ) : (
+                <section className='cityListSection'>
+                    <h3 className='citiListaHeader'> CityList : ({dataInfo?.length || 0})</h3>
+                    {dataInfo?.length === 0 ? (
+                        <p className="emptyMessage">Start your journey 🚀</p>
+                    ) : (
+                        dataInfo?.map((city) => (
+                            <ul key={city.id} className='citiListaContent'>
+                                <li className='citiLista'>
+                                    <Navigation to={`/travelMap/cities/${city.id}?lat=${city.position.lat}&lng=${city.position.lng}`} >
+                                        <div className="citiListaLeft">
+                                            <span className='textStyle'>{city.cityName}</span>
+                                            <h3 className='textStyle'>{city.country}</h3>
+                                        </div>
+                                    </Navigation>
 
-                    <div className="citiListaRight">
-                        <time className="">(2025-09-12)</time>
-                        <Button>x</Button>
-                    </div>
-                </li>
-
-                <li className='citiLista'>
-                    <div className="citiListaLeft">
-                        <span>ES</span>
-                        <h3>Spain</h3>
-                    </div>
-
-                    <div className="citiListaRight">
-                        <time className="">(2025-09-12)</time>
-                        <Button>x</Button>
-                    </div>
-                </li>
-
-                <li className='citiLista'>
-                    <div className="citiListaLeft">
-                        <span>ES</span>
-                        <h3>Spain</h3>
-                    </div>
-
-                    <div className="citiListaRight">
-                        <time className="">(2025-09-12)</time>
-                        <Button>x</Button>
-                    </div>
-                </li>
-
-                <li className='citiLista'>
-                    <div className="citiListaLeft">
-                        <span>ES</span>
-                        <h3>Spain</h3>
-                    </div>
-
-                    <div className="citiListaRight">
-                        <time className="">(2025-09-12)</time>
-                        <Button>x</Button>
-                    </div>
-                </li>
-
-                <li className='citiLista'>
-                    <div className="citiListaLeft">
-                        <span>ES</span>
-                        <h3>Spain</h3>
-                    </div>
-
-                    <div className="citiListaRight">
-                        <time className="">(2025-09-12)</time>
-                        <Button>x</Button>
-                    </div>
-                </li>
-
-                <li className='citiLista'>
-                    <div className="citiListaLeft">
-                        <span>ES</span>
-                        <h3>Spain</h3>
-                    </div>
-
-                    <div className="citiListaRight">
-                        <time className="">(2025-09-12)</time>
-                        <Button>x</Button>
-                    </div>
-                </li>
-
-                <li className='citiLista'>
-                    <div className="citiListaLeft">
-                        <span>ES</span>
-                        <h3>Spain</h3>
-                    </div>
-
-                    <div className="citiListaRight">
-                        <time className="">(2025-09-12)</time>
-                        <Button>x</Button>
-                    </div>
-                </li>
-
-                <li className='citiLista'>
-                    <div className="citiListaLeft">
-                        <span>ES</span>
-                        <h3>Spain</h3>
-                    </div>
-
-                    <div className="citiListaRight">
-                        <time className="">(2025-09-12)</time>
-                        <Button>x</Button>
-                    </div>
-                </li>
-
-                <li className='citiLista'>
-                    <div className="citiListaLeft">
-                        <span>ES</span>
-                        <h3>Spain</h3>
-                    </div>
-
-                    <div className="citiListaRight">
-                        <time className="">(2025-09-12)</time>
-                        <Button>x</Button>
-                    </div>
-                </li>
-
-                <li className='citiLista'>
-                    <div className="citiListaLeft">
-                        <span>ES</span>
-                        <h3>Spain</h3>
-                    </div>
-
-                    <div className="citiListaRight">
-                        <time className="">(2025-09-12)</time>
-                        <Button>x</Button>
-                    </div>
-                </li>
-
-                <li className='citiLista'>
-                    <div className="citiListaLeft">
-                        <span>ES</span>
-                        <h3>Spain</h3>
-                    </div>
-
-                    <div className="citiListaRight">
-                        <time className="">(2025-09-12)</time>
-                        <Button>x</Button>
-                    </div>
-                </li>
-
-                <li className='citiLista'>
-                    <div className="citiListaLeft">
-                        <span>ES</span>
-                        <h3>Spain</h3>
-                    </div>
-
-                    <div className="citiListaRight">
-                        <time className="">(2025-09-12)</time>
-                        <Button>x</Button>
-                    </div>
-                </li>
-
-                <li className='citiLista'>
-                    <div className="citiListaLeft">
-                        <span>ES</span>
-                        <h3>Spain</h3>
-                    </div>
-
-                    <div className="citiListaRight">
-                        <time className="">(2025-09-12)</time>
-                        <Button>x</Button>
-                    </div>
-                </li>
-
-                <li className='citiLista'>
-                    <div className="citiListaLeft">
-                        <span>ES</span>
-                        <h3>Spain</h3>
-                    </div>
-
-                    <div className="citiListaRight">
-                        <time className="">(2025-09-12)</time>
-                        <Button>x</Button>
-                    </div>
-                </li>
-
-                <li className='citiLista'>
-                    <div className="citiListaLeft">
-                        <span>ES</span>
-                        <h3>Spain</h3>
-                    </div>
-
-                    <div className="citiListaRight">
-                        <time className="">(2025-09-12)</time>
-                        <Button>x</Button>
-                    </div>
-                </li>
-            </ul>
-        </section>
+                                    <div className="citiListaRight">
+                                        <time>({formatDate(city.date)})</time>
+                                        <Button variant="remove">x</Button>
+                                    </div>
+                                </li>
+                            </ul>
+                        ))
+                    )}
+                </section >
+            )}
+        </>
     )
 }
 

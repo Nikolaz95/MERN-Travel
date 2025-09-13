@@ -19,10 +19,6 @@
     backdrop-filter: blur(30px);
 }
 
-.navLink {
-    text-decoration: none;
-}
-
 .homeTextHeaderH1 {
     font-size: 35px;
     color: white;

@@ -8,7 +8,8 @@
     align-items: center;
     background-color: beige;
     height: 100%;
-      overflow-y: auto; /* Enable scrolling */
+    width: 307px;
+    overflow-y: auto; /* Enable scrolling */
   scrollbar-width: none;  /* Firefox support */
   -ms-overflow-style: none;  /* IE/Edge support */
 }

@@ -23,28 +23,10 @@ import Image from '../../layouts/Images/Image';
 
 const TravelMapPage = () => {
     titleName('Your travel experience');
-
     // State to track which modal is open
     const [activeModal, setActiveModal] = useState("");
-
     // Function to close the modal
     const closeModal = () => setActiveModal("");
-
-    /*  const { data: dataInfo, loading, error } = useFetch("/cities");
-     console.log("Cities data:", dataInfo); */
-
-    /* if (loading) return <Loading />; */
-    /* if (error) return <p>{error}</p>; */
-
-
-    /* const formatDate = (date) =>
-        new Intl.DateTimeFormat("en", {
-            day: "numeric",
-            month: "long",
-            year: "numeric",
-        }).format(new Date(date)) */
-
-
     return (
         <>
             <VideoBackground />

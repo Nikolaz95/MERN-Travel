@@ -1,0 +1,48 @@
+
+
+.newVisitingSection {
+    background-color: burlywood;
+    height: 500px;
+    width: 90%;
+    border: 1px solid;
+}
+
+.newVisitingMainContent {
+    display: flex;
+    flex-direction: column;
+}
+
+.formSection{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    /* align-items: center; */
+}
+
+
+.labelVisiting {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.inputVisiting {
+    padding:10px;
+    border-radius: 20px;
+    border: none;
+}
+.textVisiting {
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    height: 200px;
+}
+
+
+.newVisitBottomContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+}

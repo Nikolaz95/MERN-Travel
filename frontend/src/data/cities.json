@@ -1,7 +1,7 @@
 {
   "cities": [
     {
-        "id": 73930385,
+        "id": 0,
         "cityName": "Lisbon",
         "country": "Portugal",
         "flag": "🇵🇹",
@@ -14,7 +14,7 @@
     },
 
     {
-        "id": 17806751,
+        "id": 1,
         "cityName": "Madrid",
         "country": "Spain",
         "flag": "🇪🇸",
@@ -27,7 +27,7 @@
     },
 
     {
-        "id": 98443197,
+        "id": 2,
         "cityName": "Berlin",
         "country": "Germany",
         "flag": "🇩🇪",
@@ -40,7 +40,7 @@
     },
 
     {
-        "id": 7,
+        "id": 3,
         "cityName": "Faro",
         "country": "Portugal",
         "flag": "🇵🇹",
@@ -66,7 +66,7 @@
     },
 
     {
-        "id": 1,
+        "id": 5,
         "cityName": "Mainz",
         "country": "Germany",
         "flag": "🇩🇪",
@@ -75,6 +75,33 @@
         "position": {
             "lat": 52.53586782505711,
             "lng": 13.376933665713324
+        }
+    },
+    {
+        "id": 6,
+        "cityName": "Zagreb",
+        "country": "Croatia",
+        "flag": "CRO",
+        "date": "2020-08-10T09:24:11.863Z",
+        "notes": "Amazing 😃",
+        "position": {
+            "lat": 	45.815399,
+            "lng": 15.966568
+
+        }
+    },
+
+    {
+        "id": 7,
+        "cityName": "Sarajevo",
+        "country": "Bosnia",
+        "flag": "BH",
+        "date": "2020-08-10T09:24:11.863Z",
+        "notes": "Amazing 😃",
+        "position": {
+            "lat": 	45.815399,
+            "lng": 15.966568
+
         }
     }
 ]
