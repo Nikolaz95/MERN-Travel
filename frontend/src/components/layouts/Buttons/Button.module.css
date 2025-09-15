@@ -1,4 +1,4 @@
-.button, a {
+.button{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -21,4 +21,25 @@
     font-size: 25px;
     background-color: transparent;
     color: white;
+}
+
+.delete {
+    background-color: rgb(255, 0, 0);
+    padding: 5px;
+}
+
+
+.btnSideBarTravel {
+    display: none;
+
+    @media (max-width: 700px) {
+    display: flex;
+        position: absolute;
+        bottom: 120px;
+        left: 10px;
+        padding: 10px;
+        background-color: transparent;
+        /* border: 1px solid black; */
+        z-index: 1000;
+    }
 }

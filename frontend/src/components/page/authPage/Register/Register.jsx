@@ -17,6 +17,7 @@ import FormLayout from '../../../layouts/ContentLayout/FormLayout/FormLayout';
 import Button from '../../../layouts/Buttons/Button';
 import { NavLink } from 'react-router';
 import Image from '../../../layouts/Images/Image';
+import Navigation from '../../../layouts/NavigatioLinkComponent/Navigation';
 
 const Register = () => {
     titleName('Register');
@@ -50,12 +51,12 @@ const Register = () => {
                             <span className={styles.dividerText} >Or:</span>
                             <section className={styles.btnLoginSingIn}>
                                 <p className={styles.alrText}>You already have account ?</p>
-                                <NavLink to="/signIn">
+                                <Navigation to="/signIn">
                                     <Button variant="loginBtn">
                                         <Image src={LogIn} variant="icon" />
                                         Sing In
                                     </Button>
-                                </NavLink>
+                                </Navigation>
                             </section>
                         </section>
                     </form>

@@ -1,0 +1,63 @@
+
+
+
+.countryListSection {
+display: flex;
+width: 100%;
+flex-direction: column;
+gap: 10px;
+height: 546px;
+border: 1px solid black;
+}
+
+
+.countryListaHeader {
+    text-align: center;
+
+}
+
+
+.countryListaContent {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    /* height: 546px; */
+    border: 1px solid black;
+    gap: 10px;
+}
+
+
+.countryBoxContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70px;
+    gap: 10px;
+    width: 100px;
+    border-radius: 20px;
+border: 1px solid black;
+}
+
+.topContent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.countryFlag {
+font-weight: bold;
+}
+
+.emptyMessage {
+  grid-column: 1 / -1; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 20px;
+  text-align: center;
+}
+

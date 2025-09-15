@@ -1,0 +1,41 @@
+
+
+.cityDetailsSection {
+    width: 90%;
+    height: 100%;
+    padding: 10px;
+    background-color: bisque;
+    border: 1px solid;
+}
+
+.cityDetailsMainContent {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+    padding: 10px;
+    border: 1px solid;
+}
+
+.cityDetailsTopContent, .cityDetailsMiddleContent, .cityDetailsBottomContent {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cityDetailsTopInnerContent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+
+.cityLink {
+    color: rgb(126, 15, 15);
+    text-decoration: none;
+}
+
+.cityLink:hover {
+    color: rgb(56, 3, 232);
+}

@@ -14,6 +14,7 @@ import CreateAccount from "../../../../../assets/icons/icon-addAccount.png"
 //import components
 import Button from '../../../../layouts/Buttons/Button'
 import Image from '../../../../layouts/Images/Image'
+import Navigation from '../../../../layouts/NavigatioLinkComponent/Navigation';
 
 const SignInLeftAside = () => {
     const [password, setPassword] = useState("");
@@ -42,12 +43,12 @@ const SignInLeftAside = () => {
                         </Button>
                     </div>
                     <span className={styles.dividerText}>Or:</span>
-                    <NavLink to="/registration">
+                    <Navigation to="/registration" >
                         <Button variant="createAcc" className={styles.bottonForm}>
                             <Image src={CreateAccount} variant="icon" />
                             Create a New Accoutn
                         </Button>
-                    </NavLink>
+                    </Navigation>
                 </section>
             </form>
         </aside>

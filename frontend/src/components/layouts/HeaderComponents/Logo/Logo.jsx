@@ -7,12 +7,13 @@ import Logoimg from "../../../../assets/pictures/logo1.png"
 
 //import components
 import Image from '../../Images/Image'
+import Navigation from '../../NavigatioLinkComponent/Navigation'
 
 const Logo = () => {
     return (
-        <NavLink to="/">
+        <Navigation to="/">
             <Image src={Logoimg} variant="logo" alt="Logo" />
-        </NavLink>
+        </Navigation>
     )
 }
 
