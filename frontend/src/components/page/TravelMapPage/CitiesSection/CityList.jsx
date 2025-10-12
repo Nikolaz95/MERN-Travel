@@ -7,7 +7,6 @@ import './CityList.css';
 //import components
 import Button from '../../../layouts/Buttons/Button';
 import Loading from '../../../layouts/Loading/Loading';
-import { NavLink } from 'react-router';
 import Navigation from '../../../layouts/NavigatioLinkComponent/Navigation';
 
 const CityList = () => {

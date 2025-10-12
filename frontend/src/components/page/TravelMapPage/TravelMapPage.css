@@ -27,14 +27,3 @@ border: 1px solid black;
 }
 
 }
-
-
-
-/* map section */
-
-.mapSection {
-    flex: 1;
-  height: 100%;
-  position: relative;
-    background-color: rgb(236, 192, 69);
-}

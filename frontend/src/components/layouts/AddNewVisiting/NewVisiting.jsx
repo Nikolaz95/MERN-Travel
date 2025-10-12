@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import useNavigateTo from '../../hooks/useNavigateTo';
+import { useUrlPosition } from '../../hooks/useUrlPosition';
 
 //import css
 import './NewVisiting.css';
@@ -7,6 +8,36 @@ import Button from '../Buttons/Button';
 
 const NewVisiting = () => {
     const { goBack } = useNavigateTo();
+    const [lat, lng] = useUrlPosition();
+    const [isLoadingGeocoding, setIsLoadingGeocoding] = useState(false);
+
+    const [cityName, setCityName] = useState("");
+    const [country, setCountry] = useState("");
+    const [date, setDate] = useState("");
+    const [notes, setNotes] = useState("");
+    const [emoji, setEmoji] = useState("");
+
+    const BASE_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
+
+    useEffect(() => {
+        async function fetchCityData() {
+            try {
+                setIsLoadingGeocoding(true);
+                const res = await fetch(`${BASE_URL}?latitude=${lat}&longitude=${lng}`);
+                const data = await res.json();
+                console.log(data);
+                setCityName(data.city || data.locality || "");
+                setCountry(data.countryName);
+                setEmoji(convertToEmoji(data.countryCode));
+            } catch (err) {
+            } finally {
+                setIsLoadingGeocoding(false)
+            }
+        }
+        fetchCityData();
+    }, [lat, lng]);
+
+
     return (
         <section className='newVisitingSection'>
             <main className='newVisitingMainContent'>

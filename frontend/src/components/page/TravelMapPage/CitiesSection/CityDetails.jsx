@@ -8,6 +8,7 @@ import './CityDetails.css';
 import Button from '../../../layouts/Buttons/Button';
 import useFetch from '../../../hooks/useFetch';
 import Loading from '../../../layouts/Loading/Loading';
+import { useUrlPosition } from '../../../hooks/useUrlPosition';
 
 
 const CityDetails = () => {
@@ -16,6 +17,9 @@ const CityDetails = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const lat = searchParams.get("lat");
     const lng = searchParams.get("lng");
+    const [mapLat, mapLng] = useUrlPosition();
+    console.log(mapLat);
+
 
     const { data: city, loading, error } = useFetch(`/cities/${id}`);
 
@@ -51,7 +55,10 @@ const CityDetails = () => {
                         </div>
                         <div className="cityDetailsMiddleContent">
                             <h3>Your Notes:</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit voluptas, corporis id esse debitis eum beatae necessitatibus excepturi voluptates similique!</p>
+
+                            {city.notes.length === 0 ? (
+                                <p className='emptyNotes'>Write something about your journey.😇 </p>
+                            ) : <p>{city.notes}</p>}
                         </div>
                         <div className="cityDetailsBottomContent">
                             <h3>Learn More</h3>
