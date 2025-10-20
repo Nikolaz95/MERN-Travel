@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: true, // da otvori i za vanjske requeste
-    port: 5173,
+    port: 5174,
     allowedHosts: ['endless-caiman-fully.ngrok-free.app']
   }
 })

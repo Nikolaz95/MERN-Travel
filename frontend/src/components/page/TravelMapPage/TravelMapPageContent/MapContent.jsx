@@ -78,7 +78,7 @@ function DetectClick() {
     const navigate = useNavigate();
     useMapEvent({
         click: (e) => {
-            /* console.log(e); */
+            console.log(e);
 
             navigate(`newVisiting?lat=${e.latlng.lat}&lng=${e.latlng.lng}`)
         }

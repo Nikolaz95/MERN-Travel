@@ -19,10 +19,13 @@ import TravelMapSideBar from './TravelMapPageContent/TravelMapSideBar';
 import MapContent from './TravelMapPageContent/MapContent';
 import ContentModal from '../../layouts/ModalComponent/ModalLayouts/ModalContent/ContentModal';
 import Image from '../../layouts/Images/Image';
+import { useUrlPosition } from '../../hooks/useUrlPosition';
 
 const TravelMapPage = () => {
     const navigate = useNavigate();
     titleName('Your travel experience');
+
+    const [mapLat, mapLng] = useUrlPosition();
     // State to track which modal is open
     const [activeModal, setActiveModal] = useState("");
     // Function to close the modal
@@ -31,19 +34,18 @@ const TravelMapPage = () => {
         navigate("cities");
     };
 
-
     const openModal = () => {
         if (window.innerWidth <= 700) {
             setActiveModal("content");
-            navigate("newVisiting");
+            navigate(`newVisiting?lat=${clickLat}&lng=${clickLng}`);
         } else {
-            navigate("newVisiting");
+            navigate(`newVisiting?lat=${clickLat}&lng=${clickLng}`);
         }
     };
     return (
         <>
             <VideoBackground />
-            <Button onClick={openModal} variant="btnSideBarTravel">
+            <Button onClick={() => { setActiveModal("content"); navigate("cities"); }} variant="btnSideBarTravel">
                 <Image src={mapImg} variant="btnIcon" />
             </Button>
             <section className="travelMapPageLayout">

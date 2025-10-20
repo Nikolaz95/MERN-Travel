@@ -27,7 +27,7 @@
     cursor: pointer;
 }
 
-.btnIcon {
+.btnIcon, .navIcon {
     width: 30px;
     height: 30px;
     border-radius: 20px;

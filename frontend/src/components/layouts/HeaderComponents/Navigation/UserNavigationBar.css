@@ -1,0 +1,62 @@
+
+
+.navigationListItem {
+    display: flex;
+    gap: 10px;
+    align-items: center; /* Align text and icon vertically */
+}
+
+.navigationLink {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    gap: 10px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* Dropdown Container */
+.userDropdownContainer {
+    position: relative;
+    cursor: pointer;
+}
+
+
+/* Dropdown Menu */
+.dropdownMenu {
+    position: absolute;
+    top: 75px;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    padding: 0.5rem 0;
+    list-style: none;
+    min-width: 150px;
+}
+
+/* Dropdown Item */
+.dropdownItem {
+    padding: 0.5rem 1rem;
+}
+
+.dropdownItem:not(:last-child) {
+    border-bottom: 1px solid #eee;
+}
+
+.dropdownLink {
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+
+.dropdownLink:hover {
+    background-color: #f5f5f5;
+    color: #000;
+}
+
+
+/* Dropdown Item */

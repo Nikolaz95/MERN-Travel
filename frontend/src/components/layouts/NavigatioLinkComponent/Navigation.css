@@ -9,3 +9,11 @@
     text-decoration: none;
 }
 
+.headNavigation {
+    display: flex;
+    align-items: center; /* Align text and icon vertically */
+    color: #fff; /* Text color */
+    gap: 10px;
+    text-decoration: none; /* Remove underline */
+    cursor: pointer;
+}
