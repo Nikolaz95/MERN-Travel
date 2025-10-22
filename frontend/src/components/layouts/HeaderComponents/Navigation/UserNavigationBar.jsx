@@ -40,17 +40,23 @@ const UserNavigationBar = () => {
                 <ul className="dropdownMenu">
                     {user?.role === "admin" && (
                         <li className="dropdownItem">
-                            <Navigation to="/admin/dashBoard" className="dropdownLink">
+                            <Navigation to="/admin/dashBoard" variant='dropdownNav' className="dropdownLink">
+                                <Image src={DashBoard} variant="navIcon" />
                                 Dashboard
                             </Navigation>
                         </li>
                     )}
                     <li className="dropdownItem">
-                        <Navigation to="/user/settings-Profile" className="dropdownLink">
+                        <Navigation to="/user/settings-Profile" variant='dropdownNav' className="dropdownLink">
+                            <Image src={AvatarDefoult} variant="navIcon" />
                             Profile
                         </Navigation>
                     </li>
-                    <li className="dropdownItem">
+                    <li className="dropdownItem" >
+                        {/* <Navigation to="/" variant='dropdownNav' className="dropdownLink">
+                            <Image src={LogOut} variant="navIcon" />
+                            Logout
+                        </Navigation > */}
                         <Button className="dropdownLink logoutButton" to="/" variant="loginBtn">
                             <Image src={LogOut} variant="navIcon" />
                             Logout
