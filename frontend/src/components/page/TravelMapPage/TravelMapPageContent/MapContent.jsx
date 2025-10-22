@@ -11,6 +11,7 @@ import useFetch from '../../../hooks/useFetch';
 import './MapContent.css';
 
 const MapContent = ({ openModal }) => {
+    const navigate = useNavigate();
     const [mapPosition, setMapPosition] = useState([50, 20]);
 
     const { data: dataInfo, loading, error, position } = useFetch("/cities");
@@ -30,13 +31,12 @@ const MapContent = ({ openModal }) => {
         [mapLat, mapLng]
     );
 
-    useEffect(
-        function () {
-            if (geolocationPosition)
-                setMapPosition([geolocationPosition.lat, geolocationPosition.lng]);
-        },
-        [geolocationPosition]
-    );
+    useEffect(() => {
+        if (geolocationPosition) {
+            setMapPosition([geolocationPosition.lat, geolocationPosition.lng]);
+            navigate(`newVisiting?lat=${geolocationPosition.lat}&lng=${geolocationPosition.lng}`);
+        }
+    }, [geolocationPosition, navigate]);
 
 
 

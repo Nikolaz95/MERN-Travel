@@ -15,7 +15,7 @@ import Navigation from '../../NavigatioLinkComponent/Navigation';
 
 const HeaderNavigation = ({ isSideMenuOpen }) => {
     const [dropdownUser, setDropdownUser] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const handleToggleDropdown = () => {
         setDropdownUser(!dropdownUser);
