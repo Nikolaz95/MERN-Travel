@@ -6,30 +6,20 @@ import "./HeaderNavigation.css";
 // import img 
 import Product from "../../../../assets/icons/icon-product.png"
 import SignIn from "../../../../assets/icons/icon-login.png"
+import AvatarDefoult from "../../../../assets/icons/avatar-profile.jpg";
 
 // import components
 import Image from '../../Images/Image';
+import UserNavigationBar from './UserNavigationBar';
+import Navigation from '../../NavigatioLinkComponent/Navigation';
 
 const HeaderNavigation = ({ isSideMenuOpen }) => {
-    const user = {
-        name: "John Doe",
-        role: "user"
-    };
-
-    /* const user = {
-        name: "John Doe",
-        role: "admin"
-    }; */
-
     const [dropdownUser, setDropdownUser] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const handleToggleDropdown = () => {
         setDropdownUser(!dropdownUser);
     };
-
-
-
 
     // Prevent scrolling when menu is open
     useEffect(() => {
@@ -46,17 +36,23 @@ const HeaderNavigation = ({ isSideMenuOpen }) => {
         <nav className={`navigationSection ${isSideMenuOpen ? "active" : "close"}`}>
             <ul className="navigationList">
                 <li>
-                    <NavLink to="/product" className='navigationStyle'>
-                        <Image src={Product} alt="here should be a picture" variant="icon" />
+                    <Navigation to="/product" variant='headNavigation'>
+                        <Image src={Product} alt="here should be a picture" variant="navIcon" />
                         Product
-                    </NavLink>
+                    </Navigation>
                 </li>
-                <li>
-                    <NavLink to="/signIn" className='navigationStyle'>
-                        Sing in
-                        <Image src={SignIn} alt="" variant="icon" />
-                    </NavLink>
-                </li>
+
+                {isLoggedIn ? (
+                    <UserNavigationBar />
+                ) : (
+
+                    <li>
+                        <Navigation to="/signIn" variant='headNavigation'>
+                            <Image src={SignIn} alt="" variant="navIcon" />
+                            Sing in
+                        </Navigation>
+                    </li>
+                )}
             </ul>
         </nav>
     )

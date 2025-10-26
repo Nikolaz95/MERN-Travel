@@ -32,9 +32,7 @@ const Modal = ({ children, isOpen, onClose, className }) => {
     if (!isOpen) return null;
     return (
         <ModalOverlay onClose={onClose}>
-            <section className={className} onClick={(e) => e.stopPropagation()}
-            // Prevent closing modal when clicking inside content
-            >
+            <section className={className} onClick={(e) => e.stopPropagation()}>
                 {children}
             </section>
         </ModalOverlay>

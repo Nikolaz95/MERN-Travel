@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { NavLink } from 'react-router';
+import { NavLink, useNavigate } from 'react-router';
 import titleName from '../..//hooks/useTitle';
 import useFetch from '../../hooks/useFetch';
 
@@ -14,7 +14,6 @@ import mapImg from "../../../assets/icons/iconMap.png";
 //import components
 import VideoBackground from '../../layouts/VideoBackground/VideoBackground ';
 import Button from '../../layouts/Buttons/Button';
-import Text1 from '../../layouts/ModalComponent/ModalLayouts/ModalContent/Text1';
 import Modal from '../../layouts/ModalComponent/Modal';
 import TravelMapSideBar from './TravelMapPageContent/TravelMapSideBar';
 import MapContent from './TravelMapPageContent/MapContent';
@@ -22,24 +21,36 @@ import ContentModal from '../../layouts/ModalComponent/ModalLayouts/ModalContent
 import Image from '../../layouts/Images/Image';
 
 const TravelMapPage = () => {
+    const navigate = useNavigate();
     titleName('Your travel experience');
+
     // State to track which modal is open
     const [activeModal, setActiveModal] = useState("");
     // Function to close the modal
-    const closeModal = () => setActiveModal("");
+    const closeModal = () => {
+        setActiveModal("");
+        navigate("cities");
+    };
+
+    const openModal = () => {
+        if (window.innerWidth <= 700) {
+            setActiveModal("content");
+        }
+    };
+
     return (
         <>
             <VideoBackground />
-            <Button onClick={() => setActiveModal("text1")} variant="btnSideBarTravel">
+            <Button onClick={() => { setActiveModal("content"); navigate("cities"); }} variant="btnSideBarTravel">
                 <Image src={mapImg} variant="btnIcon" />
             </Button>
             <section className="travelMapPageLayout">
                 <TravelMapSideBar />
-                <MapContent />
+                <MapContent openModal={openModal} />
             </section>
             {/* Modal for Text1 */}
-            <Modal isOpen={activeModal === "text1"} onClose={closeModal}>
-                <ContentModal onClose={closeModal} /* dataInfo={dataInfo} */ /* formatDate={formatDate} */ />
+            <Modal isOpen={activeModal === "content"} onClose={closeModal}>
+                <ContentModal />
             </Modal>
         </>
     )

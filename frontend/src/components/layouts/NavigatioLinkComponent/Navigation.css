@@ -9,3 +9,23 @@
     text-decoration: none;
 }
 
+.dropdownNav{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    width: 100%;
+    text-decoration: none;
+}
+
+
+.headNavigation {
+    display: flex;
+    align-items: center; /* Align text and icon vertically */
+    color: #fff; /* Text color */
+    gap: 10px;
+    text-decoration: none; /* Remove underline */
+    cursor: pointer;
+}

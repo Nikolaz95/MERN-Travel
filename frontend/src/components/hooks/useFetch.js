@@ -14,12 +14,15 @@ const useFetch = (endpoint) => {
             setError(null);
             try {
                 const response = await fetch(`${BASE_URL}${endpoint}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
                 const result = await response.json();
                 setData(result);
                 console.log(result);
 
             } catch (error) {
-                setError(err.message || "Error fetching data");
+                setError(error.message || "Error fetching data");
             } finally {
                 setLoading(false);
             }
