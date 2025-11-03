@@ -1,4 +1,5 @@
 import catchAsyncErrors from "../middlewares/catchAsyncErrors.js";
+import newVisiting from "../models/newVisiting.js";
 import User from "../models/user.js";
 import ErrorHandler from "../utils/errorHandler.js";
 import sendToken from "../utils/sendToken.js";
@@ -63,10 +64,14 @@ export const logoutUser = catchAsyncErrors(async (req, res, next) => {
 
 // Get current user profile  =>  /api/me
 export const getUserProfile = catchAsyncErrors(async (req, res, next) => {
-    const user = await User.findById(req?.user?._id);
+    const currentUserId = req.user._id;
+    const user = await User.findById(currentUserId);
+
+    const userVisits = await newVisiting.find({ user: currentUserId });
 
     res.status(200).json({
-        user,
+        user: user,
+        visits: userVisits,
     });
 
 });
@@ -132,8 +137,12 @@ export const getUserDetails = catchAsyncErrors(async (req, res, next) => {
         return next(new ErrorHandler(`User not found with id: ${req.params.id}`, 404))
     }
 
+    const userVisits = await newVisiting.find({ user: req.params.id });
+
     res.status(200).json({
-        user,
+        success: true,
+        user: user,
+        visits: userVisits,
     });
 });
 
