@@ -19,6 +19,13 @@
     cursor: pointer;
 }
 
+.profile {
+    width: 200px;
+    height: 250px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
 
 .icon {
     width: 40px;
@@ -32,6 +39,19 @@
     height: 30px;
     border-radius: 20px;
     cursor: pointer;
+}
+
+.sideBarNavIcon{
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+}
+
+.iconDropDown {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    border-radius: 20px;
 }
 
 .productImg {

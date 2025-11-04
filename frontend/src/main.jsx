@@ -15,6 +15,8 @@ import CityList from './components/page/TravelMapPage/CitiesSection/CityList.jsx
 import CountryList from './components/page/TravelMapPage/CountriesSection/CountryList.jsx';
 import CityDetails from './components/page/TravelMapPage/CitiesSection/CityDetails.jsx';
 import NewVisiting from './components/layouts/AddNewVisiting/NewVisiting.jsx';
+import { UserRoutes } from './components/routes/UserRoutes.jsx';
+import { AdminRoutes } from './components/routes/AdminRoutes.jsx';
 
 
 const router = createBrowserRouter([
@@ -67,7 +69,14 @@ const router = createBrowserRouter([
             element: <CountryList />
           },
         ]
-      }
+      },
+
+      // Spread the admin routes
+      ...AdminRoutes,
+
+      // Spread the user routes
+      ...UserRoutes
+
 
     ]
   }
