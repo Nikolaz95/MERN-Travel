@@ -16,11 +16,11 @@ import Button from '../../Buttons/Button';
 import Navigation from '../../NavigatioLinkComponent/Navigation';
 
 
-const UserNavigationBar = () => {
-    const user = {
+const UserNavigationBar = ({ user, handleLogOut }) => {
+    /* const user = {
         name: "John Doe",
         role: "admin"
-    };
+    }; */
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     // Toggle dropdown menu
@@ -32,7 +32,7 @@ const UserNavigationBar = () => {
     return (
         <li className="navigationListItem userDropdownContainer">
             <div className="userIconWrapper navigationLink" onClick={handleDropdownToggle}>
-                <Image src={/* user?.avatar ? user?.avatar?.url : */ AvatarDefoult}
+                <Image src={user?.avatar ? user?.avatar?.url : AvatarDefoult}
                     alt={user.name} variant="navIcon" />
                 <p className="textNavigation">{user.name}</p>
             </div>
@@ -57,7 +57,9 @@ const UserNavigationBar = () => {
                             <Image src={LogOut} variant="navIcon" />
                             Logout
                         </Navigation > */}
-                        <Button className="dropdownLink logoutButton" to="/" variant="loginBtn">
+                        <Button className="dropdownLink logoutButton"
+                            to="/" variant="loginBtn"
+                            onClick={handleLogOut}>
                             <Image src={LogOut} variant="navIcon" />
                             Logout
                         </Button>

@@ -5,8 +5,9 @@ import titleName from '../../../../hooks/useTitle';
 import "./DeleteAccount.css"
 
 //import img
-import AvatarDefault from "../../../../../assets/icons/avatar-profile.jpg"
-import DeleteBtn from "../../../../../assets/icons/iconDelAcc.png"
+import { AvatarDefault, DeleteBtn } from '../../../../../assets/Icons';
+
+//import components
 import DashBoardLayout from '../../AdminPage/DashBoardSection/DashboardLayout/DashBoardLayout';
 import UserInfoLayout from '../Layouts/UserInfoLayout';
 import Button from '../../../../layouts/Buttons/Button';
