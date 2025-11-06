@@ -6,10 +6,8 @@ import titleName from '../../../../hooks/useTitle';
 import "./UploadPicture.css"
 
 //import images
-import SaveUpdate from '../../../../../assets/icons/iconUpdate.png';
-import avatarDefault from "../../../../../assets/icons/avatar-profile.jpg"
-import UploadCamera from "../../../../../assets/icons/iconsUploadImg.png"
-import CancelUpdate from "../../../../../assets/icons/icon-cancelPic.png"
+import { AvatarDefault, CancelUpdate, SaveUpdate, UploadCamera } from '../../../../../assets/Icons';
+
 
 import DashBoardLayout from '../../AdminPage/DashBoardSection/DashboardLayout/DashBoardLayout';
 import UserInfoLayout from '../Layouts/UserInfoLayout';
@@ -20,12 +18,12 @@ const UploadPicture = () => {
     titleName(`Upload Picture`);
     return (
         <DashBoardLayout>
-            <h1>Update Profile</h1>
+            <h1>Upload Picture</h1>
             <UserInfoLayout>
                 <section className='userUploadContent'>
                     <form action="" className="userUpload-info" /* onSubmit={submitHandler} */>
                         <div className="userUpload-top">
-                            <Image variant="icon" src={avatarDefault} alt="avatar Default" className='userUpload-Profileimg' />
+                            <Image variant="icon" src={AvatarDefault} alt="avatar Default" className='userUpload-Profileimg' />
                             <input type="file" name='file' id='file' accept="images/*"/*  onChange={onChange} */ />
                             <label htmlFor="file" className='userUpload-BtnUplFile'>
                                 <Image src={UploadCamera} variant="icon" title='Change picture' alt="chose a picture" className='userUpload-camera' />

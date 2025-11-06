@@ -6,15 +6,13 @@ import { NavLink } from 'react-router'
 import styles from './SignInLeftAside.module.css';
 
 //import  icon
-import Show from "../../../../../assets/icons/icon-show.png"
-import Hide from "../../../../../assets/icons/icon-hide.png"
-import CreateAccount from "../../../../../assets/icons/icon-addAccount.png"
+import { CreateAccount, HidePassword, LogInImg, ShowPassword } from '../../../../../assets/Icons';
+
 
 //import components
 import Button from '../../../../layouts/Buttons/Button'
 import Image from '../../../../layouts/Images/Image'
 import Navigation from '../../../../layouts/NavigatioLinkComponent/Navigation';
-import { LogInImg } from '../../../../../assets/Icons';
 
 const SignInLeftAside = ({ submitHandler, setFormData, formData, isLoading }) => {
     const [showPassword, setShowPassword] = useState(false);
@@ -39,7 +37,7 @@ const SignInLeftAside = ({ submitHandler, setFormData, formData, isLoading }) =>
 
                     <Image variant="icon"
                         title={showPassword ? "Hide password" : "Show password"}
-                        src={showPassword ? Hide : Show}
+                        src={showPassword ? HidePassword : ShowPassword}
                         onClick={() => setShowPassword(prevState => !prevState)} />
                 </section>
 

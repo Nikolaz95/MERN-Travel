@@ -5,13 +5,13 @@ import titleName from '../../../../hooks/useTitle';
 import "./UpdatePassword.css"
 
 //import images
-import SaveUpdate from "../../../../../assets/icons/iconUpdate.png"
 
 
 import DashBoardLayout from '../../AdminPage/DashBoardSection/DashboardLayout/DashBoardLayout';
 import UserInfoLayout from '../Layouts/UserInfoLayout';
 import Button from '../../../../layouts/Buttons/Button';
 import Image from '../../../../layouts/Images/Image';
+import { SaveUpdate } from '../../../../../assets/Icons';
 
 
 const UpdatePassword = () => {

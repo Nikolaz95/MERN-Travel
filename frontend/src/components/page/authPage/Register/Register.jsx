@@ -7,10 +7,8 @@ import toast from 'react-hot-toast';
 import styles from './Register.module.css';
 
 //import  icon
-import { LogInImg } from '../../../../assets/Icons';
-import Show from "../../../../assets/icons/icon-show.png"
-import Hide from "../../../../assets/icons/icon-hide.png"
-import CreateAccount from "../../../../assets/icons/icon-addAccount.png"
+import { CreateAccount, HidePassword, LogInImg, ShowPassword } from '../../../../assets/Icons';
+
 
 //import components
 import MainLayout from '../../../layouts/ContentLayout/MainLayout/MainLayout';
@@ -98,7 +96,7 @@ const Register = () => {
                                 name="password" id='pwd' className={styles.inputContent}
                                 placeholder='password...' value={password} onChange={onChange} />
                             <Image title={showPassword ? "Hide password" : "Show password"}
-                                src={showPassword ? Hide : Show} className='imgHideShow'
+                                src={showPassword ? HidePassword : ShowPassword} variant="icon" className='imgHideShow'
                                 onClick={() => setShowPassword(prevState => !prevState)} />
                         </section>
                         <section className={styles.bottonFormRegister}>

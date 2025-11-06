@@ -6,12 +6,12 @@ import useNavigateTo from '../../hooks/useNavigateTo';
 import styles from './ErrorPage.module.css';
 
 /* import img */
-import Eror from "../../../assets/icons/icon-error.png"
 
 //import components
 import MainLayout from '../../layouts/ContentLayout/MainLayout/MainLayout';
 import Button from '../../layouts/Buttons/Button';
 import Image from '../../layouts/Images/Image';
+import { Eror } from '../../../assets/Icons';
 
 
 const ErrorPage = () => {

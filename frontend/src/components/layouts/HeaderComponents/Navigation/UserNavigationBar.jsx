@@ -5,10 +5,9 @@ import { NavLink } from 'react-router';
 //import css
 import "./UserNavigationBar.css";
 
-//import images
-import AvatarDefoult from "../../../../assets/icons/avatar-profile.jpg";
-import DashBoard from "../../../../assets/icons/icon-dashboard.png"
-import LogOut from "../../../../assets/icons/icon-logout2.png"
+//import image
+import { LogOut, AvatarDefault, DashBoard } from "../../../../assets/Icons";
+
 
 //import Components
 import Image from '../../Images/Image';
@@ -17,10 +16,6 @@ import Navigation from '../../NavigatioLinkComponent/Navigation';
 
 
 const UserNavigationBar = ({ user, handleLogOut }) => {
-    /* const user = {
-        name: "John Doe",
-        role: "admin"
-    }; */
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     // Toggle dropdown menu
@@ -32,7 +27,7 @@ const UserNavigationBar = ({ user, handleLogOut }) => {
     return (
         <li className="navigationListItem userDropdownContainer">
             <div className="userIconWrapper navigationLink" onClick={handleDropdownToggle}>
-                <Image src={user?.avatar ? user?.avatar?.url : AvatarDefoult}
+                <Image src={user?.avatar ? user?.avatar?.url : AvatarDefault}
                     alt={user.name} variant="navIcon" />
                 <p className="textNavigation">{user.name}</p>
             </div>
@@ -48,7 +43,7 @@ const UserNavigationBar = ({ user, handleLogOut }) => {
                     )}
                     <li className="dropdownItem">
                         <Navigation to="/user/settings-Profile" variant='dropdownNav' className="dropdownLink">
-                            <Image src={AvatarDefoult} variant="navIcon" />
+                            <Image src={AvatarDefault} variant="navIcon" />
                             Profile
                         </Navigation>
                     </li>

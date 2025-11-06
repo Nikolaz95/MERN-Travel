@@ -7,14 +7,14 @@ import titleName from '../../../components/hooks/useTitle';
 import styles from './HomePage.module.css';
 
 //import  icon
-import travelTracker from "../../../assets/icons/icon-location.png"
+import { travelTracker } from '../../../assets/Icons';
 
+//import components
 import Button from '../../layouts/Buttons/Button';
 import MainLayout from '../../layouts/ContentLayout/MainLayout/MainLayout';
 import Navigation from '../../layouts/NavigatioLinkComponent/Navigation';
 
 
-//import components
 
 const HomePage = () => {
     titleName('Home Page');

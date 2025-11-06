@@ -1,9 +1,8 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
 
 
 //import img
-import Logoimg from "../../../../assets/pictures/logo1.png"
+import { Logoimg } from '../../../../assets/Icons'
 
 //import components
 import Image from '../../Images/Image'

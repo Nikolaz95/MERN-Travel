@@ -1,35 +1,21 @@
 
 
 //import img
-import DashBoardIcon from "../../../../../../assets/icons/icon-dashboard.png"
-import ListOfUsers from "../../../../../../assets/icons/iconUsersList.png"
-import DataAnalytic from "../../../../../../assets/icons/iconWebAnalytics.png"
-import AvatarIcon from "../../../../../../assets/icons/avatar-profile.jpg"
-import UpdateProfile from "../../../../../../assets/icons/iconUpdateProfile.png"
-import UploadImg from "../../../../../../assets/icons/iconUpload.png"
-import UpdatePassword from "../../../../../../assets/icons/iconUpdPass.png"
-import DeleteAccoutn from "../../../../../../assets/icons/iconDelAcc.png"
-import UserSettings from "../../../../../../assets/icons/iconUserSettings.png"
-
-import UserContent from "../../../../../../assets/icons/iconContent.png"
-
-import YourTravel from "../../../../../../assets/icons/iconTravel.png"
-import UserIcon from "../../../../../../assets/icons/icon2-user.png"
-import ActorFavorit from "../../../../../../assets/icons/icon-dashboard.png"
+import { DashBoard, DataAnalytic, DeleteAccoutn, ListOfUsers, UpdatePassword, UpdateProfile, UploadImg, UserContent, UserIcon, UserSettings, YourTravel } from "../../../../../../assets/Icons"
 
 
 const SidebarData = [
     {
         id: 0,
         titleName: "Dashboard",
-        icon: DashBoardIcon,
+        icon: DashBoard,
         roles: ["admin"],
 
         dropDownList: [
             {
                 title: "Dashboard",
                 path: "/admin/dashBoard",
-                icon: DashBoardIcon
+                icon: DashBoard
             },
             {
                 title: "List of Users",

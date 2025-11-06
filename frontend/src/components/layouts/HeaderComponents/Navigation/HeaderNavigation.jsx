@@ -4,14 +4,13 @@ import { NavLink, useNavigate } from 'react-router';
 //import css
 import "./HeaderNavigation.css";
 // import img 
-import Product from "../../../../assets/icons/icon-product.png"
-import AvatarDefoult from "../../../../assets/icons/avatar-profile.jpg";
+import { LogInImg, Product } from '../../../../assets/Icons';
+
 
 // import components
 import Image from '../../Images/Image';
 import UserNavigationBar from './UserNavigationBar';
 import Navigation from '../../NavigatioLinkComponent/Navigation';
-import { LogInImg } from '../../../../assets/Icons';
 import { useGetMeQuery } from '../../../../redux/api/userApi';
 import { useSelector } from 'react-redux';
 import { useLazyLogoutQuery } from '../../../../redux/api/authApi';

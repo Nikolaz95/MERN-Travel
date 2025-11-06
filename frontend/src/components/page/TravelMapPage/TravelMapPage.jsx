@@ -9,7 +9,6 @@ import './TravelMapPage.css';
 
 //import img
 
-import mapImg from "../../../assets/icons/iconMap.png";
 
 //import components
 import VideoBackground from '../../layouts/VideoBackground/VideoBackground ';
@@ -19,6 +18,7 @@ import TravelMapSideBar from './TravelMapPageContent/TravelMapSideBar';
 import MapContent from './TravelMapPageContent/MapContent';
 import ContentModal from '../../layouts/ModalComponent/ModalLayouts/ModalContent/ContentModal';
 import Image from '../../layouts/Images/Image';
+import { mapImg } from '../../../assets/Icons';
 
 const TravelMapPage = () => {
     const navigate = useNavigate();

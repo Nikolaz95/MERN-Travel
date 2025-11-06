@@ -2,12 +2,13 @@ import React from 'react'
 
 //import css
 import "./UserProfileInfo.css"
+
+//import images
+import { AvatarDefault } from '../../../../../assets/Icons';
+//import components
 import titleName from '../../../../hooks/useTitle';
 import DashBoardLayout from '../../AdminPage/DashBoardSection/DashboardLayout/DashBoardLayout';
 import UserInfoLayout from '../Layouts/UserInfoLayout';
-
-//import images
-import avatarDefault from "../../../../../assets/icons/avatar-profile.jpg"
 import Image from '../../../../layouts/Images/Image';
 
 const UserProfileInfo = () => {
@@ -26,7 +27,7 @@ const UserProfileInfo = () => {
                 <div className="userProfileConteiner">
                     <div className="userProfileConteinerTop">
                         <Image src={
-                            user?.avatar ? user?.avatar?.url : avatarDefault
+                            user?.avatar ? user?.avatar?.url : AvatarDefault
                         }
                             variant="profile"
                             className='userProfileImg' alt="userImg" />

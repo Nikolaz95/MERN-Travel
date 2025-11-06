@@ -4,8 +4,7 @@ import React from 'react'
 import "./TableList.css"
 
 //import images
-import UpdateAcc from "../../../../../../assets/icons/iconUpdate.png"
-import DeleteAcc from "../../../../../../assets/icons/iconDelAcc.png"
+import { DeleteAccoutn, SaveUpdate } from '../../../../../../assets/Icons'
 
 const TableList = () => {
     return (
@@ -34,12 +33,12 @@ const TableList = () => {
                             <div className='btn-userListContent'>
                                 <button className='btn-userList'
                                         /* onClick={() => handleUpdateClick(user._id)} */>
-                                    <img src={UpdateAcc} alt=""
+                                    <img src={SaveUpdate} alt=""
                                         className='btnIcon-userList' title='Update' />
                                 </button>
                                 <button className='btn-userList'
                                         /* onClick={() => handleDeleteClick(user._id)} */>
-                                    <img src={DeleteAcc} alt="" className='btnIcon-userList' title='Delete' />
+                                    <img src={DeleteAccoutn} alt="" className='btnIcon-userList' title='Delete' />
                                 </button>
                             </div>
                         </td>

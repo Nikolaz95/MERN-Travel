@@ -6,15 +6,14 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import "./Sidebar.css"
 
 //import images
-import openMenu from "../../../../../../assets/icons/icon-open-button.png"
-import avatarDefault from "../../../../../../assets/icons/avatar-profile.jpg"
-import LogOut from "../../../../../../assets/icons/icon-logout2.png"
+
 
 //import data
 import dataSideBarContent from "../../DashBoardSection/SideBar/SidebarData";
 import Button from '../../../../../layouts/Buttons/Button';
 import Image from '../../../../../layouts/Images/Image';
 import Navigation from '../../../../../layouts/NavigatioLinkComponent/Navigation';
+import { AvatarDefault, LogOut, openMenu } from '../../../../../../assets/Icons';
 
 const Sidebar = () => {
     const user = {
@@ -64,7 +63,7 @@ const Sidebar = () => {
                     <Button variant="openBtn">
                         <Image src={openMenu} variant="btnIcon" onClick={toggleSidebar} />
                     </Button>
-                    <Image src={user?.avatar ? user?.avatar?.url : avatarDefault}
+                    <Image src={user?.avatar ? user?.avatar?.url : AvatarDefault}
                         variant="navIcon" />
                     {user?.name}
                 </div>

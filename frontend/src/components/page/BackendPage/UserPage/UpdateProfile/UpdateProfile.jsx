@@ -5,7 +5,6 @@ import titleName from '../../../../hooks/useTitle';
 import "./UpdateProfile.css"
 
 //import images
-import updateImg from '../../../../../assets/icons/iconUpdate.png';
 
 
 //import components
@@ -13,6 +12,7 @@ import DashBoardLayout from '../../AdminPage/DashBoardSection/DashboardLayout/Da
 import UserInfoLayout from '../Layouts/UserInfoLayout'
 import Button from '../../../../layouts/Buttons/Button';
 import Image from '../../../../layouts/Images/Image';
+import { SaveUpdate } from '../../../../../assets/Icons';
 
 
 
@@ -45,7 +45,7 @@ const UpdateProfile = () => {
                         <div className="btn-updateProfileSeting">
                             <Button
                                 variant="updateProfile" /* disabled={isLoading} */ >
-                                <Image variant="icon" src={updateImg} className="iconBtns" />
+                                <Image variant="icon" src={SaveUpdate} className="iconBtns" />
                                 Save Update
                                 {/* {isLoading ? "Updating..." : "Save Update"} */}
                             </Button>
