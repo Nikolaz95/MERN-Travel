@@ -28,6 +28,7 @@ const HomePage = () => {
                         <p className={styles.homeTextContent}>Document your travels, one memory at a time.</p>
                         <p className={styles.homeTextContent}>A digital diary for your wanderlust. Discover amazing places with us. Start your travel story today.</p>
                         <Navigation to="/travelMap">
+
                             <Button variant="startTracking" icon={travelTracker}>
                                 <p>Start Tracking Now</p>
                             </Button>

@@ -1,5 +1,5 @@
 import expres from "express"
-import { allUsers, deleteUser, getUserDetails, getUserProfile, loginUser, logoutUser, registerUser, updatePassword, updateProfile, updateUser } from "../controllers/authControllers.js";
+import { allUsers, deleteOwnAccount, deleteUser, getUserDetails, getUserProfile, loginUser, logoutUser, registerUser, updatePassword, updateProfile, updateUser, uploadAvatar } from "../controllers/authControllers.js";
 import { authorizeRoles, isAuthenticatedUser } from "../middlewares/auth.js";
 const router = expres.Router();
 
@@ -11,6 +11,10 @@ router.route("/logout").get(logoutUser);
 router.route("/me").get(isAuthenticatedUser, getUserProfile);
 router.route("/me/update").put(isAuthenticatedUser, updateProfile);
 router.route("/password/update").put(isAuthenticatedUser, updatePassword);
+router.route("/me/upload_avatar").put(isAuthenticatedUser, uploadAvatar);
+router.route("/me/deleteAccount").delete(isAuthenticatedUser, deleteOwnAccount);
+
+
 
 //admin
 

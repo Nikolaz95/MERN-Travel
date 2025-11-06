@@ -10,15 +10,12 @@ import titleName from '../../../../hooks/useTitle';
 import DashBoardLayout from '../../AdminPage/DashBoardSection/DashboardLayout/DashBoardLayout';
 import UserInfoLayout from '../Layouts/UserInfoLayout';
 import Image from '../../../../layouts/Images/Image';
+import { useSelector } from 'react-redux';
 
 const UserProfileInfo = () => {
     titleName(`Profile Info`);
-    const user = {
-        name: "John Doe",
-        email: "n@gmail.com",
-        createdAt: "2025-11-04",
-        role: "admin"
-    };
+    const { user } = useSelector((state) => state.auth);
+
     return (
         <DashBoardLayout>
             <h1>Profile Info</h1>

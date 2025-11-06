@@ -18,6 +18,7 @@ import { NavLink, useNavigate } from 'react-router';
 import Image from '../../../layouts/Images/Image';
 import Navigation from '../../../layouts/NavigatioLinkComponent/Navigation';
 import { useRegisterMutation } from '../../../../redux/api/authApi';
+import { useSelector } from 'react-redux';
 
 const Register = () => {
     titleName('Register');
@@ -31,6 +32,7 @@ const Register = () => {
     });
 
     const { name, email, password } = user;
+    const { isAuthenticated } = useSelector((state) => state.auth)
 
 
     const [register, { isLoading, error, data }] = useRegisterMutation();
@@ -41,16 +43,16 @@ const Register = () => {
 
 
     useEffect(() => {
-        /* if (isAuthenticated) {
+        if (isAuthenticated) {
             navigate("/user/settings-Profile");
             // Use user.name from Redux state if available
             const userName = user?.name || "User";
             toast.success(`Welcome back, ${userName}!`);
-        } */
+        }
         if (error) {
             toast.error(error?.data?.message)
         }
-    }, [error, toast])
+    }, [error, isAuthenticated, setTimeout, name, toast])
 
 
     const submitHandler = (e) => {
@@ -64,6 +66,7 @@ const Register = () => {
 
         register(singUpData);
     };
+
 
     const onChange = (e) => {
         setUser({ ...user, [e.target.name]: e.target.value });

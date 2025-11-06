@@ -34,6 +34,8 @@ import openMenu from "../assets/icons/icon-open-button.png"
 import UploadCamera from "../assets/icons/iconsUploadImg.png"
 import CancelUpdate from "../assets/icons/icon-cancelPic.png"
 import SaveUpdate from '../assets/icons/iconUpdate.png';
+import Cancel from "../assets/icons/icon-cancelPic.png"
+import Confirm from '../assets/icons/iconConfirm.png';
 
 export {
     DeleteBtn, AvatarDefault, LogIn1, LogInImg,
@@ -42,5 +44,5 @@ export {
     GitHub, Gmail, LinkeDin, Location, CopyRight, MyPortfolio,
     Eror, ListOfUsers, DataAnalytic, UpdateProfile, UploadImg,
     UpdatePassword, DeleteAccoutn, UserSettings, UserContent, YourTravel,
-    UserIcon, openMenu, UploadCamera, CancelUpdate, SaveUpdate
+    UserIcon, openMenu, UploadCamera, CancelUpdate, SaveUpdate, Confirm, Cancel
 }

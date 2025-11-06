@@ -5,27 +5,52 @@ import titleName from '../../../../hooks/useTitle';
 import "./UpdatePassword.css"
 
 //import images
+import { SaveUpdate } from '../../../../../assets/Icons';
 
 
 import DashBoardLayout from '../../AdminPage/DashBoardSection/DashboardLayout/DashBoardLayout';
 import UserInfoLayout from '../Layouts/UserInfoLayout';
 import Button from '../../../../layouts/Buttons/Button';
 import Image from '../../../../layouts/Images/Image';
-import { SaveUpdate } from '../../../../../assets/Icons';
+import { useNavigate } from 'react-router';
+import { useUpdatePasswordMutation } from '../../../../../redux/api/userApi';
+import toast from 'react-hot-toast';
+import { useEffect } from 'react';
 
 
 const UpdatePassword = () => {
     titleName(`Update Password`);
-
-    const user = {
-        name: "John Doe",
-        email: "n@gmail.com",
-        createdAt: "2025-11-04",
-        role: "admin"
-    };
+    const navigate = useNavigate();
 
     const [oldPassword, setOldPassword] = useState("");
     const [password, setPassword] = useState("");
+
+    const [updatePassword, { isLoading, error, isSuccess }] =
+        useUpdatePasswordMutation();
+
+    useEffect(() => {
+        if (error) {
+            toast.error(error?.data?.message);
+        }
+
+        if (isSuccess) {
+            toast.success("Password Updated");
+            navigate("/user/settings-Profile");
+        }
+    }, [error, isSuccess]);
+
+    const submitHandler = (e) => {
+        e.preventDefault();
+
+        const userData = {
+            oldPassword,
+            password,
+        };
+
+        updatePassword(userData);
+    };
+
+
     return (
         <DashBoardLayout>
             <h1>Update Password</h1>
@@ -34,7 +59,7 @@ const UpdatePassword = () => {
 
                 <section className="updatePasswordSection">
                     <h1>Update Password:</h1>
-                    <form className="formUpdatePassword" /* onSubmit={submitHandler} */>
+                    <form className="formUpdatePassword" onSubmit={submitHandler}>
                         <label htmlFor="name_field" className="form-label">Old Password:</label>
                         <input
                             type="password"
@@ -54,11 +79,10 @@ const UpdatePassword = () => {
                             className="form-control"
                             name="email" />
                         <Button
-                            variant="updatePassword" /* disabled={isLoading} */>
+                            variant="updatePassword" disabled={isLoading}>
                             <Image variant="icon" src={SaveUpdate} className="iconBtns" />
-                            Update Password
-
-                            {/*  {isLoading ? "Updating..." : "Update Password"} */}
+                            {/* Update Password */}
+                            {isLoading ? "Updating..." : "Update Password"}
                         </Button>
                     </form>
                 </section>

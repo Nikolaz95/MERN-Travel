@@ -16,11 +16,8 @@ import Navigation from '../../../../../layouts/NavigatioLinkComponent/Navigation
 import { AvatarDefault, LogOut, openMenu } from '../../../../../../assets/Icons';
 
 const Sidebar = () => {
-    const user = {
-        name: "John Doe",
-        role: "admin"
-    };
     const navigate = useNavigate();
+    const { user } = useSelector((state) => state.auth);
     /* const { user } = useSelector((state) => state.auth); */
     const [curOpenDropdown, setCurOpenDropdown] = useState(null);
     /* const [logout] = useLazyLogoutQuery(); */

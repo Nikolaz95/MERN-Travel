@@ -17,6 +17,7 @@ import CityDetails from './components/page/TravelMapPage/CitiesSection/CityDetai
 import NewVisiting from './components/layouts/AddNewVisiting/NewVisiting.jsx';
 import { UserRoutes } from './components/routes/UserRoutes.jsx';
 import { AdminRoutes } from './components/routes/AdminRoutes.jsx';
+import ProtectRoute from './components/routes/ProtectRoute.jsx';
 
 
 const router = createBrowserRouter([
@@ -46,11 +47,18 @@ const router = createBrowserRouter([
       },
       {
         path: "/travelMap",
-        element: <TravelMapPage />,
+        element: <TravelMapPage />
+
+          /**<ProtectRoute>
+            <TravelMapPage />
+          </ProtectRoute>*/,
         children: [
           {
             index: true,
-            element: <Navigate replace to="cities" />
+            element: /**  <ProtectRoute>
+              <Navigate replace to="cities" />
+            </ProtectRoute> */
+              <Navigate replace to="cities" />
           },
           {
             path: "cities",

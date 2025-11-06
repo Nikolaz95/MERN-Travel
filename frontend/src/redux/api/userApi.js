@@ -5,8 +5,9 @@ import { setIsAuthenticated, setLoading, setUser } from "../features/userSlice";
 export const userApi = createApi({
     reducerPath: "userApi",
     baseQuery: fetchBaseQuery({ baseUrl: "/api" }),
-    /* tagTypes: ["User", "AdminUsers", "AdminUser"], */
+    tagTypes: ["User", "AdminUsers", "AdminUser"],
     endpoints: (builder) => ({
+
         getMe: builder.query({
             query: () => `me`,
             transformResponse: (result) => result.user,
@@ -24,9 +25,86 @@ export const userApi = createApi({
             providesTags: ["User"],
         }),
 
+        updateProfile: builder.mutation({
+            query(body) {
+                return {
+                    url: "/me/update",
+                    method: "PUT",
+                    body,
+                };
+            },
+            invalidatesTags: ["User"],
+        }),
+
+        uploadAvatar: builder.mutation({
+            query(body) {
+                return {
+                    url: "/me/upload_avatar",
+                    method: "PUT",
+                    body,
+                };
+            },
+            invalidatesTags: ["User"],
+        }),
+
+        updatePassword: builder.mutation({
+            query(body) {
+                return {
+                    url: "/password/update",
+                    method: "PUT",
+                    body,
+                };
+            },
+        }),
+
+        getAdminUsers: builder.query({
+            query: () => `/admin/allUsers`,
+            providesTags: ["AdminUsers"],
+        }),
+
+        getUserDetails: builder.query({
+            query: (id) => `/admin/users/${id}`,
+            providesTags: ["AdminUser"],
+        }),
+
+        updateUser: builder.mutation({
+            query({ id, body }) {
+                return {
+                    url: `/admin/users/${id}`,
+                    method: "PUT",
+                    body,
+                };
+            },
+            invalidatesTags: ["AdminUsers"],
+        }),
+
+        deleteUser: builder.mutation({
+            query(id) {
+                return {
+                    url: `/admin/users/${id}`,
+                    method: "DELETE",
+                };
+            },
+            invalidatesTags: ["AdminUsers"],
+        }),
+
+        deleteMyAccount: builder.mutation({
+            query: () => ({
+                url: "/me/deleteAccount",
+                method: "DELETE",
+            }),
+            invalidatesTags: ["User"],
+        }),
+
+
+
 
     })
 });
 
 
-export const { useGetMeQuery } = userApi;
+export const { useGetMeQuery, useUpdateProfileMutation,
+    useUploadAvatarMutation, useUpdatePasswordMutation,
+    useGetAdminUsersQuery, useGetUserDetailsQuery,
+    useUpdateUserMutation, useDeleteUserMutation,
+    useDeleteMyAccountMutation } = userApi;

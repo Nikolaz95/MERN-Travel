@@ -4,35 +4,56 @@ import UpdateProfile from "../page/BackendPage/UserPage/UpdateProfile/UpdateProf
 import UploadPicture from "../page/BackendPage/UserPage/UploadPicture/UploadPicture";
 import UserProfileInfo from "../page/BackendPage/UserPage/UserProfileInfo/UserProfileInfo";
 import UserTravel from "../page/BackendPage/UserPage/UserTravel/UserTravel";
+import ProtectRoute from "./ProtectRoute";
 
 
 
 export const UserRoutes = [
     {
         path: "/user/settings-Profile",
-        element: <UserProfileInfo />
+        element:
+            <ProtectRoute>
+                <UserProfileInfo />
+            </ProtectRoute>
     },
 
     {
         path: "/user/update-Profile",
-        element: <UpdateProfile />
+        element:
+            <ProtectRoute>
+                <UpdateProfile />
+            </ProtectRoute>
+
     },
 
     {
         path: "/user/update-Picture",
-        element: <UploadPicture />
+        element:
+            <ProtectRoute>
+                <UploadPicture />
+            </ProtectRoute>
     },
 
     {
         path: "/user/update-Password",
-        element: <UpdatePassword />
+        element:
+            <ProtectRoute>
+                <UpdatePassword />
+            </ProtectRoute>
+
     },
     {
         path: "/user/delete-Account",
-        element: <DeleteAccount />
+        element:
+            <ProtectRoute>
+                <DeleteAccount />
+            </ProtectRoute>
     },
     {
         path: "/user/yourTravel",
-        element: <UserTravel />
+        element:
+            <ProtectRoute>
+                <UserTravel />
+            </ProtectRoute>
     },
 ]

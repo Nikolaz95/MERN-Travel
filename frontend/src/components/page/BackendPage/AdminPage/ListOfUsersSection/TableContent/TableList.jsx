@@ -1,12 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 //import css
 import "./TableList.css"
 
 //import images
 import { DeleteAccoutn, SaveUpdate } from '../../../../../../assets/Icons'
+import Modal from '../../../../../layouts/ModalComponent/Modal';
+import UpdateProfileModal from '../../../../../layouts/ModalComponent/ModalLayouts/ModalContent/UpdateProfileModal.jsx/UpdateProfileModal';
 
-const TableList = () => {
+import DeleteAccountModalAdmin from '../../../../../layouts/ModalComponent/ModalLayouts/ModalContent/DeleteAccountModal/DeleteAccountModalAdmin';
+
+const TableList = ({ currentUsers }) => {
+    // State to track which modal is open
+    const [activeModal, setActiveModal] = useState("");
+    const [selectedUserId, setSelectedUserId] = useState(null);
+    // Function to close the modal
+    const closeModal = () => setActiveModal("");
+
+    const handleUpdateClick = (userId) => {
+        setSelectedUserId(userId);
+        setActiveModal("updateAccount");
+    };
+
+    const handleDeleteClick = (userId) => {
+        setSelectedUserId(userId);
+        setActiveModal("deleteAccountAdmin");
+    };
     return (
         <section className='tableSection'>
             <table>
@@ -22,38 +41,38 @@ const TableList = () => {
                 </thead>
 
                 <tbody>
-                    {/* {currentUsers.map((user) => ( */}
-                    <tr /* key={user._id} */>
-                        <td># 12315125215</td>
-                        <td>nikola</td>
-                        <td>n@gmail.com</td>
-                        <td>2025-11-04</td>
-                        <td>user</td>
-                        <td>
-                            <div className='btn-userListContent'>
-                                <button className='btn-userList'
-                                        /* onClick={() => handleUpdateClick(user._id)} */>
-                                    <img src={SaveUpdate} alt=""
-                                        className='btnIcon-userList' title='Update' />
-                                </button>
-                                <button className='btn-userList'
-                                        /* onClick={() => handleDeleteClick(user._id)} */>
-                                    <img src={DeleteAccoutn} alt="" className='btnIcon-userList' title='Delete' />
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    {/* ))} */}
+                    {currentUsers.map((user) => (
+                        <tr key={user._id}>
+                            <td># {user._id}</td>
+                            <td>{user.name}</td>
+                            <td>{user.email}</td>
+                            <td>{user.createdAt?.substring(0, 10)}</td>
+                            <td>{user.role}</td>
+                            <td>
+                                <div className='btn-userListContent'>
+                                    <button className='btn-userList'
+                                        onClick={() => handleUpdateClick(user._id)}>
+                                        <img src={SaveUpdate} alt=""
+                                            className='btnIcon-userList' title='Update' />
+                                    </button>
+                                    <button className='btn-userList'
+                                        onClick={() => handleDeleteClick(user._id)}>
+                                        <img src={DeleteAccoutn} alt="" className='btnIcon-userList' title='Delete' />
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
 
-            {/* <Modal isOpen={activeModal === "updateAccount"} onClose={closeModal}>
+            <Modal isOpen={activeModal === "updateAccount"} onClose={closeModal}>
                 <UpdateProfileModal userId={selectedUserId} onClose={closeModal} />
-            </Modal> */}
+            </Modal>
 
-            {/* <Modal isOpen={activeModal === "deleteAccount"} onClose={closeModal}>
-                <DeleteAccountModal userId={selectedUserId} onClose={closeModal} />
-            </Modal> */}
+            <Modal isOpen={activeModal === "deleteAccountAdmin"} onClose={closeModal}>
+                <DeleteAccountModalAdmin userId={selectedUserId} onClose={closeModal} />
+            </Modal>
         </section>
     )
 }
