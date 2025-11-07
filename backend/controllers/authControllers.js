@@ -3,6 +3,7 @@ import newVisiting from "../models/newVisiting.js";
 import User from "../models/user.js";
 import ErrorHandler from "../utils/errorHandler.js";
 import sendToken from "../utils/sendToken.js";
+import { delete_file, upload_file } from "../utils/claudinary.js"
 
 
 
@@ -165,6 +166,31 @@ export const updateUser = catchAsyncErrors(async (req, res, next) => {
 });
 
 
+// Delete own account =>  /api/me/deleteAccount
+export const deleteOwnAccount = catchAsyncErrors(async (req, res, next) => {
+    const user = await User.findById(req.user._id);
+
+    if (!user) {
+        return next(new ErrorHandler("User not found", 404));
+    }
+
+    // Remove avatar from cloudinary if it exists
+    if (user?.avatar?.public_id) {
+        await delete_file(user.avatar.public_id);
+    }
+
+    // Remove the token cookie
+    res.clearCookie("token");
+
+    await user.deleteOne();
+
+    res.status(200).json({
+        success: true,
+        message: "Your account has been deleted successfully."
+    });
+});
+
+
 // Delete  user  - admin   =>  /api/users/:id
 export const deleteUser = catchAsyncErrors(async (req, res, next) => {
     const user = await User.findById(req.params.id);
@@ -175,9 +201,9 @@ export const deleteUser = catchAsyncErrors(async (req, res, next) => {
 
 
     //remove user avatar from cloudinary
-    /* if (user?.avatar?.public_id) {
+    if (user?.avatar?.public_id) {
         await delete_file(user?.avatar?.public_id);
-    } */
+    }
 
     await user.deleteOne();
 
@@ -185,4 +211,27 @@ export const deleteUser = catchAsyncErrors(async (req, res, next) => {
         success: true,
     });
 });
+
+
+
+// Upload user avatar =>  /api/me/upload_avatar
+export const uploadAvatar = catchAsyncErrors(async (req, res, next) => {
+    const avatarResponse = await upload_file(req.body.avatar, "TravelDiaryApp/avatars");
+
+    //remove previous avatar picture
+
+    if (req?.user?.avatar?.url) {
+        await delete_file(req?.user?.avatar?.public_id);
+    }
+
+    const user = await User.findByIdAndUpdate(req?.user?._id, {
+        avatar: avatarResponse,
+    });
+
+    res.status(200).json({
+        user
+    });
+
+});
+
 

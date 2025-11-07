@@ -1,21 +1,31 @@
 import React, { useEffect, useState } from 'react'
-import { NavLink } from 'react-router';
+import { NavLink, useNavigate } from 'react-router';
 
 //import css
 import "./HeaderNavigation.css";
 // import img 
-import Product from "../../../../assets/icons/icon-product.png"
-import SignIn from "../../../../assets/icons/icon-login.png"
-import AvatarDefoult from "../../../../assets/icons/avatar-profile.jpg";
+import { LogInImg, Product } from '../../../../assets/Icons';
+
 
 // import components
 import Image from '../../Images/Image';
 import UserNavigationBar from './UserNavigationBar';
 import Navigation from '../../NavigatioLinkComponent/Navigation';
+import { useGetMeQuery } from '../../../../redux/api/userApi';
+import { useSelector } from 'react-redux';
+import { useLazyLogoutQuery } from '../../../../redux/api/authApi';
 
 const HeaderNavigation = ({ isSideMenuOpen }) => {
+    const navigate = useNavigate();
     const [dropdownUser, setDropdownUser] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const { isLoading } = useGetMeQuery();
+    const [logout] = useLazyLogoutQuery();
+
+    const { user } = useSelector((state) => state.auth);
+
+    /*  console.log(data); */
+
 
     const handleToggleDropdown = () => {
         setDropdownUser(!dropdownUser);
@@ -32,6 +42,18 @@ const HeaderNavigation = ({ isSideMenuOpen }) => {
     }, [isSideMenuOpen]);
 
 
+    const handleLogOut = async () => {
+        try {
+            await logout().unwrap();
+            localStorage.removeItem('token');
+            navigate("/", { replace: true }); // Replace in history
+            window.location.reload(); // Force full reset if needed
+        } catch (err) {
+            toast.error(err?.data?.message || "Logout failed");
+        }
+    };
+
+
     return (
         <nav className={`navigationSection ${isSideMenuOpen ? "active" : "close"}`}>
             <ul className="navigationList">
@@ -42,16 +64,17 @@ const HeaderNavigation = ({ isSideMenuOpen }) => {
                     </Navigation>
                 </li>
 
-                {isLoggedIn ? (
-                    <UserNavigationBar />
+                {user ? (
+                    <UserNavigationBar user={user} handleLogOut={handleLogOut} />
                 ) : (
-
-                    <li>
-                        <Navigation to="/signIn" variant='headNavigation'>
-                            <Image src={SignIn} alt="" variant="navIcon" />
-                            Sing in
-                        </Navigation>
-                    </li>
+                    !isLoading && (
+                        <li>
+                            <Navigation to="/signIn" variant='headNavigation'>
+                                <Image src={LogInImg} alt="" variant="navIcon" />
+                                Sing in
+                            </Navigation>
+                        </li>
+                    )
                 )}
             </ul>
         </nav>

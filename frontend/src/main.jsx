@@ -15,6 +15,9 @@ import CityList from './components/page/TravelMapPage/CitiesSection/CityList.jsx
 import CountryList from './components/page/TravelMapPage/CountriesSection/CountryList.jsx';
 import CityDetails from './components/page/TravelMapPage/CitiesSection/CityDetails.jsx';
 import NewVisiting from './components/layouts/AddNewVisiting/NewVisiting.jsx';
+import { UserRoutes } from './components/routes/UserRoutes.jsx';
+import { AdminRoutes } from './components/routes/AdminRoutes.jsx';
+import ProtectRoute from './components/routes/ProtectRoute.jsx';
 
 
 const router = createBrowserRouter([
@@ -44,11 +47,18 @@ const router = createBrowserRouter([
       },
       {
         path: "/travelMap",
-        element: <TravelMapPage />,
+        element: <TravelMapPage />
+
+          /**<ProtectRoute>
+            <TravelMapPage />
+          </ProtectRoute>*/,
         children: [
           {
             index: true,
-            element: <Navigate replace to="cities" />
+            element: /**  <ProtectRoute>
+              <Navigate replace to="cities" />
+            </ProtectRoute> */
+              <Navigate replace to="cities" />
           },
           {
             path: "cities",
@@ -67,7 +77,14 @@ const router = createBrowserRouter([
             element: <CountryList />
           },
         ]
-      }
+      },
+
+      // Spread the admin routes
+      ...AdminRoutes,
+
+      // Spread the user routes
+      ...UserRoutes
+
 
     ]
   }
