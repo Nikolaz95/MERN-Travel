@@ -29,7 +29,7 @@ const UserNavigationBar = ({ user, handleLogOut }) => {
             <div className="userIconWrapper navigationLink" onClick={handleDropdownToggle}>
                 <Image src={user?.avatar ? user?.avatar?.url : AvatarDefault}
                     alt={user.name} variant="navIcon" />
-                <p className="textNavigation">{user.name}</p>
+                <p className="textNavigation">{user.name.substring(0, 6)}</p>
             </div>
             {isDropdownOpen && (
                 <ul className="dropdownMenu">
@@ -43,15 +43,11 @@ const UserNavigationBar = ({ user, handleLogOut }) => {
                     )}
                     <li className="dropdownItem">
                         <Navigation to="/user/settings-Profile" variant='dropdownNav' className="dropdownLink">
-                            <Image src={AvatarDefault} variant="navIcon" />
+                            <Image src={user?.avatar ? user?.avatar?.url : AvatarDefault} variant="navIcon" />
                             Profile
                         </Navigation>
                     </li>
                     <li className="dropdownItem" >
-                        {/* <Navigation to="/" variant='dropdownNav' className="dropdownLink">
-                            <Image src={LogOut} variant="navIcon" />
-                            Logout
-                        </Navigation > */}
                         <Button className="dropdownLink logoutButton"
                             to="/" variant="loginBtn"
                             onClick={handleLogOut}>
