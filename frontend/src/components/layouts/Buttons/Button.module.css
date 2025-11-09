@@ -61,3 +61,8 @@
 .sideBtnlogOut {
     padding: 10px;
 }
+
+.btnModal {
+    padding: 5px;
+    background-color: transparent;
+}

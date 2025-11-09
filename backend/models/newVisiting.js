@@ -44,7 +44,7 @@ const newVisitingShema = new mongoose.Schema(
         notes: {
             type: String,
             required: [false],
-            maxLength: [200, "Your notes cannot exceed 200 characters"],
+            maxLength: [400, "Your notes cannot exceed 200 characters"],
         },
 
     },

@@ -2,7 +2,6 @@ import React from 'react'
 
 //import css
 import "./ContentModal.css";
-import Button from '../../../Buttons/Button';
 import TravelMapSideBarNavigation from '../../../../page/TravelMapPage/TravelMapPageContent/Navigation/TravelMapSideBarNavigation';
 import { Outlet } from 'react-router';
 

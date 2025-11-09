@@ -7,37 +7,48 @@ import './CountryList.css';
 //import fetch data
 import data from '../../../../data/Cities';
 import Loading from '../../../layouts/Loading/Loading';
+import { useGetVisitListQuery } from '../../../../redux/api/visitListApi';
 
 const CountryList = () => {
-    const { data: dataInfo, loading, error } = useFetch("/cities");
-    console.log("Cities data:", dataInfo);
+    //Fetch Visit list from user
+    const { data, isLoading } = useGetVisitListQuery();
+    console.log(data);
+
+    const visits = data?.userVisitList || [];
+    console.log(visits);
 
 
-    const countries = dataInfo?.reduce((arr, cntry) => {
-        if (!arr[cntry.country]) {
-            arr[cntry.country] = { country: cntry.country, flag: cntry.flag, count: 1 }
+    const countriesObject = visits.reduce((arr, cntry) => {
+        // 💡 Koristimo 'countryName' jer se tako zove ključ u vašem API odgovoru
+        const countryKey = cntry.countryName;
+
+        if (!arr[countryKey]) {
+            arr[countryKey] = {
+                country: countryKey,
+                flag: cntry.flag, // Zastavica je dostupna na svakom objektu posete
+                count: 1
+            };
         } else {
-            arr[cntry.country].count += 1;
+            arr[countryKey].count += 1;
         }
         return arr;
     }, {});
 
-    console.log(countries);
+    console.log(countriesObject);
 
-    const nbrCountry = countries ? Object.values(countries) : [];
+    const nbrCountry = Object.values(countriesObject);
     console.log(nbrCountry);
-
 
     return (
         <>
-            {loading ? (
+            {isLoading ? (
                 <Loading />
             ) : (
                 <>
                     <section className='countryListSection'>
                         <h3 className='countryListaHeader'>Country List : ({nbrCountry.length}) </h3>
                         <section className='countryListaContent'>
-                            {dataInfo?.length === 0 ? (
+                            {nbrCountry?.length === 0 ? (
                                 <p className="emptyMessage">Start your journey 🚀</p>
                             ) : (
                                 nbrCountry?.map((cntry) => (
@@ -48,7 +59,7 @@ const CountryList = () => {
                                                 <span className="nmbrTimes">({cntry.count})</span>
                                             )}
                                         </div>
-                                        <h3>{cntry.country}</h3>
+                                        <h3>{cntry.country.substring(0, 6)}</h3>
                                     </div>
                                 ))
                             )}
