@@ -22,8 +22,6 @@ const CityList = () => {
 
     const handleDelete = (visitId, cityName) => async () => {
         try {
-            // 2. Pozovite mutaciju sa prosleđenim ID-jem
-            // Ovde je najbolje da prikažete neki toast loading state pre/posle
             await removeVisit(visitId).unwrap();
             toast.success(`Visit from ${cityName} successfully deleted!`);
         } catch (error) {

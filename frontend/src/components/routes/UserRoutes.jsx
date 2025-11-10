@@ -3,7 +3,7 @@ import UpdatePassword from "../page/BackendPage/UserPage/UpdatePassword/UpdatePa
 import UpdateProfile from "../page/BackendPage/UserPage/UpdateProfile/UpdateProfile";
 import UploadPicture from "../page/BackendPage/UserPage/UploadPicture/UploadPicture";
 import UserProfileInfo from "../page/BackendPage/UserPage/UserProfileInfo/UserProfileInfo";
-import UserTravel from "../page/BackendPage/UserPage/UserTravel/UserTravel";
+import UserTravelList from "../page/BackendPage/UserPage/UserTravelList/UserTravelList";
 import ProtectRoute from "./ProtectRoute";
 
 
@@ -53,7 +53,7 @@ export const UserRoutes = [
         path: "/user/yourTravel",
         element:
             <ProtectRoute>
-                <UserTravel />
+                <UserTravelList />
             </ProtectRoute>
     },
 ]

@@ -75,3 +75,40 @@ export const removeFromVisitList = catchAsyncErrors(async (req, res, next) => {
     });
 
 });
+
+
+// 📝 Update visit notes /visitlist/update/:id
+export const updateVisitNotes = catchAsyncErrors(async (req, res, next) => {
+    const userId = req.user._id;
+    const visitId = req.params.id;
+    const { notes } = req.body; // Preuzimamo samo 'notes' iz tela zahteva
+
+    if (typeof notes !== 'string') {
+        return res.status(400).json({ success: false, message: "Notes field must be a string." });
+    }
+
+    // Pronađi i ažuriraj dokument. Koristimo { new: true } da dobijemo ažurirani dokument.
+    const updatedVisit = await newVisiting.findOneAndUpdate(
+        {
+            _id: visitId,
+            user: userId
+        },
+        { notes: notes },
+        {
+            new: true,
+            runValidators: true,
+        }
+    );
+
+    // Provera da li je poseta pronađena/ažurirana
+    if (!updatedVisit) {
+        // Ako poseta nije pronađena ili korisnik nije vlasnik
+        return next(new ErrorHandler("Visit not found or unauthorized to update", 404));
+    }
+
+    res.status(200).json({
+        success: true,
+        message: `Notes for "${updatedVisit.cityName}" successfully updated.`,
+        updatedVisit,
+    });
+});

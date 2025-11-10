@@ -36,6 +36,9 @@ import CancelUpdate from "../assets/icons/icon-cancelPic.png"
 import SaveUpdate from '../assets/icons/iconUpdate.png';
 import Cancel from "../assets/icons/icon-cancelPic.png"
 import Confirm from '../assets/icons/iconConfirm.png';
+import UpdNotesImg from '../assets/icons/iconUpdNotes.png';
+
+
 
 export {
     DeleteBtn, AvatarDefault, LogIn1, LogInImg,
@@ -44,5 +47,5 @@ export {
     GitHub, Gmail, LinkeDin, Location, CopyRight, MyPortfolio,
     Eror, ListOfUsers, DataAnalytic, UpdateProfile, UploadImg,
     UpdatePassword, DeleteAccoutn, UserSettings, UserContent, YourTravel,
-    UserIcon, openMenu, UploadCamera, CancelUpdate, SaveUpdate, Confirm, Cancel
+    UserIcon, openMenu, UploadCamera, CancelUpdate, SaveUpdate, Confirm, Cancel, UpdNotesImg
 }

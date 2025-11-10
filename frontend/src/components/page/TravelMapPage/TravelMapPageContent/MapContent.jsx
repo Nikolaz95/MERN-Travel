@@ -9,13 +9,21 @@ import useFetch from '../../../hooks/useFetch';
 
 //import css
 import './MapContent.css';
+import { useGetVisitListQuery } from '../../../../redux/api/visitListApi';
 
 const MapContent = ({ openModal }) => {
     const navigate = useNavigate();
     const [mapPosition, setMapPosition] = useState([50, 20]);
 
-    const { data: dataInfo, loading, error, position } = useFetch("/cities");
-    console.log(dataInfo);
+    /* const { data: dataInfo, loading, error, position } = useFetch("/cities");
+    console.log(dataInfo); */
+
+    //Fetch Visit list from user
+    const { data: visitData, isLoading } = useGetVisitListQuery();
+    console.log(visitData);
+
+    const cities = visitData?.userVisitList || [];
+    console.log(cities);
 
     const { isLoading: isLoadingPosition,
         position: geolocationPosition,
@@ -45,11 +53,11 @@ const MapContent = ({ openModal }) => {
             <Button variant='position' onClick={getPosition}>
                 {isLoadingPosition ? 'Loading' : 'Use Your Position'}
             </Button>
-            <MapContainer center={mapPosition} /* center={[mapLat, mapLng]} */ zoom={6} scrollWheelZoom={true} className='map'>
+            <MapContainer center={mapPosition} zoom={6} scrollWheelZoom={true} className='map'>
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png" />
-                {dataInfo.map((cityPosition) => (
+                {cities.map((cityPosition) => (
                     <Marker position={[cityPosition.position.lat, cityPosition.position.lng]} key={cityPosition.id}>
                         <Popup>
                             <span>{cityPosition.flag}</span> <span>{cityPosition.cityName}</span>

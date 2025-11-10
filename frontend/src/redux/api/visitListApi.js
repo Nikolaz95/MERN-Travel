@@ -29,9 +29,19 @@ export const visitListApi = createApi({
             invalidatesTags: ["VisitList"],
         }),
 
+        updateVisitNotes: builder.mutation({
+            query: ({ id, notes }) => ({
+                url: `/visitlist/update/${id}`,
+                method: "PUT",
+                body: { notes },
+            }),
+            invalidatesTags: ["VisitList"],
+        }),
+
     })
 });
 
 
 
-export const { useAddNewVisitListMutation, useGetVisitListQuery, useRemoveFromVisitListMutation } = visitListApi;
+export const { useAddNewVisitListMutation, useGetVisitListQuery,
+    useRemoveFromVisitListMutation, useUpdateVisitNotesMutation } = visitListApi;

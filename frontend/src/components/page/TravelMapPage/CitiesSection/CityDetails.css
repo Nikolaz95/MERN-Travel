@@ -15,6 +15,11 @@
     height: 100%;
     padding: 10px;
     border: 1px solid;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    overflow-y: auto;
+    -ms-overflow-style: none; /* Internet Explorer and Edge hidde scroolbar */
+    scrollbar-width: none; /* Internet Explorer and Edge hidde scroolbar */
 }
 
 .cityDetailsTopContent, .cityDetailsMiddleContent, .cityDetailsBottomContent {
@@ -32,10 +37,34 @@
 
 
 .cityLink {
-    color: rgb(126, 15, 15);
+    color: rgb(0, 0, 0);
     text-decoration: none;
 }
 
 .cityLink:hover {
-    color: rgb(56, 3, 232);
+    color: rgb(38, 0, 163);
+}
+
+.textVisitingUpd {
+    border-radius: 20px;
+    border: none;
+    height: 150px;
+    padding: 10px;
+    width: 100%;
+        -ms-overflow-style: none; /* Internet Explorer and Edge */
+  scrollbar-width: none;
+}
+
+.charCounterSection {
+    display: flex;
+    flex-direction: row-reverse;
+    font-weight: bold;
+}
+
+
+.bntUpdCncContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
 }
