@@ -13,11 +13,19 @@ const DashBoard = () => {
         <DashBoardLayout>
             <section className='adminDashBoardSection'>
                 <h1>DashBoard</h1>
-                <section className='adminContentDashBoard'>
+                <main className='adminDashBoardMainContent'>
                     <div className="adminDashboarContentTop">
-
+                        <div className="dashBoardTopContent">1</div>
+                        <div className="dashBoardTopContent">2</div>
+                        <div className="dashBoardTopContent">3</div>
+                        <div className="dashBoardTopContent">4</div>
                     </div>
-                </section>
+
+                    <div className="adminDashboarContentMiddle">
+                        <div className="dashBoardMiddleContent">1</div>
+                        <div className="dashBoardMiddleContent">2</div>
+                    </div>
+                </main>
             </section>
         </DashBoardLayout>
     )
