@@ -37,14 +37,14 @@ const UserNavigationBar = ({ user, handleLogOut }) => {
                         <li className="dropdownItem">
                             <Navigation to="/admin/dashBoard" variant='dropdownNav' className="dropdownLink">
                                 <Image src={DashBoard} variant="navIcon" />
-                                Dashboard
+                                <p className="dropDownText">Dashboard</p>
                             </Navigation>
                         </li>
                     )}
                     <li className="dropdownItem">
                         <Navigation to="/user/settings-Profile" variant='dropdownNav' className="dropdownLink">
                             <Image src={user?.avatar ? user?.avatar?.url : AvatarDefault} variant="navIcon" />
-                            Profile
+                            <p className="dropDownText">Profile</p>
                         </Navigation>
                     </li>
                     <li className="dropdownItem" >
@@ -52,7 +52,7 @@ const UserNavigationBar = ({ user, handleLogOut }) => {
                             to="/" variant="loginBtn"
                             onClick={handleLogOut}>
                             <Image src={LogOut} variant="navIcon" />
-                            Logout
+                            <p className="dropDownText">Logout</p>
                         </Button>
                     </li>
                 </ul>
