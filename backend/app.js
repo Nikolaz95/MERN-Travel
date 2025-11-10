@@ -4,6 +4,12 @@ import dotenv from "dotenv";
 import { connectDataBase } from "./config/dbConnect.js";
 import errorMiddleware from "./middlewares/errors.js";
 import cookieParser from "cookie-parser";
+import path from "path";
+
+
+import { fileURLToPath } from "url";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 //handle uncaught exceptions
 process.on("uncaughtException", (err) => {
@@ -36,11 +42,17 @@ app.use("/api", authRoutes)
 app.use("/api", newVisitingRoutes)
 
 
+//connecting backend and frontend
+if (process.env.NODE_ENV === "PRODUCTION") {
+    app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
+    app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname, "../frontend/dist/index.html"));
+    });
+}
 
 //using error middleware
 app.use(errorMiddleware);
-
 
 
 const server = app.listen(process.env.PORT, () => {

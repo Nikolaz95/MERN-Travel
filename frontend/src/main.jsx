@@ -47,18 +47,13 @@ const router = createBrowserRouter([
       },
       {
         path: "/travelMap",
-        element: <TravelMapPage />
-
-          /**<ProtectRoute>
-            <TravelMapPage />
-          </ProtectRoute>*/,
+        element: <TravelMapPage />,
         children: [
           {
             index: true,
-            element: /**  <ProtectRoute>
+            element: <ProtectRoute>
               <Navigate replace to="cities" />
-            </ProtectRoute> */
-              <Navigate replace to="cities" />
+            </ProtectRoute>
           },
           {
             path: "cities",
