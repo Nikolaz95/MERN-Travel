@@ -11,6 +11,13 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Load env variables
+let envPath = process.env.NODE_ENV === "production"
+    ? path.join(__dirname, ".env.production") // lokalno testiranje production
+    : path.join(__dirname, "config/config.env"); // development
+
+dotenv.config({ path: envPath });
+
 //handle uncaught exceptions
 process.on("uncaughtException", (err) => {
     console.log(`Error: ${err}`);
@@ -21,7 +28,7 @@ process.on("uncaughtException", (err) => {
 /* console.log(hello); */
 
 
-dotenv.config({ path: "backend/config/config.env" });
+/* dotenv.config({ path: "backend/config/config.env" }); */
 
 //connecting to database
 connectDataBase();
@@ -46,7 +53,7 @@ app.use("/api", newVisitingRoutes)
 if (process.env.NODE_ENV === "PRODUCTION") {
     app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-    app.get("*", (req, res) => {
+    app.get(/.*/, (req, res) => {
         res.sendFile(path.resolve(__dirname, "../frontend/dist/index.html"));
     });
 }
@@ -54,9 +61,12 @@ if (process.env.NODE_ENV === "PRODUCTION") {
 //using error middleware
 app.use(errorMiddleware);
 
+const PORT = process.env.PORT || 3000;
 
-const server = app.listen(process.env.PORT, () => {
-    console.log(`Server start on PORT: ${process.env.PORT} in ${process.env.NODE_ENV} mode.`);
+
+
+const server = app.listen(PORT, () => {
+    console.log(`Server start on PORT: ${PORT} in ${process.env.NODE_ENV} mode.`);
 });
 
 //handle unhandle promise promise rejection
