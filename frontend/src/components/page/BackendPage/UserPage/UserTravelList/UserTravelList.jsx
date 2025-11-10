@@ -19,7 +19,9 @@ const UserTravelList = () => {
         <DashBoardLayout>
             <h1>Your Travels: {data?.userVisitList?.length}</h1>
             <section className='usertraveListSection'>
-                <div className='Card'>
+
+                <h2>Coming soon.....</h2>
+                {/* <div className='Card'>
                     <h1>disi</h1>
                 </div>
                 <div className='Card'>
@@ -36,7 +38,7 @@ const UserTravelList = () => {
                 </div>
                 <div className='Card'>
                     <h1>disi</h1>
-                </div>
+                </div> */}
             </section>
         </DashBoardLayout>
     )
