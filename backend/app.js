@@ -12,9 +12,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Load env variables
-let envPath = process.env.NODE_ENV === "production"
-    ? path.join(__dirname, ".env.production") // lokalno testiranje production
-    : path.join(__dirname, "config/config.env"); // development
+let envPath = process.env.NODE_ENV === "PRODUCTION"
+    ? path.join(__dirname, ".env.production")
+    : path.join(__dirname, "config/config.env");
 
 dotenv.config({ path: envPath });
 
@@ -53,7 +53,7 @@ app.use("/api", newVisitingRoutes)
 if (process.env.NODE_ENV === "PRODUCTION") {
     app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-    app.get(/.*/, (req, res) => {
+    app.get("*", (req, res) => {
         res.sendFile(path.resolve(__dirname, "../frontend/dist/index.html"));
     });
 }
