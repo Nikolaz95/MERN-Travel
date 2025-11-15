@@ -21,6 +21,7 @@ const NewVisiting = () => {
 
     const [cityName, setCityName] = useState("");
     const [country, setCountry] = useState("");
+    const [continent, setContinent] = useState("");
     const [date, setDate] = useState(new Date());
     const [notes, setNotes] = useState("");
     const MAX_LENGTH = 400;
@@ -49,6 +50,7 @@ const NewVisiting = () => {
 
                 setCityName(data.city || data.locality || "");
                 setCountry(data.countryName);
+                setContinent(data.continent);
                 setFlag(convertToEmoji(data.countryCode));
             } catch (err) {
                 setGeocodingError(err.message);
@@ -60,7 +62,7 @@ const NewVisiting = () => {
     }, [lat, lng]);
 
     // 🌟 Sva stanja i podaci potrebni za slanje forme
-    const formData = { cityName, country, flag, date, notes, lat, lng, MAX_LENGTH };
+    const formData = { cityName, country, flag, date, continent, notes, lat, lng, MAX_LENGTH };
 
     const { handleSubmit } = useCreateVisit(addNewVisitList, navigate, formData);
 

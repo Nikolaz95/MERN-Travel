@@ -1,45 +1,70 @@
 
 
+
 .adminDashBoardSection {
+    padding: 10px;
+    height: 100%;
+
+}
+
+.adminDashBoardMain {
 display: flex;
-    padding: 10px;
-    gap: 20px;
-    border: 1px solid black;
-    flex-direction: column;
+flex-direction: column;
+padding: 10px;
+gap: 10px;
+/* border: 1px solid black; */
 }
 
-.adminDashBoardMainContent {
+
+
+/* traffick section middle */
+.dashboadTrackingSectionMiddle {
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+    justify-items: center;
+    gap: 20px;
+    border: 1px solid black;
+}
+
+
+.dashBoardTrafficDeviceOneSection {
     display: flex;
-    gap: 20px;
-    border: 1px solid black;
     flex-direction: column;
-}
-
-
-.adminDashboarContentTop {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 20px;
-
-}
-
-.dashBoardTopContent {
-    height: 250px;
-}
-
-.dashBoardTopContent{
+    gap: 10px;
+    text-align: center;
     padding: 10px;
+    /* height: 400px; */
     border: 1px solid black;
 }
 
-.adminDashboarContentMiddle {
+.dashBoardTrafficDeviceTwoSection {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    padding: 10px;
+    /* height: 400px; */
+    border: 1px solid black;
+}
+
+.dashBoardTrafficDeviceThreeSection {
+    text-align: center;
+    padding: 10px;
+    height: 400px;
+    border: 1px solid black;
+}
+
+
+
+
+@media only screen and (max-width: 1150px) {
+.dashboadTrackingSectionMiddle {
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1fr ;
+    justify-items: center;
     gap: 20px;
 }
 
 
-.dashBoardMiddleContent {
-    height: 400px;
-     border: 1px solid black;
+
 }
