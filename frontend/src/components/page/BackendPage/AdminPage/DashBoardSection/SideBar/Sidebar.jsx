@@ -14,13 +14,14 @@ import Button from '../../../../../layouts/Buttons/Button';
 import Image from '../../../../../layouts/Images/Image';
 import Navigation from '../../../../../layouts/NavigatioLinkComponent/Navigation';
 import { AvatarDefault, LogOut, openMenu } from '../../../../../../assets/Icons';
+import { useLazyLogoutQuery } from '../../../../../../redux/api/authApi';
 
 const Sidebar = () => {
     const navigate = useNavigate();
     const { user } = useSelector((state) => state.auth);
     /* const { user } = useSelector((state) => state.auth); */
     const [curOpenDropdown, setCurOpenDropdown] = useState(null);
-    /* const [logout] = useLazyLogoutQuery(); */
+    const [logout] = useLazyLogoutQuery();
 
     const handleToggle = (id) => {
         setCurOpenDropdown(curOpenDropdown === id ? null : id);
@@ -42,7 +43,7 @@ const Sidebar = () => {
     });
 
 
-    /* const handleLogOut = async () => {
+    const handleLogOut = async () => {
         try {
             await logout().unwrap();
             localStorage.removeItem('token');
@@ -51,7 +52,7 @@ const Sidebar = () => {
         } catch (err) {
             toast.error(err?.data?.message || "Logout failed");
         }
-    }; */
+    };
 
     return (
         <aside className={`dashBoardSideBarSection ${sideIsOpen ? 'open' : 'closed'}`}>
@@ -90,7 +91,7 @@ const Sidebar = () => {
                     ))}
 
                     <div className='sideNavLinklogOut'>
-                        <Button variant="sideBtnlogOut" /* onClick={handleLogOut} */>
+                        <Button variant="sideBtnlogOut" onClick={handleLogOut}>
                             <Image src={LogOut} variant="iconDropDown" />
                             {sideIsOpen && <span className="navText">Log Out</span>}
                         </Button>
