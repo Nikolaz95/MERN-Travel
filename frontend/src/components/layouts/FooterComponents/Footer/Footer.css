@@ -4,7 +4,8 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  backdrop-filter: blur(20px);
+  background-color: rgb(120, 186, 244);
+ /*  backdrop-filter: blur(20px); */
 }
   
   

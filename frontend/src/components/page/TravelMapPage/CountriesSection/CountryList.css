@@ -7,7 +7,7 @@ width: 100%;
 flex-direction: column;
 gap: 10px;
 height: 546px;
-border: 1px solid black;
+/* border: 1px solid black; */
 }
 
 
@@ -22,7 +22,7 @@ border: 1px solid black;
     grid-template-columns: 1fr 1fr;
     justify-items: center;
     /* height: 546px; */
-    border: 1px solid black;
+    /* border: 1px solid black; */
     gap: 10px;
 }
 
