@@ -1,5 +1,4 @@
 import React from 'react'
-import { NavLink } from 'react-router'
 
 
 //import css
@@ -8,13 +7,13 @@ import Navigation from '../../../../layouts/NavigatioLinkComponent/Navigation';
 
 const TravelMapSideBarNavigation = () => {
     return (
-        <nav className="travelNavigation">
+        <nav className="travelNavigation" aria-label="Travel lists">
             <ul>
                 <li>
-                    <Navigation to="cities">Cities</Navigation>
+                    <Navigation to="cities" variant="travelTab">Cities</Navigation>
                 </li>
                 <li>
-                    <Navigation to="countries">Countries</Navigation>
+                    <Navigation to="countries" variant="travelTab">Countries</Navigation>
                 </li>
             </ul>
         </nav>

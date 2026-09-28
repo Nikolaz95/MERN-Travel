@@ -45,34 +45,6 @@ const router = createBrowserRouter([
         path: "/registration",
         element: <Register />
       },
-      {
-        path: "/travelMap",
-        element: <TravelMapPage />,
-        children: [
-          {
-            index: true,
-            element: <ProtectRoute>
-              <Navigate replace to="cities" />
-            </ProtectRoute>
-          },
-          {
-            path: "cities",
-            element: <CityList />
-          },
-          {
-            path: "cities/:id",
-            element: <CityDetails />
-          },
-          {
-            path: "newVisiting",
-            element: <NewVisiting />
-          },
-          {
-            path: "countries",
-            element: <CountryList />
-          },
-        ]
-      },
 
       // Spread the admin routes
       ...AdminRoutes,
@@ -82,7 +54,37 @@ const router = createBrowserRouter([
 
 
     ]
-  }
+  },
+
+  // Travel map is full screen, outside of Root (no header / footer)
+  {
+    path: "/travelMap",
+    element: <TravelMapPage />,
+    children: [
+      {
+        index: true,
+        element: <ProtectRoute>
+          <Navigate replace to="cities" />
+        </ProtectRoute>
+      },
+      {
+        path: "cities",
+        element: <CityList />
+      },
+      {
+        path: "cities/:id",
+        element: <CityDetails />
+      },
+      {
+        path: "newVisiting",
+        element: <NewVisiting />
+      },
+      {
+        path: "countries",
+        element: <CountryList />
+      },
+    ]
+  },
 
 ])
 

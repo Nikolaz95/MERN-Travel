@@ -1,56 +1,62 @@
-import React, { useEffect, useState } from 'react'
-import { NavLink, useNavigate } from 'react-router';
+import React, { useCallback, useState } from 'react'
+import { useNavigate } from 'react-router';
+import { Toaster } from 'react-hot-toast';
 import titleName from '../..//hooks/useTitle';
-import useFetch from '../../hooks/useFetch';
+import { useGetMeQuery } from '../../../redux/api/userApi';
 
 
 //import css
 import './TravelMapPage.css';
 
-//import img
-
 
 //import components
-import VideoBackground from '../../layouts/VideoBackground/VideoBackground ';
 import Button from '../../layouts/Buttons/Button';
 import Modal from '../../layouts/ModalComponent/Modal';
 import TravelMapSideBar from './TravelMapPageContent/TravelMapSideBar';
 import MapContent from './TravelMapPageContent/MapContent';
 import ContentModal from '../../layouts/ModalComponent/ModalLayouts/ModalContent/ContentModal';
 import Image from '../../layouts/Images/Image';
+import Navigation from '../../layouts/NavigatioLinkComponent/Navigation';
 import { mapImg } from '../../../assets/Icons';
+
+const MOBILE_QUERY = "(max-width: 700px)";
 
 const TravelMapPage = () => {
     const navigate = useNavigate();
     titleName('Your travel experience');
 
-    // State to track which modal is open
-    const [activeModal, setActiveModal] = useState("");
-    // Function to close the modal
-    const closeModal = () => {
-        setActiveModal("");
-        navigate("cities");
-    };
+    // This page has no header, so the logged-in user is loaded here
+    useGetMeQuery();
 
-    const openModal = () => {
-        if (window.innerWidth <= 700) {
-            setActiveModal("content");
+    // On mobile the sidebar is shown in a modal
+    const [isPanelOpen, setIsPanelOpen] = useState(false);
+
+    const closeModal = useCallback(() => {
+        setIsPanelOpen(false);
+        navigate("cities");
+    }, [navigate]);
+
+    // Open the modal only on mobile (on desktop the sidebar is always visible)
+    const openModal = useCallback(() => {
+        if (window.matchMedia(MOBILE_QUERY).matches) {
+            setIsPanelOpen(true);
         }
-    };
+    }, []);
 
     return (
         <>
-            <VideoBackground />
-            <Button onClick={() => { setActiveModal("content"); navigate("cities"); }} variant="btnSideBarTravel">
-                <Image src={mapImg} variant="btnIcon" />
-            </Button>
+            <Toaster position="top-center" />
             <section className="travelMapPageLayout">
                 <TravelMapSideBar />
                 <MapContent openModal={openModal} />
+                <Navigation to="/" variant="mapHomeLink">← Home</Navigation>
+                <Button onClick={() => { setIsPanelOpen(true); navigate("cities"); }} variant="btnSideBarTravel">
+                    <Image src={mapImg} alt="" variant="btnIcon" />
+                    My trips
+                </Button>
             </section>
-            {/* Modal for Text1 */}
-            <Modal isOpen={activeModal === "content"} onClose={closeModal}>
-                <ContentModal />
+            <Modal isOpen={isPanelOpen} onClose={closeModal}>
+                <ContentModal onClose={closeModal} />
             </Modal>
         </>
     )

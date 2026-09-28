@@ -1,70 +1,82 @@
-
-
-.cityDetailsSection {
-    width: 90%;
-    height: 100%;
-    padding: 10px;
-    background-color: bisque;
-    border: 1px solid;
-}
-
-.cityDetailsMainContent {
+.cityDetails {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    height: 100%;
-    padding: 10px;
-    border: 1px solid;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 5;
-    overflow-y: auto;
-    -ms-overflow-style: none; /* Internet Explorer and Edge hidde scroolbar */
-    scrollbar-width: none; /* Internet Explorer and Edge hidde scroolbar */
+    gap: 16px;
 }
 
-.cityDetailsTopContent, .cityDetailsMiddleContent, .cityDetailsBottomContent {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.cityDetailsTopInnerContent {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 20px;
-}
-
-
-.cityLink {
-    color: rgb(0, 0, 0);
+.cityBackLink {
+    align-self: flex-start;
+    color: var(--color-primary-dark);
+    font-size: 14px;
+    font-weight: 700;
     text-decoration: none;
 }
 
-.cityLink:hover {
-    color: rgb(38, 0, 163);
+.cityBackLink:hover {
+    text-decoration: underline;
 }
 
-.textVisitingUpd {
-    border-radius: 20px;
-    border: none;
-    height: 150px;
-    padding: 10px;
-    width: 100%;
-        -ms-overflow-style: none; /* Internet Explorer and Edge */
-  scrollbar-width: none;
-}
-
-.charCounterSection {
+.cityDetailsHeader {
     display: flex;
-    flex-direction: row-reverse;
-    font-weight: bold;
+    align-items: center;
+    gap: 14px;
 }
 
+.cityDetailsHeaderText {
+    min-width: 0;
+}
 
-.bntUpdCncContent {
+.cityDetailsName {
+    overflow: hidden;
+    font-size: 24px;
+    font-weight: 800;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cityDetailsCountry {
+    color: #64748b;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.cityDetailsCard {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
     gap: 10px;
+    padding: 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    background-color: #fff;
+}
+
+.cityDetailsDate {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.cityDetailsNotes {
+    color: #334155;
+    font-size: 15px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.cityDetailsNotesEmpty {
+    color: #94a3b8;
+    font-size: 14px;
+    font-style: italic;
+}
+
+.cityDetailsWiki {
+    align-self: flex-start;
+    color: var(--color-primary-dark);
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.cityDetailsWiki:hover {
+    text-decoration: underline;
 }

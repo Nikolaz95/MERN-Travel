@@ -2,14 +2,12 @@ import React from 'react'
 
 //import css
 import "./ContentModal.css";
-import TravelMapSideBarNavigation from '../../../../page/TravelMapPage/TravelMapPageContent/Navigation/TravelMapSideBarNavigation';
-import { Outlet } from 'react-router';
+import TravelPanel from '../../../../page/TravelMapPage/TravelMapPageContent/TravelPanel';
 
-const ContentModal = () => {
+const ContentModal = ({ onClose }) => {
     return (
         <section className="modallContent">
-            <TravelMapSideBarNavigation />
-            <Outlet />
+            <TravelPanel onClose={onClose} />
         </section>
     )
 }

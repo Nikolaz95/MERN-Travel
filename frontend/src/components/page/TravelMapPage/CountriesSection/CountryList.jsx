@@ -1,21 +1,17 @@
 import React from 'react'
-import useFetch from '../../../hooks/useFetch';
 
 //import css
 import './CountryList.css';
 
-//import fetch data
-import data from '../../../../data/Cities';
 import Loading from '../../../layouts/Loading/Loading';
+import Flag from '../../../layouts/Flag/Flag';
 import { useGetVisitListQuery } from '../../../../redux/api/visitListApi';
 
 const CountryList = () => {
     //Fetch Visit list from user
     const { data, isLoading } = useGetVisitListQuery();
-    console.log(data);
 
     const visits = data?.userVisitList || [];
-    console.log(visits);
 
 
     const countriesObject = visits.reduce((arr, cntry) => {
@@ -34,40 +30,35 @@ const CountryList = () => {
         return arr;
     }, {});
 
-    console.log(countriesObject);
+    // most visited first
+    const countries = Object.values(countriesObject)
+        .sort((a, b) => b.count - a.count || a.country.localeCompare(b.country));
 
-    const nbrCountry = Object.values(countriesObject);
-    console.log(nbrCountry);
+
+    if (isLoading) return <Loading />;
+
+    if (countries.length === 0) {
+        return (
+            <div className="travelEmpty">
+                <span className="travelEmptyIcon">🌍</span>
+                <p className="travelEmptyTitle">No countries yet</p>
+                <p className="travelEmptyText">Countries appear here as soon as you add a place on the map.</p>
+            </div>
+        );
+    }
 
     return (
-        <>
-            {isLoading ? (
-                <Loading />
-            ) : (
-                <>
-                    <section className='countryListSection'>
-                        <h3 className='countryListaHeader'>Country List : ({nbrCountry.length}) </h3>
-                        <section className='countryListaContent'>
-                            {nbrCountry?.length === 0 ? (
-                                <p className="emptyMessage">Start your journey 🚀</p>
-                            ) : (
-                                nbrCountry?.map((cntry) => (
-                                    <div key={cntry.country} className="countryBoxContent">
-                                        <div className="topContent">
-                                            <span className='countryFlag'>{cntry.flag}</span>
-                                            {cntry.count > 1 && (
-                                                <span className="nmbrTimes">({cntry.count})</span>
-                                            )}
-                                        </div>
-                                        <h3>{cntry.country.substring(0, 6)}</h3>
-                                    </div>
-                                ))
-                            )}
-                        </section>
-                    </section>
-                </>
-            )}
-        </>
+        <ul className='countryGrid'>
+            {countries.map((cntry) => (
+                <li key={cntry.country} className="countryTile">
+                    <Flag emoji={cntry.flag} size="lg" />
+                    <p className="countryTileName" title={cntry.country}>{cntry.country}</p>
+                    <span className="countryTileCount">
+                        {cntry.count} {cntry.count === 1 ? "visit" : "visits"}
+                    </span>
+                </li>
+            ))}
+        </ul>
     )
 }
 

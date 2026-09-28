@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { getYear, getMonth } from 'date-fns';
@@ -14,7 +14,8 @@ const years = range(1990, getYear(new Date()) + 1, 1);
 
 const CustomHeader = ({ date, changeYear, changeMonth, decreaseMonth, increaseMonth, prevMonthButtonDisabled, nextMonthButtonDisabled }) => (
     <div style={{ margin: 10, display: "flex", justifyContent: "center", }}>
-        <button onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>{"<"}</button>
+        {/* type="button" so these don't submit the form the picker is in */}
+        <button type="button" onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>{"<"}</button>
         <select
             value={getYear(date)}
             onChange={({ target: { value } }) => changeYear(+value)}
@@ -27,7 +28,7 @@ const CustomHeader = ({ date, changeYear, changeMonth, decreaseMonth, increaseMo
         >
             {MONTHS.map((option) => <option key={option} value={option}>{option}</option>)}
         </select>
-        <button onClick={increaseMonth} disabled={nextMonthButtonDisabled}>{">"}</button>
+        <button type="button" onClick={increaseMonth} disabled={nextMonthButtonDisabled}>{">"}</button>
     </div>
 );
 export const CustomDatePicker = ({ selected, onChange, ...rest }) => {

@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from 'react'
-import useNavigateTo from '../../hooks/useNavigateTo';
 import { useUrlPosition } from '../../hooks/useUrlPosition';
-import toast from 'react-hot-toast';
 
 
 //import css
 import './NewVisiting.css';
 import Button from '../Buttons/Button';
+import Flag from '../Flag/Flag';
 import { useAddNewVisitListMutation } from '../../../redux/api/visitListApi';
 import { convertToEmoji } from '../../../utils/convertToEmoji';
 import { CustomDatePicker } from '../../../utils/DatePicker.jsx';
 import { useNavigate } from 'react-router';
 import { useCreateVisit } from '../../hooks/useCreateVisit.js';
 
+const MAX_LENGTH = 400;
+const BASE_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
+
 const NewVisiting = () => {
-    const { goBack } = useNavigateTo();
     const navigate = useNavigate();
     const [lat, lng] = useUrlPosition();
     const [isLoadingGeocoding, setIsLoadingGeocoding] = useState(false);
@@ -24,14 +25,11 @@ const NewVisiting = () => {
     const [continent, setContinent] = useState("");
     const [date, setDate] = useState(new Date());
     const [notes, setNotes] = useState("");
-    const MAX_LENGTH = 400;
-    const trimmedNotes = notes.trim();
     const [flag, setFlag] = useState("");
 
     const [geocodingError, setGeocodingError] = useState("");
 
-    const BASE_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
-    const [addNewVisitList, { isLoading, isSuccess, error }] = useAddNewVisitListMutation();
+    const [addNewVisitList, { isLoading }] = useAddNewVisitListMutation();
 
     useEffect(() => {
         async function fetchCityData() {
@@ -41,7 +39,6 @@ const NewVisiting = () => {
 
                 const res = await fetch(`${BASE_URL}?latitude=${lat}&longitude=${lng}`);
                 const data = await res.json();
-                console.log(data);
 
                 if (!data.countryCode)
                     throw new Error(
@@ -66,55 +63,77 @@ const NewVisiting = () => {
 
     const { handleSubmit } = useCreateVisit(addNewVisitList, navigate, formData);
 
-    const handleCreateNewVisit = (e) => {
-        handleSubmit(e);
-    };
+    const handleCancel = () => navigate("/travelMap/cities");
 
 
     return (
-        <section className='newVisitingSection'>
-            <main className='newVisitingMainContent'>
-                <form action="" className='formSection' onSubmit={handleSubmit}>
-                    <label className='labelVisiting' htmlFor="cityName">
-                        City name
-                    </label>
-                    <input className='inputVisiting'
-                        id="cityName"
-                        value={cityName}
-                        onChange={(e) => setCityName(e.target.value)} />
-                    <label className='labelVisiting' htmlFor="didgo">
-                        Where Did you go ?
-                    </label>
-                    <CustomDatePicker
-                        id="date-input"
-                        className='inputVisiting'
-                        selected={date}
-                        onChange={(newDate) => setDate(newDate)}
-                        dateFormat="yyyy-MM-dd" />
+        <section className='newVisit'>
+            <h3 className='newVisitTitle'>Add a new trip</h3>
 
-                    <label className='labelVisiting' htmlFor="notes">
-                        Notes About your trip
-                    </label>
-                    <textarea className='textVisiting'
-                        id="notes"
-                        value={notes}
-                        onChange={(e) => setNotes(e.target.value)}
-                        maxLength={MAX_LENGTH} />
-                </form>
+            {isLoadingGeocoding ? (
+                <div className='newVisitLocation'>
+                    <p className='newVisitLocationHint'>Finding this place...</p>
+                </div>
+            ) : geocodingError ? (
+                <div className='newVisitLocation isError'>
+                    <p className='newVisitLocationHint'>{geocodingError}</p>
+                </div>
+            ) : (
+                <>
+                    <div className='newVisitLocation'>
+                        <Flag emoji={flag} size="lg" />
+                        <div>
+                            <p className='newVisitLocationCity'>{cityName || "Unknown place"}</p>
+                            <p className='newVisitLocationCountry'>{country}{continent && ` · ${continent}`}</p>
+                        </div>
+                    </div>
 
-                <p className='char-counter'>
-                    {trimmedNotes.length === 0 ? 0 : notes.length}/{MAX_LENGTH}
-                </p>
-                <section className='newVisitBottomContent'>
-                    <Button type="submit" disabled={isLoading} onClick={handleCreateNewVisit}>
-                        {/* Create new Visit */}
-                        {isLoading ? "Saving..." : "Create New Visit"}
-                    </Button>
-                    <Button onClick={goBack} variant='btnBack'>
-                        Go Back
-                    </Button>
-                </section>
-            </main>
+                    <form className='newVisitForm' onSubmit={handleSubmit}>
+                        <div className='newVisitField'>
+                            <label className='travelLabel' htmlFor="cityName">City name</label>
+                            <input className='travelInput'
+                                id="cityName"
+                                value={cityName}
+                                onChange={(e) => setCityName(e.target.value)}
+                                required maxLength={50} />
+                        </div>
+
+                        <div className='newVisitField'>
+                            <label className='travelLabel' htmlFor="date-input">When did you go?</label>
+                            <CustomDatePicker
+                                id="date-input"
+                                className='travelInput'
+                                wrapperClassName='newVisitDatePicker'
+                                selected={date}
+                                onChange={(newDate) => setDate(newDate)}
+                                maxDate={new Date()}
+                                portalId="datepicker-portal"
+                                popperClassName="newVisitDatePickerPopper"
+                                dateFormat="d MMMM yyyy" />
+                        </div>
+
+                        <div className='newVisitField'>
+                            <label className='travelLabel' htmlFor="notes">Notes about your trip</label>
+                            <textarea className='travelInput'
+                                id="notes"
+                                value={notes}
+                                onChange={(e) => setNotes(e.target.value)}
+                                maxLength={MAX_LENGTH}
+                                placeholder="What did you see, eat, love? 😊" />
+                            <p className='travelCharCounter'>{notes.length}/{MAX_LENGTH}</p>
+                        </div>
+
+                        <div className='travelActions'>
+                            <Button type="submit" variant="primary" disabled={isLoading}>
+                                {isLoading ? "Saving..." : "Save trip"}
+                            </Button>
+                            <Button type="button" variant="secondary" onClick={handleCancel}>
+                                Cancel
+                            </Button>
+                        </div>
+                    </form>
+                </>
+            )}
         </section>
     )
 }

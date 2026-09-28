@@ -1,16 +1,14 @@
 import React from 'react'
-import { NavLink, Outlet } from 'react-router';
 
 //import css
 import './TravelMapSideBar.css';
-import TravelMapSideBarNavigation from './Navigation/TravelMapSideBarNavigation';
+import TravelPanel from './TravelPanel';
 
 const TravelMapSideBar = () => {
     return (
         <section className="travelSideBarSection">
             <aside className="travelSideBar">
-                <TravelMapSideBarNavigation />
-                <Outlet />
+                <TravelPanel />
             </aside>
         </section>
     )
