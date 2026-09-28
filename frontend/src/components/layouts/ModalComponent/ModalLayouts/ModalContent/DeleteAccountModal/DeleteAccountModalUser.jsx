@@ -1,32 +1,11 @@
 import React from 'react'
-import style from "styled-components"
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router';
 import Button from '../../../../Buttons/Button';
-import Image from '../../../../Images/Image';
-import { Cancel, Confirm } from '../../../../../../assets/Icons';
 import { useDeleteMyAccountMutation } from '../../../../../../redux/api/userApi';
 
-const DeleteAccountModalLayout = style.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    padding: 20px;
-    background-color: bisque;
-    border-radius: 30px;
-`
-const DeleteAccountModalContent = style.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    padding: 20px;
-    background-color: bisque;
-    border-radius: 30px;
-`
+//import css
+import "../ModalCard.css";
 
 const DeleteAccountModalUser = ({ onClose, userId }) => {
     const navigate = useNavigate();
@@ -49,19 +28,21 @@ const DeleteAccountModalUser = ({ onClose, userId }) => {
     };
 
     return (
-        <DeleteAccountModalLayout>
-            <h1>Do you realy wanna delete account ?</h1>
-            <p>Are you sure you want to delete this user account?</p>
-            <p>This action cannot be undone.</p>
-            <DeleteAccountModalContent>
-                <Button onClick={handleDelete}
-                    disabled={isLoading}>
-                    <Image src={Confirm} variant='iconImg' />
+        <div className="modalCard" role="alertdialog" aria-labelledby="delete-own-title">
+            <span className="modalCardIcon" aria-hidden="true">⚠️</span>
+            <h2 id="delete-own-title" className="modalCardTitle">Delete your account?</h2>
+            <p className="modalCardText">
+                You will be logged out and your account will be removed. This action cannot be undone.
+            </p>
+            <div className="modalCardActions">
+                <Button type="button" variant="secondary" onClick={onClose} disabled={isLoading}>
+                    Cancel
                 </Button>
-                <Button>
-                    <Image src={Cancel} variant='iconImg' onClick={onClose} /></Button>
-            </DeleteAccountModalContent>
-        </DeleteAccountModalLayout>
+                <Button type="button" variant="danger" onClick={handleDelete} disabled={isLoading}>
+                    {isLoading ? "Deleting..." : "Delete account"}
+                </Button>
+            </div>
+        </div>
     )
 }
 

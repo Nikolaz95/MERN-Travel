@@ -1,21 +1,17 @@
 import React, { useState } from 'react'
 import titleName from '../../../../hooks/useTitle';
+import toast from 'react-hot-toast';
 
 //import css
-import "./UpdatePassword.css"
-
-//import images
-import { SaveUpdate } from '../../../../../assets/Icons';
+import styles from '../../../../layouts/ContentLayout/FormLayout/AuthForm.module.css';
 
 
 import DashBoardLayout from '../../AdminPage/DashBoardSection/DashboardLayout/DashBoardLayout';
-import UserInfoLayout from '../Layouts/UserInfoLayout';
 import Button from '../../../../layouts/Buttons/Button';
-import Image from '../../../../layouts/Images/Image';
+import Navigation from '../../../../layouts/NavigatioLinkComponent/Navigation';
+import PasswordInput from '../../../../layouts/ContentLayout/FormLayout/PasswordInput';
 import { useNavigate } from 'react-router';
 import { useUpdatePasswordMutation } from '../../../../../redux/api/userApi';
-import toast from 'react-hot-toast';
-import { useEffect } from 'react';
 
 
 const UpdatePassword = () => {
@@ -25,69 +21,47 @@ const UpdatePassword = () => {
     const [oldPassword, setOldPassword] = useState("");
     const [password, setPassword] = useState("");
 
-    const [updatePassword, { isLoading, error, isSuccess }] =
-        useUpdatePasswordMutation();
+    const [updatePassword, { isLoading }] = useUpdatePasswordMutation();
 
-    useEffect(() => {
-        if (error) {
-            toast.error(error?.data?.message);
-        }
-
-        if (isSuccess) {
-            toast.success("Password Updated");
-            navigate("/user/settings-Profile");
-        }
-    }, [error, isSuccess]);
-
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault();
 
-        const userData = {
-            oldPassword,
-            password,
-        };
-
-        updatePassword(userData);
+        try {
+            await updatePassword({ oldPassword, password }).unwrap();
+            toast.success("Password updated");
+            navigate("/user/settings-Profile");
+        } catch (err) {
+            toast.error(err?.data?.message || "Update failed");
+        }
     };
 
 
     return (
-        <DashBoardLayout>
-            <h1>Update Password</h1>
+        <DashBoardLayout title="Update password" subtitle="Use a password you don't use anywhere else.">
+            <form className="dashCard dashNarrow dashForm" onSubmit={submitHandler}>
+                <div className={styles.field}>
+                    <label htmlFor="old_password" className={styles.label}>Current password</label>
+                    <PasswordInput id="old_password" name="oldPassword"
+                        autoComplete="current-password" required
+                        value={oldPassword} onChange={(e) => setOldPassword(e.target.value)} />
+                </div>
 
-            <UserInfoLayout>
+                <div className={styles.field}>
+                    <label htmlFor="new_password" className={styles.label}>New password</label>
+                    <PasswordInput id="new_password" name="password"
+                        autoComplete="new-password" required minLength={6}
+                        aria-describedby="new-password-hint"
+                        value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <p id="new-password-hint" className={styles.hint}>At least 6 characters.</p>
+                </div>
 
-                <section className="updatePasswordSection">
-                    <h1>Update Password:</h1>
-                    <form className="formUpdatePassword" onSubmit={submitHandler}>
-                        <label htmlFor="name_field" className="form-label">Old Password:</label>
-                        <input
-                            type="password"
-                            id="name_field"
-                            placeholder='user password'
-                            value={oldPassword}
-                            onChange={(e) => setOldPassword(e.target.value)}
-                            className="form-control"
-                            name="name" />
-                        <label htmlFor="email_field" className="form-label">New Password:</label>
-                        <input
-                            type="password"
-                            id="email_field"
-                            placeholder='user new password'
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            className="form-control"
-                            name="email" />
-                        <Button
-                            variant="updatePassword" disabled={isLoading}>
-                            <Image variant="icon" src={SaveUpdate} className="iconBtns" />
-                            {/* Update Password */}
-                            {isLoading ? "Updating..." : "Update Password"}
-                        </Button>
-                    </form>
-                </section>
-
-            </UserInfoLayout>
+                <div className="dashActions">
+                    <Button type="submit" variant="primary" disabled={isLoading}>
+                        {isLoading ? "Updating..." : "Update password"}
+                    </Button>
+                    <Navigation to="/user/settings-Profile" variant="dashLinkButton">Cancel</Navigation>
+                </div>
+            </form>
         </DashBoardLayout>
     )
 }

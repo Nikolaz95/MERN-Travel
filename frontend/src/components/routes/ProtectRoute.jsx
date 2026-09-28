@@ -12,8 +12,9 @@ const ProtectRoute = ({ children, admin }) => {
         return <Navigate to="/signIn" replace />
     }
 
+    // not an admin -> send to their own profile (not back to an admin page)
     if (admin && user?.role !== "admin") {
-        return <Navigate to="/admin/dashBoard" replace />;
+        return <Navigate to="/user/settings-Profile" replace />;
     }
 
     return children;

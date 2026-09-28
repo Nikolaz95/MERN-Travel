@@ -1,9 +1,12 @@
-
-
-.listOfUsersSection {
+.listOfUsersCard {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     gap: 20px;
-    height: 100%;
+    padding: 8px;
+}
+
+.listOfUsersCard .pagination {
+    display: flex;
+    justify-content: center;
+    padding: 4px 0 12px;
 }

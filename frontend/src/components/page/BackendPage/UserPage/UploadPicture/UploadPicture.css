@@ -1,49 +1,55 @@
-
-
-
-.userUpload-content {
-    display: flex;
-    justify-content: center;
-}
-
-.userUpload-info {
+.uploadCard {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid black;
+    gap: 20px;
+    text-align: center;
 }
 
-
-.userUpload-top {
+.uploadChoose {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: 6px;
 }
 
-.userUpload-Profileimg {
-    width: 250px;
-    height: 250px;
-    border: 1px solid black;
-    border-radius: 50%;
+/* hidden visually, but still reachable with the keyboard */
+.uploadInput {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
 }
 
-input[type="file"] {
-    display: none;
-}
-
-.userUpload-BtnUplFile {
-    position: relative;
-    bottom: 55px;
-    left: 160px;
-}
-
-.userUpload-camera {
-    width: 50px;
-    height: 50px;
+.uploadChooseLabel {
+    padding: 10px 18px;
+    border: 1px dashed #94a3b8;
+    border-radius: 12px;
+    background-color: #f8fafc;
+    color: #334155;
+    font-size: 15px;
+    font-weight: 700;
     cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
-.userUpload-Btns {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
+.uploadChooseLabel:hover {
+    border-color: var(--color-primary);
+    background-color: #f0f9ff;
+}
+
+.uploadInput:focus-visible + .uploadChooseLabel {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+.uploadHint {
+    color: #64748b;
+    font-size: 13px;
+}
+
+.uploadCard .dashActions {
+    justify-content: center;
 }

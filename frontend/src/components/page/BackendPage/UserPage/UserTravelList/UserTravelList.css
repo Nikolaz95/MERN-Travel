@@ -1,12 +1,70 @@
-
-
-.usertraveListSection {
-    border:1px solid black;
-    padding: 10px;
-    margin: 10px;
+.tripGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+    list-style: none;
 }
 
+.tripCard {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
 
-.Card {
-border-color: black;
+.tripCard:hover {
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+    transform: translateY(-2px);
+}
+
+.tripCardTop {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.tripCardTitle {
+    min-width: 0;
+}
+
+.tripCardCity,
+.tripCardCountry {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tripCardCity {
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.tripCardCountry {
+    color: #64748b;
+    font-size: 14px;
+}
+
+.tripCardDate {
+    color: #334155;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* notes preview: max 3 lines */
+.tripCardNotes {
+    display: -webkit-box;
+    flex: 1;
+    overflow: hidden;
+    color: #475569;
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+}
+
+.tripCardNotes.isEmpty {
+    color: #94a3b8;
+    font-style: italic;
 }

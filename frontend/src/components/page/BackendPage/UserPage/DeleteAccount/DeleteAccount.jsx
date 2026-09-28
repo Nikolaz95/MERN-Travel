@@ -1,74 +1,37 @@
 import React, { useState } from 'react'
 import titleName from '../../../../hooks/useTitle';
 
-//import css
-import "./DeleteAccount.css"
-
-//import img
-import { AvatarDefault, DeleteBtn } from '../../../../../assets/Icons';
 
 //import components
 import DashBoardLayout from '../../AdminPage/DashBoardSection/DashboardLayout/DashBoardLayout';
-import UserInfoLayout from '../Layouts/UserInfoLayout';
 import Button from '../../../../layouts/Buttons/Button';
-import Image from '../../../../layouts/Images/Image';
-import { useSelector } from 'react-redux';
 import Modal from '../../../../layouts/ModalComponent/Modal';
 import DeleteAccountModalUser from '../../../../layouts/ModalComponent/ModalLayouts/ModalContent/DeleteAccountModal/DeleteAccountModalUser';
 
 const DeleteAccount = () => {
     titleName(`Delete Account`);
-    const { user } = useSelector((state) => state.auth);
-    const [selectedUserId, setSelectedUserId] = useState(null);
 
-    // State to track which modal is open
-    const [activeModal, setActiveModal] = useState("");
-
-    // Function to close the modal
-    const closeModal = () => setActiveModal("");
-
-    const handleDeleteClick = (userId) => {
-        setSelectedUserId(userId);
-        setActiveModal("deleteAccountUser");
-    };
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const closeModal = () => setIsModalOpen(false);
 
     return (
-        <DashBoardLayout>
-            <h1>Delete Account</h1>
-            <UserInfoLayout>
-                <section className='deleteAccountContent'>
-                    <div className="deleteAccountContainer">
-                        <div className="deleteAccountTop">
-                            <Image variant='profile' src={
-                                user?.avatar ? user?.avatar?.url : AvatarDefault
-                            }
-                                alt="" title="Your Profil picture"
-                                className='deleteAccountImg' />
-                        </div>
-                        <div className="deleteAccountBottom">
-                            <div className="deleteAccountName">
-                                <h1>Full Name:</h1>
-                                <p>{user.name}</p>
-                            </div>
-                            <div className="deleteAccountEmail">
-                                <h1>Email:</h1>
-                                <p>{user.email}</p>
-                            </div>
-                            <div className="deleteAccountBtnDelete">
-                                <Button onClick={() => setActiveModal("deleteAccountUser")}
-                                    variant="deleteAccount" icon={DeleteBtn}
-                                    title="Delete Account">
-                                    <p>Delete Account</p>
-                                </Button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </UserInfoLayout>
+        <DashBoardLayout title="Delete account" subtitle="Permanently remove your Travel Diary account.">
+            <section className="dashCard dashNarrow dashDangerCard">
+                <h2 className="dashCardTitle">Delete your account</h2>
+                <p className="dashCardText">
+                    Your profile and profile picture will be removed and you will be logged out.
+                    Once it's deleted, the account can't be restored.
+                </p>
+                <div className="dashActions" style={{ marginTop: 20 }}>
+                    <Button type="button" variant="danger" onClick={() => setIsModalOpen(true)}>
+                        Delete account
+                    </Button>
+                </div>
+            </section>
 
             {/* Modal for delete modal */}
-            <Modal isOpen={activeModal === "deleteAccountUser"} onClose={closeModal}>
-                <DeleteAccountModalUser onClose={closeModal} userId={selectedUserId} />
+            <Modal isOpen={isModalOpen} onClose={closeModal}>
+                <DeleteAccountModalUser onClose={closeModal} />
             </Modal>
         </DashBoardLayout>
     )

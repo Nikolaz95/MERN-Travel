@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import titleName from '../../../../hooks/useTitle';
 import toast from 'react-hot-toast';
 
@@ -7,60 +7,57 @@ import toast from 'react-hot-toast';
 import "./UploadPicture.css"
 
 //import images
-import { AvatarDefault, CancelUpdate, SaveUpdate, UploadCamera } from '../../../../../assets/Icons';
+import { AvatarDefault } from '../../../../../assets/Icons';
 
 
 import DashBoardLayout from '../../AdminPage/DashBoardSection/DashboardLayout/DashBoardLayout';
-import UserInfoLayout from '../Layouts/UserInfoLayout';
 import Button from '../../../../layouts/Buttons/Button';
 import Image from '../../../../layouts/Images/Image';
+import Navigation from '../../../../layouts/NavigatioLinkComponent/Navigation';
 import { useUploadAvatarMutation } from '../../../../../redux/api/userApi';
 import { useSelector } from 'react-redux';
-import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import { useEffect } from 'react';
+
+// the backend accepts JSON bodies up to 10 MB and base64 adds ~35%
+const MAX_FILE_SIZE = 5 * 1024 * 1024;
 
 const UploadPicture = () => {
     titleName(`Upload Picture`);
 
     const navigate = useNavigate();
 
-    const [uploadAvatar, { isLoading, error, isSuccess }] = useUploadAvatarMutation();
+    const [uploadAvatar, { isLoading }] = useUploadAvatarMutation();
 
     const { user } = useSelector((state) => state.auth);
 
     const [avatar, setAvatar] = useState("");
 
     const [avatarPreview, setAvatarPreview] = useState(
-        user?.avatar ? user?.avatar?.url : AvatarDefault
+        user?.avatar?.url || AvatarDefault
     );
 
-    useEffect(() => {
-        if (error) {
-            toast.error(error?.data?.message);
-        }
-
-        if (isSuccess) {
-            toast.success("Avatar Uploaded");
-            navigate("/user/settings-Profile");
-        }
-    }, [error, isSuccess]);
-
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault();
 
-        const userData = {
-            avatar,
-        };
-        console.log("========================");
-        console.log(userData);
-        console.log("========================");
-
-
-        uploadAvatar(userData);
+        try {
+            await uploadAvatar({ avatar }).unwrap();
+            toast.success("Picture updated");
+            navigate("/user/settings-Profile");
+        } catch (err) {
+            toast.error(err?.data?.message || "Upload failed");
+        }
     };
 
     const onChange = (e) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        if (file.size > MAX_FILE_SIZE) {
+            toast.error("Picture is too large (max 5 MB)");
+            e.target.value = "";
+            return;
+        }
+
         const reader = new FileReader();
         reader.onload = () => {
             if (reader.readyState === 2) {
@@ -68,42 +65,30 @@ const UploadPicture = () => {
                 setAvatar(reader.result);
             }
         };
-        reader.readAsDataURL(e.target.files[0]);
+        reader.readAsDataURL(file);
     };
 
 
     return (
-        <DashBoardLayout>
-            <h1>Upload Picture</h1>
-            <UserInfoLayout>
-                <section className='userUploadContent'>
-                    <form action="" className="userUpload-info" onSubmit={submitHandler}>
-                        <div className="userUpload-top">
-                            <Image variant="icon" src={avatarPreview} alt="avatar Default" className='userUpload-Profileimg' />
-                            <input type="file" name='file'
-                                id='file'
-                                accept="images/*"
-                                onChange={onChange} />
-                            <label htmlFor="file" className='userUpload-BtnUplFile'>
-                                <Image src={UploadCamera} variant="icon" title='Change picture' alt="chose a picture" className='userUpload-camera' />
-                            </label>
-                        </div>
-                        <div className="userUpload-Btns">
-                            <Button >
-                                <Image variant="icon" src={SaveUpdate} className="iconBtns" disabled={isLoading} />
-                                {/* Save Upload */}
-                                {isLoading ? "Uploading..." : "Save Upload"}
-                            </Button>
-                            <Button >
-                                <Image variant="icon" src={CancelUpdate} className="iconBtns" />
-                                Cancel
-                            </Button>
-                        </div>
-                    </form>
-                </section>
+        <DashBoardLayout title="Profile picture" subtitle="Choose a photo that shows who you are.">
+            <form className="dashCard dashNarrow uploadCard" onSubmit={submitHandler}>
+                <Image src={avatarPreview} alt="Profile picture preview" variant="uploadAvatar" />
 
-            </UserInfoLayout>
+                <div className="uploadChoose">
+                    <input type="file" id="avatarFile" name="avatar"
+                        className="uploadInput" accept="image/*"
+                        onChange={onChange} />
+                    <label htmlFor="avatarFile" className="uploadChooseLabel">📷 Choose picture</label>
+                    <p className="uploadHint">JPG, PNG or WEBP, max 5 MB.</p>
+                </div>
 
+                <div className="dashActions">
+                    <Button type="submit" variant="primary" disabled={!avatar || isLoading}>
+                        {isLoading ? "Uploading..." : "Save picture"}
+                    </Button>
+                    <Navigation to="/user/settings-Profile" variant="dashLinkButton">Cancel</Navigation>
+                </div>
+            </form>
         </DashBoardLayout>
     )
 }

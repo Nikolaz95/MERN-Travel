@@ -1,17 +1,16 @@
 
 
 //import img
-import { DashBoard, DataAnalytic, DeleteAccoutn, ListOfUsers, UpdatePassword, UpdateProfile, UploadImg, UserContent, UserIcon, UserSettings, YourTravel } from "../../../../../../assets/Icons"
+import { DashBoard, DataAnalytic, DeleteAccoutn, ListOfUsers, mapImg, UpdatePassword, UpdateProfile, UploadImg, UserIcon, YourTravel } from "../../../../../../assets/Icons"
 
 
+// Sidebar groups - `roles` limits who sees the group (no roles = everyone)
 const SidebarData = [
     {
         id: 0,
-        titleName: "Dashboard",
-        icon: DashBoard,
+        titleName: "Admin",
         roles: ["admin"],
-
-        dropDownList: [
+        links: [
             {
                 title: "Dashboard",
                 path: "/admin/dashBoard",
@@ -32,10 +31,9 @@ const SidebarData = [
 
     {
         id: 1,
-        titleName: "User Profile",
-        icon: UserSettings,
+        titleName: "Account",
         roles: ["user", "admin"],
-        dropDownList: [
+        links: [
             {
                 title: "Profile Info",
                 path: "/user/settings-Profile",
@@ -68,13 +66,17 @@ const SidebarData = [
 
     {
         id: 2,
-        titleName: "User Content",
-        icon: UserContent,
-        dropDownList: [
+        titleName: "Travel",
+        links: [
             {
-                title: "Your Visit List",
+                title: "My trips",
                 path: "/user/yourTravel",
                 icon: YourTravel
+            },
+            {
+                title: "Travel map",
+                path: "/travelMap",
+                icon: mapImg
             },
         ]
     },

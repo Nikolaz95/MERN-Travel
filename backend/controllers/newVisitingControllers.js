@@ -1,6 +1,7 @@
 
 import catchAsyncErrors from "../middlewares/catchAsyncErrors.js";
 import newVisiting from "../models/newVisiting.js";
+import ErrorHandler from "../utils/errorHandler.js";
 
 
 // ➕ create new visiting  /visitlist/add

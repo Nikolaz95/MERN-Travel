@@ -1,59 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import styled from "styled-components"
 import toast from 'react-hot-toast';
-import { useNavigate, useParams } from 'react-router';
-import Image from '../../../../Images/Image';
 import Button from '../../../../Buttons/Button';
 import { useGetUserDetailsQuery, useUpdateUserMutation } from '../../../../../../redux/api/userApi';
-import { SaveUpdate } from '../../../../../../assets/Icons';
 
-
-const UpdateAccountModalLayout = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    padding: 20px;
-    background-color: bisque;
-    border-radius: 30px;
-`
-const UpdateAccountModalContent = styled.form`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    padding: 20px;
-    background-color: bisque;
-    border-radius: 30px;
-`
-
-const Input = styled.input`
-border: none;
-  border-radius: 10px;
-padding: 10px;
-`;
-
-const InputSelect = styled.select`
-width: 100%;
-border: none;
-text-align: center;
-border-radius: 10px;
-padding: 10px;
-`;
-
+//import css
+import "../ModalCard.css";
+import styles from '../../../../ContentLayout/FormLayout/AuthForm.module.css';
 
 
 const UpdateProfileModal = ({ userId, onClose }) => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
-    const [role, setRole] = useState("");
+    const [role, setRole] = useState("user");
 
-    const navigate = useNavigate();
-    const params = useParams();
-    const { data } = useGetUserDetailsQuery(userId);
-    const [updateUser, { error, isSuccess }] = useUpdateUserMutation();
+    const { data, isLoading: isLoadingUser } = useGetUserDetailsQuery(userId);
+    const [updateUser, { isLoading }] = useUpdateUserMutation();
 
     useEffect(() => {
         if (data?.user) {
@@ -63,55 +24,56 @@ const UpdateProfileModal = ({ userId, onClose }) => {
         }
     }, [data]);
 
-    useEffect(() => {
-        if (error) {
-            toast.error(error?.data?.message);
-        }
 
-        if (isSuccess) {
-            toast.success("User Updated");
-            onClose();
-        }
-    }, [error, isSuccess, onClose]);
-
-
-
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault();
-        const userData = { name, email, role };
-        updateUser({ id: userId, body: userData });
+
+        try {
+            await updateUser({ id: userId, body: { name, email, role } }).unwrap();
+            toast.success("User updated");
+            onClose();
+        } catch (err) {
+            toast.error(err?.data?.message || "Update failed");
+        }
     };
+
     return (
-        <UpdateAccountModalLayout>
-            <h1>Update Profile</h1>
-            <UpdateAccountModalContent onSubmit={submitHandler}>
-                <label htmlFor="name_field" className="formLabel">Name:</label>
-                <Input type="text" id="name_field"
-                    className="form-control" placeholder='fakeUserName'
-                    value={name} onChange={(e) =>
-                        setName(e.target.value)} name="name" />
-                <label htmlFor="email_field" className="form-label">Email:</label>
+        <form className="modalCard" onSubmit={submitHandler} aria-labelledby="edit-user-title">
+            <h2 id="edit-user-title" className="modalCardTitle">Edit user</h2>
 
-                <Input type="email" placeholder='fake@email.com' value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    id="email_field" className="form-control" name="email" />
+            <div className={styles.field}>
+                <label htmlFor="edit_name" className={styles.label}>Name</label>
+                <input type="text" id="edit_name" name="name" className={styles.input}
+                    required maxLength={50} disabled={isLoadingUser}
+                    value={name} onChange={(e) => setName(e.target.value)} />
+            </div>
 
-                <label htmlFor="role_field">
-                    Role
-                </label>
-                <InputSelect name="role" value={role}
-                    onChange={(e) => setRole(e.target.value)} id="role_field">
-                    <option value="user">user</option>
-                    <option value="admin">admin</option>
-                </InputSelect>
+            <div className={styles.field}>
+                <label htmlFor="edit_email" className={styles.label}>Email</label>
+                <input type="email" id="edit_email" name="email" className={styles.input}
+                    required disabled={isLoadingUser}
+                    value={email} onChange={(e) => setEmail(e.target.value)} />
+            </div>
 
-                <Button type="submit">
-                    <Image src={SaveUpdate} variant='icon' alt="" title='Update' />
-                    Update
+            <div className={styles.field}>
+                <label htmlFor="edit_role" className={styles.label}>Role</label>
+                <select id="edit_role" name="role" className={styles.input}
+                    disabled={isLoadingUser}
+                    value={role} onChange={(e) => setRole(e.target.value)}>
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+
+            <div className="modalCardActions">
+                <Button type="button" variant="secondary" onClick={onClose} disabled={isLoading}>
+                    Cancel
                 </Button>
-
-            </UpdateAccountModalContent>
-        </UpdateAccountModalLayout>
+                <Button type="submit" variant="primary" disabled={isLoading || isLoadingUser}>
+                    {isLoading ? "Saving..." : "Save"}
+                </Button>
+            </div>
+        </form>
     )
 }
 

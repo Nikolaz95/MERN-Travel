@@ -1,44 +1,179 @@
+.tableSection {
+    overflow-x: auto;
+}
 
-
-
-
-
-table {
+.usersTable {
     width: 100%;
-    border: 1px solid black;
     border-collapse: collapse;
+    font-size: 14px;
 }
 
-
-th, td {
-    text-align: center;
-    border: 1px solid black;
-    padding: 10px;
+.usersTable th {
+    padding: 12px 16px;
+    border-bottom: 1px solid #e2e8f0;
+    color: #64748b;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-align: left;
+    text-transform: uppercase;
+    white-space: nowrap;
 }
 
-/* btn user list */
+.usersTable td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #f1f5f9;
+    color: #334155;
+    vertical-align: middle;
+}
 
+.usersTable tbody tr:hover {
+    background-color: #f8fafc;
+}
 
-.btn-userListContent {
+.usersTableUser {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    border: none;
-    gap: 10px;
+    align-items: center;
+    gap: 12px;
 }
 
-
-.btn-userList {
-    display: flex;
-    flex-direction: row;
-    background-color: transparent;
-    border: none;
-    gap: 10px;
+.usersTableUserText {
+    min-width: 0;
 }
 
-.btnIcon-userList {
-    width: 30px;
-    height: 30px;
+.usersTableName {
+    color: var(--color-text);
+    font-weight: 700;
+}
+
+.usersTableId {
+    color: #94a3b8;
+    font-size: 12px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.usersTableEmail {
+    overflow-wrap: anywhere;
+}
+
+.roleBadge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background-color: #f1f5f9;
+    color: #475569;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.roleBadge.isAdmin {
+    background-color: #e0f2fe;
+    color: #0369a1;
+}
+
+.usersTableActions {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.userActionBtn {
+    padding: 6px 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #334155;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
     cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 
+.userActionBtn + .userActionBtn {
+    margin-left: 6px;
+}
+
+.userActionBtn:hover {
+    background-color: #f1f5f9;
+    border-color: #cbd5e1;
+}
+
+.userActionBtn.isDanger {
+    color: #dc2626;
+}
+
+.userActionBtn.isDanger:hover {
+    border-color: #fecaca;
+    background-color: #fef2f2;
+}
+
+.userActionBtn:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+.visuallyHidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+
+/* small screens: every row becomes a card */
+@media screen and (max-width: 700px) {
+    .usersTable thead {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+    }
+
+    .usersTable,
+    .usersTable tbody,
+    .usersTable tr,
+    .usersTable td {
+        display: block;
+    }
+
+    .usersTable tr {
+        padding: 12px;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .usersTable td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 6px 4px;
+        border-bottom: none;
+    }
+
+    /* label from data-label in front of each value */
+    .usersTable td[data-label]::before {
+        content: attr(data-label);
+        flex-shrink: 0;
+        color: #94a3b8;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .usersTable td[data-label="User"]::before {
+        content: none;
+    }
+
+    .usersTableEmail {
+        text-align: right;
+    }
+
+    .usersTableActions {
+        justify-content: flex-end;
+        padding-top: 10px;
+    }
+}
