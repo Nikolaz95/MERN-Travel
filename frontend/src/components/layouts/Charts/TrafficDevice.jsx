@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { Doughnut } from 'react-chartjs-2';
+import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { useGetVisitsByDeviceQuery } from '../../../redux/api/visitsStatsApi';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 
 const TrafficDevice = () => {
-    const { data, isLoading } = useGetVisitsByDeviceQuery();
-    const devices = data?.devices || [];
-
-    console.log(devices);
-
+    const isLoading = false;
+    const devices = [
+        { _id: "Mobile", count: 450 },
+        { _id: "Desktop", count: 300 },
+        { _id: "Tablet", count: 150 }
+    ];
 
     const [chartData, setChartData] = useState({
         labels: [],
@@ -26,9 +26,9 @@ const TrafficDevice = () => {
                         label: "Visits by device",
                         data: devices.map(d => d.count),
                         backgroundColor: [
-                            'rgba(54, 162, 235, 0.8)',   // Mobile
-                            'rgba(255, 99, 132, 0.8)',   // Desktop
-                            'rgba(255, 206, 86, 0.8)',   // Tablet
+                            'rgba(54, 162, 235, 0.8)',   // Plava
+                            'rgba(255, 99, 132, 0.8)',   // Crvena
+                            'rgba(255, 206, 86, 0.8)',   // Žuta
                         ],
                         borderColor: [
                             'rgba(54, 162, 235, 1)',
@@ -40,33 +40,27 @@ const TrafficDevice = () => {
                 ]
             });
         }
-    }, [isLoading, devices]);
+    }, [isLoading]);
 
     const options = {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
             legend: {
-                position: 'bottom', // Premestili smo legendu dole
+                position: 'bottom',
             },
-            /* title: {
-                display: true,
-                text: 'Saobraćaj po tipu uređaja',
-                font: {
-                    size: 16,
-                }
-            } */
         }
     };
 
 
     return (
-        <section className="chartSection" style={{ width: '450px', height: '350px', padding: '20px', border: '1px solid #ddd', borderRadius: '8px' }}>
-            {/* Proveravamo da li imamo podatke pre renderovanja */}
+        <section className="chartSection" style={{ width: '450px', height: '400px', padding: '20px', border: '1px solid #ddd', borderRadius: '8px' }}>
+            <h3 style={{ textAlign: 'center' }}>Saobraćaj po uređaju</h3>
             {chartData.datasets.length > 0 ? (
-                <Doughnut data={chartData} options={options} />
+                /* 2. Zamijeni komponentu sa Pie */
+                <Pie data={chartData} options={options} />
             ) : (
-                <div>Učitavanje podataka...</div>
+                <div style={{ textAlign: 'center', marginTop: '100px' }}>Učitavanje podataka...</div>
             )}
         </section>
     )

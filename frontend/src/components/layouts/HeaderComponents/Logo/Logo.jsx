@@ -10,8 +10,8 @@ import Navigation from '../../NavigatioLinkComponent/Navigation'
 
 const Logo = () => {
     return (
-        <Navigation to="/">
-            <Image src={Logoimg} variant="logo" alt="Logo" />
+        <Navigation to="/" aria-label="Home">
+            <Image src={Logoimg} variant="headerLogo" alt="Logo" />
         </Navigation>
     )
 }

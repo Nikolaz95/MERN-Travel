@@ -2,69 +2,65 @@
 
 .navigationSection {
     display: flex;
-    flex-direction: row;
     align-items: center;
 }
 
 .navigationList {
     display: flex;
-    gap: 20px;
-    list-style: none; /* Remove default bullets */
-}
-
-.navigationSection li .active {
-    border-radius: 20px;
-    /* padding: 10px; */
-    color: white;
-    font-size: 25px;
-    font-weight: bold;
-    background: radial-gradient(50% 50% at 50% 0, rgba(var(--action-background-color,255,255,255),.8) 0, transparent 100%), hsla(0, 0%, 100%, .2);
-}
-
-.navigationSection li{
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    list-style: none;
     align-items: center;
-    /* border: 1px solid black; */
+    gap: 8px;
+    list-style: none;
+}
+
+.navigationList > li {
+    display: flex;
+    align-items: center;
 }
 
 
-/* Dropdown  styles */
-
-/* navbar mobile content start  */
-
+/* mobile sidebar start */
 
 @media only screen and (max-width: 700px) {
-.navigationSection {
-    display: none;
-}
-    
-.navigationSection.active {
-    display: flex;
-    top: 118px;
-    right: 0px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(13.8px);
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
-    position: fixed;
-    align-items: center;
-    overflow-y: auto;
-    z-index: 10000000;
-}
-    
-.navigationSection.active ul {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    list-style: none;  
+    .navigationSection {
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 2;
+        flex-direction: column;
+        align-items: stretch;
+        width: min(80vw, 320px);
+        height: 100vh;
+        height: 100dvh;
+        padding: calc(var(--header-height) + 16px) 16px 24px;
+        background: linear-gradient(180deg, var(--color-primary-dark), var(--color-primary));
+        box-shadow: -8px 0 24px rgba(15, 23, 42, 0.25);
+        overflow-y: auto;
+        transform: translateX(100%);
+        visibility: hidden;
+        transition: transform 0.3s ease, visibility 0.3s ease;
+    }
+
+    .navigationSection.isOpen {
+        transform: translateX(0);
+        visibility: visible;
+    }
+
+    .navigationList {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+    }
+
+    .navigationList > li {
+        flex-direction: column;
+        align-items: stretch;
+    }
 }
 
+@media (prefers-reduced-motion: reduce) {
+    .navigationSection {
+        transition: none;
+    }
 }
-    
-/* navbar mobile content end  */
+
+/* mobile sidebar end */

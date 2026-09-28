@@ -1,23 +1,67 @@
+.rightSingIn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 28px;
+    padding: 48px 44px;
+    background: linear-gradient(160deg, var(--color-primary-dark), var(--color-primary));
+    color: #fff;
+}
 
+.registeringHeader {
+    font-size: 26px;
+    font-weight: 800;
+}
+
+.benefitList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    list-style: none;
+}
+
+/* check mark bubble in front of every benefit */
+.benefitItem {
+    position: relative;
+    padding-left: 40px;
+}
+
+.benefitItem::before {
+    content: "✓";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.22);
+    font-size: 14px;
+    font-weight: 800;
+}
 
 .registeringTitle {
-    color: white;
+    font-size: 17px;
+    font-weight: 700;
 }
 
 .registeringText {
-    font-size: 15px;
-    font-weight: bold;
-    color: white;
+    margin-top: 4px;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 14px;
+    line-height: 1.5;
 }
 
 
 @media only screen and (max-width: 768px) {
+    .rightSingIn {
+        gap: 20px;
+        padding: 32px 24px;
+    }
 
-.rightSingIn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
-
+    .registeringHeader {
+        font-size: 22px;
+    }
 }

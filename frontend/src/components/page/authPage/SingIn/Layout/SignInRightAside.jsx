@@ -5,15 +5,33 @@ import React from 'react'
 //import css
 import styles from './SignInRightAside.module.css';
 
-const SignInRightAside = () => {
+const benefits = [
+    {
+        title: "Pin your adventures",
+        text: "Mark every city you visit on an interactive map.",
+    },
+    {
+        title: "Keep your memories",
+        text: "Add dates and notes to each trip so no story gets forgotten.",
+    },
+    {
+        title: "See how far you've gone",
+        text: "Browse all the cities and countries you've explored in one place.",
+    },
+];
+
+const SignInRightAside = ({ title = "Your free travel diary" }) => {
     return (
-        <aside className={styles.rightSingIn} >
-            <h1 className={styles.registeringTitle}>Benefits of your free  account</h1>
-            <p className={styles.registeringText} >Personalized Recommendations</p>
-            <h1 className={styles.registeringTitle} >Your Watchlist</h1>
-            <p className={styles.registeringText} >Track everything you want to watch and receive e-mail when movies open in theaters.</p>
-            <h1 className={styles.registeringTitle}>Your Favorit list</h1>
-            <p className={styles.registeringText}>Track everything you want to watch and receive e-mail when movies open in theaters.</p>
+        <aside className={styles.rightSingIn}>
+            <h2 className={styles.registeringHeader}>{title}</h2>
+            <ul className={styles.benefitList}>
+                {benefits.map((benefit) => (
+                    <li key={benefit.title} className={styles.benefitItem}>
+                        <h3 className={styles.registeringTitle}>{benefit.title}</h3>
+                        <p className={styles.registeringText}>{benefit.text}</p>
+                    </li>
+                ))}
+            </ul>
         </aside>
     )
 }

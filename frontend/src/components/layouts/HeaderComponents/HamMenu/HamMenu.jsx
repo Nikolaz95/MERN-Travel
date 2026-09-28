@@ -4,13 +4,17 @@ import React from 'react'
 //import css
 import "./HamMenu.css";
 
-const HamMenu = ({ toggleSideMenu, isSideMenuOpen }) => {
+const HamMenu = ({ ref, toggleSideMenu, isSideMenuOpen }) => {
     return (
-        <div onClick={toggleSideMenu} className={`ham-menu ${isSideMenuOpen === true ? "active" : null} ${isSideMenuOpen === false ? "close" : null}`}>
-            <span className="bar1"></span>
-            <span className="bar2"></span>
-            <span className="bar3"></span>
-        </div>
+        <button ref={ref} type="button" onClick={toggleSideMenu}
+            className={`ham-menu ${isSideMenuOpen ? "active" : ""}`}
+            aria-label={isSideMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isSideMenuOpen}
+            aria-controls="main-navigation">
+            <span className="bar"></span>
+            <span className="bar"></span>
+            <span className="bar"></span>
+        </button>
     )
 }
 
