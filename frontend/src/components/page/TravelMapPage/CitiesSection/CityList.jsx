@@ -1,76 +1,70 @@
-import React, { useState } from 'react'
-import useFetch from '../../../hooks/useFetch';
+import React from 'react'
 import toast from 'react-hot-toast';
 
 //import css
 import './CityList.css';
 
 //import components
-import Button from '../../../layouts/Buttons/Button';
 import Loading from '../../../layouts/Loading/Loading';
 import Navigation from '../../../layouts/NavigatioLinkComponent/Navigation';
+import Flag from '../../../layouts/Flag/Flag';
 import { useGetVisitListQuery, useRemoveFromVisitListMutation } from '../../../../redux/api/visitListApi';
-import Image from '../../../layouts/Images/Image';
-import { Cancel } from '../../../../assets/Icons';
+import { formatDate } from '../../../../utils/formatDate';
 
 const CityList = () => {
     //Fetch Visit list from user
     const { data, isLoading } = useGetVisitListQuery();
-    console.log(data);
+
+    // newest trip first
+    const visits = [...(data?.userVisitList || [])].sort((a, b) => new Date(b.date) - new Date(a.date));
 
     const [removeVisit, { isLoading: isDeleting }] = useRemoveFromVisitListMutation();
 
     const handleDelete = (visitId, cityName) => async () => {
         try {
             await removeVisit(visitId).unwrap();
-            toast.success(`Visit from ${cityName} successfully deleted!`);
+            toast.success(`Visit to ${cityName} deleted!`);
         } catch (error) {
             console.error("Brisanje nije uspelo:", error);
-            toast.error(`Visit from ${cityName} didnt remove !`);
+            toast.error(`Couldn't delete visit to ${cityName}!`);
         }
     };
 
 
-    const formatDate = (date) =>
-        new Intl.DateTimeFormat("en", {
-            day: "numeric",
-            month: "long",
-            year: "numeric",
-        }).format(new Date(date))
+    if (isLoading) return <Loading />;
+
+    if (visits.length === 0) {
+        return (
+            <div className="travelEmpty">
+                <span className="travelEmptyIcon">🗺️</span>
+                <p className="travelEmptyTitle">No trips yet</p>
+                <p className="travelEmptyText">Click anywhere on the map to add the first place you've visited.</p>
+            </div>
+        );
+    }
 
     return (
-        <>
-            {isLoading ? (
-                <Loading />
-            ) : (
-                <section className='cityListSection'>
-                    <h3 className='citiListaHeader'> CityList : ({data?.userVisitList?.length || 0})</h3>
-                    {data?.userVisitList?.length === 0 ? (
-                        <p className="emptyMessage">Start your journey 🚀</p>
-                    ) : (
-                        data?.userVisitList?.map((city) => (
-                            <ul key={city._id} className='citiListaContent'>
-                                <li className='citiLista'>
-                                    <Navigation to={`/travelMap/cities/${city._id}?lat=${city.position.lat}&lng=${city.position.lng}`} >
-                                        <div className="citiListaLeft">
-                                            <span className='textStyle'>{city.cityName}</span>
-                                            <h3 className='textStyle'>{city.country}</h3>
-                                        </div>
-                                    </Navigation>
+        <ul className='cityList'>
+            {visits.map((city) => (
+                <li key={city._id} className='cityItem'>
+                    <Navigation to={`/travelMap/cities/${city._id}?lat=${city.position.lat}&lng=${city.position.lng}`} variant="cityCard">
+                        <Flag emoji={city.flag} size="md" />
+                        <div className="cityCardInfo">
+                            <p className='cityCardName'>{city.cityName}</p>
+                            <p className='cityCardMeta'>
+                                {city.countryName} · <time dateTime={city.date}>{formatDate(city.date)}</time>
+                            </p>
+                        </div>
+                    </Navigation>
 
-                                    <div className="citiListaRight">
-                                        <time>({formatDate(city.date)})</time>
-                                        <Button variant="btnModal" onClick={handleDelete(city._id, city.cityName)}>
-                                            <Image src={Cancel} variant="btnIcon" />
-                                        </Button>
-                                    </div>
-                                </li>
-                            </ul>
-                        ))
-                    )}
-                </section >
-            )}
-        </>
+                    <button type="button" className="cityDelete"
+                        onClick={handleDelete(city._id, city.cityName)} disabled={isDeleting}
+                        aria-label={`Delete visit to ${city.cityName}`} title="Delete visit">
+                        ×
+                    </button>
+                </li>
+            ))}
+        </ul>
     )
 }
 

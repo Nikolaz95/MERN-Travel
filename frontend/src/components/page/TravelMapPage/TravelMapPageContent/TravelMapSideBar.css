@@ -1,16 +1,29 @@
-
-
 /* sidebar */
 
-.travelSideBar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: beige;
+.travelSideBarSection {
+    position: relative;
+    z-index: 1; /* shadow goes over the map */
+    flex-shrink: 0;
     height: 100%;
-    width: 307px;
-    overflow-y: auto; /* Enable scrolling */
-  scrollbar-width: none;  /* Firefox support */
-  -ms-overflow-style: none;  /* IE/Edge support */
 }
 
+.travelSideBar {
+    width: 380px;
+    height: 100%;
+    border-right: 1px solid #e2e8f0;
+    box-shadow: 4px 0 20px rgba(15, 23, 42, 0.08);
+}
+
+
+@media screen and (max-width: 1000px) {
+    .travelSideBar {
+        width: 320px;
+    }
+}
+
+/* on mobile the sidebar content is shown in a modal instead */
+@media screen and (max-width: 700px) {
+    .travelSideBarSection {
+        display: none;
+    }
+}

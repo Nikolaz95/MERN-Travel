@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { NavLink, useNavigate } from 'react-router';
+import React from 'react'
+import { useNavigate } from 'react-router';
+import toast from 'react-hot-toast';
 
 //import css
 import "./HeaderNavigation.css";
-// import img 
+// import img
 import { LogInImg, Product } from '../../../../assets/Icons';
 
 
@@ -15,31 +16,12 @@ import { useGetMeQuery } from '../../../../redux/api/userApi';
 import { useSelector } from 'react-redux';
 import { useLazyLogoutQuery } from '../../../../redux/api/authApi';
 
-const HeaderNavigation = ({ isSideMenuOpen }) => {
+const HeaderNavigation = ({ ref, isSideMenuOpen, closeSideMenu }) => {
     const navigate = useNavigate();
-    const [dropdownUser, setDropdownUser] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const { isLoading } = useGetMeQuery();
     const [logout] = useLazyLogoutQuery();
 
     const { user } = useSelector((state) => state.auth);
-
-    /*  console.log(data); */
-
-
-    const handleToggleDropdown = () => {
-        setDropdownUser(!dropdownUser);
-    };
-
-    // Prevent scrolling when menu is open
-    useEffect(() => {
-        if (isSideMenuOpen) {
-            document.body.classList.add('no-scroll');
-        } else {
-            document.body.classList.remove('no-scroll');
-        }
-        return () => document.body.classList.remove('no-scroll');
-    }, [isSideMenuOpen]);
 
 
     const handleLogOut = async () => {
@@ -55,23 +37,24 @@ const HeaderNavigation = ({ isSideMenuOpen }) => {
 
 
     return (
-        <nav className={`navigationSection ${isSideMenuOpen ? "active" : "close"}`}>
+        <nav ref={ref} id="main-navigation" aria-label="Main navigation"
+            className={`navigationSection ${isSideMenuOpen ? "isOpen" : ""}`}>
             <ul className="navigationList">
                 <li>
-                    <Navigation to="/product" variant='headNavigation'>
-                        <Image src={Product} alt="here should be a picture" variant="navIcon" />
+                    <Navigation to="/product" variant='headNavigation' onClick={closeSideMenu}>
+                        <Image src={Product} alt="" variant="navIcon" />
                         Product
                     </Navigation>
                 </li>
 
                 {user ? (
-                    <UserNavigationBar user={user} handleLogOut={handleLogOut} />
+                    <UserNavigationBar user={user} handleLogOut={handleLogOut} closeSideMenu={closeSideMenu} />
                 ) : (
                     !isLoading && (
                         <li>
-                            <Navigation to="/signIn" variant='headNavigation'>
+                            <Navigation to="/signIn" variant='headNavigation' onClick={closeSideMenu}>
                                 <Image src={LogInImg} alt="" variant="navIcon" />
-                                Sing in
+                                Sign in
                             </Navigation>
                         </li>
                     )

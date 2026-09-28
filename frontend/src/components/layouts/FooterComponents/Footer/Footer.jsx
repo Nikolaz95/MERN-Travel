@@ -7,49 +7,51 @@ import "./Footer.css";
 
 //import imges
 import Image from '../../Images/Image';
-import { CopyRight, GitHub, Gmail, LinkeDin, Location, MyPortfolio } from '../../../../assets/Icons';
+import { GitHub, Gmail, LinkeDin, Location, MyPortfolio } from '../../../../assets/Icons';
 
-//import components
+const MAPS_URL = "https://www.google.com/maps/place/Stockholm/@59.0968211,17.5065602,7.75z/data=!4m6!3m5!1s0x465f763119640bcb:0xa80d27d3679d7766!8m2!3d59.3293235!4d18.0685808!16zL20vMDZteHM?entry=ttu";
+
+const socialLinks = [
+    { label: "Gmail", href: "mailto:nikolajoe95@gmail.com", icon: Gmail },
+    { label: "GitHub", href: "https://github.com/Nikolaz95", icon: GitHub },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/nikola-zovko-a50779247/", icon: LinkeDin },
+    { label: "Portfolio", href: "https://nikolazovkoportfolio.netlify.app/#home", icon: MyPortfolio },
+];
 
 const Footer = () => {
     const currentYear = useCurrentYear();
 
     return (
-        <footer className="footerContent" >
-            <section className='footerMainContent'>
-                <section className="footerAddres">
-                    <h1 className='footerHeaderText'>Address:</h1>
-                    <address className='footerText'> Stockholm, Sweden
-                        <a href="https://www.google.com/maps/place/Stockholm/@59.0968211,17.5065602,7.75z/data=!4m6!3m5!1s0x465f763119640bcb:0xa80d27d3679d7766!8m2!3d59.3293235!4d18.0685808!16zL20vMDZteHM?entry=ttu"
-                            target="_blank"><Image src={Location} alt="" className='footerImg' />
+        <footer className="footerContent">
+            <div className="footerMainContent">
+                <section className="footerColumn">
+                    <h2 className="footerHeaderText">Address</h2>
+                    <address className="footerAddress">
+                        <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="footerAddressLink">
+                            <Image src={Location} alt="" variant="footerImg" />
+                            Stockholm, Sweden
                         </a>
                     </address>
                 </section>
 
-                <section className="footerMidleContent">
-                    <Image src={CopyRight} alt="" variant='footerImg' />
-                    <p className='footerText'>Copyright</p>
-                    <p className='footerText'>{currentYear} by Nikola Zovko</p>
+                <section className="footerColumn">
+                    <h2 className="footerHeaderText">Contact</h2>
+                    <ul className="contactFooterLink">
+                        {socialLinks.map(({ label, href, icon }) => (
+                            <li key={label}>
+                                <a href={href} className="footerSocialLink" aria-label={label} title={label}
+                                    {...(href.startsWith("http") && { target: "_blank", rel: "noopener noreferrer" })}>
+                                    <Image src={icon} alt="" variant="footerImg" />
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
                 </section>
+            </div>
 
-                <section className="contactFooter">
-                    <h1 className='footerHeaderText'>Contact:</h1>
-                    <div className="contactFooterLink">
-                        <a href="mailto:nikolajoe95@gmail.com" target="_blank">
-                            <Image src={Gmail} alt="" variant='footerImg' title="Gmail" />
-                        </a>
-                        <a href="https://github.com/Nikolaz95" target="_blank">
-                            <Image src={GitHub} alt="" variant='footerImg' title="GitHub" />
-                        </a>
-                        <a href="https://www.linkedin.com/in/nikola-zovko-a50779247/" target="_blank">
-                            <Image src={LinkeDin} alt="" variant='footerImg' title="Linkedin" />
-                        </a>
-                        <a href="https://nikolazovko-portfolio.netlify.app/" target="_blank">
-                            <Image src={MyPortfolio} alt="" variant='footerImg' title="MyPortfolio" />
-                        </a>
-                    </div>
-                </section>
-            </section>
+            <div className="footerBottom">
+                <p>© {currentYear} Nikola Zovko. All rights reserved.</p>
+            </div>
         </footer>
     )
 }

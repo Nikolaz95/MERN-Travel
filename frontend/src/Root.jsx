@@ -6,10 +6,12 @@ import { Toaster } from 'react-hot-toast';
 
 const Root = () => {
     return (
-        <div>
+        <div className="appLayout">
             <Toaster position="top-center" />
             <Header />
-            <Outlet />
+            <div className="appContent">
+                <Outlet />
+            </div>
             <Footer />
         </div>
     )

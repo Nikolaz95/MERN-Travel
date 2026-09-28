@@ -19,6 +19,5 @@ export const store = configureStore({
             authApi.middleware,
             userApi.middleware,
             visitListApi.middleware,
-
         ]),
 });

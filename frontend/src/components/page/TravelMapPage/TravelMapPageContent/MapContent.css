@@ -1,11 +1,119 @@
-
 .mapSection {
-    flex: 1;
-  height: 100%;
-  /* background-color: black; */
   position: relative;
+  z-index: 0; /* keeps Leaflet's z-indexes inside the map */
+  flex: 1;
+  height: 100%;
 }
 
 .map {
   height: 100%;
+  cursor: crosshair;
+}
+
+
+/* markers (Leaflet renders these outside React, so the classes are global) */
+.visitMarkerIcon {
+  background: none;
+  border: none;
+}
+
+/* teardrop pin with the flag inside */
+.visitMarker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--color-primary-dark);
+  border-radius: 50% 50% 50% 0;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.35);
+  transform: rotate(-45deg);
+  transition: transform 0.15s ease;
+}
+
+.visitMarker:hover {
+  transform: rotate(-45deg) scale(1.1);
+}
+
+.visitMarker img,
+.visitMarker span {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  transform: rotate(45deg);
+}
+
+.newPlaceMarker {
+  width: 20px;
+  height: 20px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  animation: newPlacePulse 1.6s ease-out infinite;
+}
+
+@keyframes newPlacePulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(41, 175, 248, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 0 18px rgba(41, 175, 248, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .newPlaceMarker {
+    animation: none;
+  }
+}
+
+
+/* marker popup */
+.leaflet-popup-content-wrapper {
+  border-radius: 14px;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.2);
+}
+
+.leaflet-popup-content {
+  margin: 14px 16px;
+  font-family: inherit;
+}
+
+.visitPopup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.visitPopup p {
+  margin: 0;
+}
+
+.visitPopupCity {
+  color: var(--color-text);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.visitPopupDate {
+  color: #64748b;
+  font-size: 12px;
+}
+
+.leaflet-container a.visitPopupLink {
+  display: block;
+  margin-top: 10px;
+  color: var(--color-primary-dark);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.leaflet-container a.visitPopupLink:hover {
+  text-decoration: underline;
 }

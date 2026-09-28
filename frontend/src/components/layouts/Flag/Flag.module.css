@@ -1,0 +1,32 @@
+.flag {
+    flex-shrink: 0;
+    border-radius: 4px;
+    object-fit: cover;
+    box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.15);
+}
+
+.flagEmoji {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.sm {
+    width: 22px;
+    height: 16px;
+    font-size: 16px;
+}
+
+.md {
+    width: 36px;
+    height: 27px;
+    font-size: 26px;
+}
+
+.lg {
+    width: 52px;
+    height: 39px;
+    font-size: 36px;
+}

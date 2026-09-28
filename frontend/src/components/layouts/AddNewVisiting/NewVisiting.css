@@ -1,48 +1,59 @@
-
-
-.newVisitingSection {
-    background-color: burlywood;
-    height: 500px;
-    width: 90%;
-    border: 1px solid;
-}
-
-.newVisitingMainContent {
+.newVisit {
     display: flex;
     flex-direction: column;
+    gap: 16px;
 }
 
-.formSection{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 10px;
-    /* align-items: center; */
-}
-
-
-.labelVisiting {
-    text-align: center;
+.newVisitTitle {
     font-size: 20px;
-    font-weight: bold;
+    font-weight: 800;
 }
 
-.inputVisiting {
-    padding:10px;
-    border-radius: 20px;
-    border: none;
-}
-.textVisiting {
-    padding: 10px;
-    border-radius: 20px;
-    border: none;
-    height: 200px;
-}
-
-
-.newVisitBottomContent {
+/* card with the place that was clicked on the map */
+.newVisitLocation {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 20px;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    border: 1px solid #bae6fd;
+    border-radius: 14px;
+    background-color: #f0f9ff;
+}
+
+.newVisitLocation.isError {
+    border-color: #fed7aa;
+    background-color: #fff7ed;
+}
+
+.newVisitLocationCity {
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.newVisitLocationCountry,
+.newVisitLocationHint {
+    color: #64748b;
+    font-size: 14px;
+}
+
+.newVisitForm {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.newVisitField {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.newVisitDatePicker {
+    width: 100%;
+}
+
+/* calendar is rendered in a portal so the scrolling sidebar doesn't cut it off;
+   z-index keeps it above the mobile modal */
+.react-datepicker-popper.newVisitDatePickerPopper {
+    z-index: 2000;
 }

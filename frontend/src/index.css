@@ -2,8 +2,44 @@
 @import "https://unpkg.com/leaflet@1.9.3/dist/leaflet.css";
 @import "https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap";
 
-* { 
-  margin: 0px; 
-  padding: 0px; 
-  box-sizing: border-box; 
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+:root {
+  --header-height: 80px;
+  --color-primary: #29aff8;
+  --color-primary-dark: #0284c7;
+  --color-text: #0f172a;
+}
+
+@media only screen and (max-width: 700px) {
+  :root {
+    --header-height: 68px;
+  }
+}
+
+body {
+  font-family: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* set on <body> while the mobile sidebar is open */
+body.no-scroll {
+  overflow: hidden;
+}
+
+/* keeps the footer at the bottom on short pages */
+.appLayout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.appContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }

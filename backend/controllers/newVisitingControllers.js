@@ -3,28 +3,24 @@ import catchAsyncErrors from "../middlewares/catchAsyncErrors.js";
 import newVisiting from "../models/newVisiting.js";
 
 
-
 // ➕ create new visiting  /visitlist/add
 export const createNewVisiting = catchAsyncErrors(async (req, res, next) => {
     // Step 1: 
-    const { cityName, countryName, flag, date, position, notes } = req.body;
+    const { cityName, countryName, flag, date, position, notes, continent } = req.body;
     const userId = req.user.id;
-    console.log("Adding to Watchlist:", { cityName, countryName, flag, date, position, notes });
+    console.log("Adding to Watchlist:", { cityName, countryName, continent, flag, date, position, notes });
 
     // Step 2: create new visiting
     const createVisiting = await newVisiting.create({
         user: userId,
         cityName,
         countryName,
+        continent,
         flag,
         date,
         notes,
         position,
     });
-
-    if (!position || !position.lat || !position.lng) {
-        return res.status(400).json({ success: false, message: "Position coordinates are required" });
-    }
 
     // Step 3. 
     res.status(201).json({

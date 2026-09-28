@@ -15,6 +15,7 @@ export const useCreateVisit = (addNewVisitList, navigate, data) => {
             await addNewVisitList({
                 cityName: data.cityName,
                 countryName: data.country,
+                continent: data.continent,
                 flag: data.flag,
                 date: data.date instanceof Date ? data.date.toISOString() : data.date,
                 notes: data.notes,

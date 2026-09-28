@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom'
+import toast from 'react-hot-toast';
 
 //import css
 import "./Sidebar.css"

@@ -20,6 +20,10 @@ const newVisitingShema = new mongoose.Schema(
             type: String,
             required: [true, "Please enter name of country name !"],
         },
+        continent: {
+            type: String,
+            required: false,
+        },
 
         flag: {
             type: String,
